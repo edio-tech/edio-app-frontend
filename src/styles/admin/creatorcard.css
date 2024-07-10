@@ -1,0 +1,36 @@
+.flex-card-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction:column;
+   height: 400px;
+   width: 300px;
+
+   margin: 10px;
+}
+
+.card-name {
+   flex: 1;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.card-image {
+   flex: 4;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 300px;
+   width: 250px;
+}
+
+.card-body {
+   flex: 1;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

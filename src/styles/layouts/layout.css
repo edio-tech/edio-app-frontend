@@ -1,0 +1,23 @@
+.flex-public-layout-container {
+   padding: 8px;
+   display: flex;
+   flex-direction: column;
+   background: radial-gradient(circle, #3877D3 1%, #6093df 99%);
+   height: 100vh;
+ }
+
+ .flex-navbar-container {
+   padding: 1;
+   display: flex;
+   justify-content: flex-end;
+   height: 70px;
+}
+
+.main-container {
+   flex-grow: 1;
+   
+   display: flex;
+   overflow-y: auto;
+
+   font-family: 'Arial';
+}

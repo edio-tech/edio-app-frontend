@@ -1,0 +1,37 @@
+.flex-module-base {
+   margin: 20px;
+   background-color: lightblue;
+   width: 80%;
+   height: 80%;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.flex-module-base {
+   flex: 1;
+   width: 100%;
+
+
+}
+
+.flex-section-info {
+   flex: 4;
+   margin: 20px;
+   
+
+   display:flex;
+   justify-content: center;
+   align-items: center; 
+}
+
+.flex-generate-questions {
+   flex: 3;
+
+   margin: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center; 
+}

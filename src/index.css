@@ -1,0 +1,98 @@
+/* Global Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Main Container for Pages */
+.flex-container {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container-col {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Generic Buttons */
+
+.global-grow {
+  transition: transform 0.1s;
+}
+.global-grow:hover {
+  transform: scale(1.1);
+}
+
+.global-button {
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.global-button:hover {
+  transform: scale(1.1);
+}
+.global-button:active {
+  transform: scale(0.9);
+}
+.global-trans-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.clickable {
+  cursor: pointer;
+}
+
+
+/* ScrollBar */
+
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #3877D3; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #379de7; /* Thumb color */
+  border-radius: 6px; /* Rounded corners of the thumb */
+}
+
+/* Optional: Styling the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: white; /* Darker shade on hover for better visibility */
+}
+
+
+/* Debugging */
+.mbg {
+   border: 1px solid black;
+ }
+ .mtg {
+   border: 1px solid blue;
+ }
+ .mrg {
+   border: 1px solid red;
+ }
+ .mgg {
+   border: 1px solid green;
+ }
+ .myg {
+   border: 1px solid yellow;
+ }
+ .mwg {
+   border: 1px solid white;
+ }
+ .mog {
+   border: 1px solid orange;
+ }

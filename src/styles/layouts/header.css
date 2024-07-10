@@ -1,0 +1,9 @@
+.flex-navbar-element {
+   display: flex;
+   align-items: center;
+   font-weight: 900;
+   padding-right: 30px;
+   padding-left: 30px;
+   color: white;
+   text-decoration: none;
+} 

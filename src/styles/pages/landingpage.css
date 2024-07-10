@@ -1,0 +1,101 @@
+/* EdioLandingPage.css */
+.edio-landing-page {
+   display: flex;
+   flex-direction: column;
+   min-height: 100%;
+   width:100%;
+   overflow-y: auto;
+   color: #333;
+   font-family: Arial, sans-serif;
+ }
+
+ .edio-hero {
+   text-align: center;
+   padding: 4rem 2rem;
+ }
+ 
+ .edio-hero h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50px;
+  color: black;
+  margin-bottom: 1rem;
+ }
+ 
+ .edio-hero h2 {
+   font-size: 2.5rem;
+   margin-bottom: 1rem;
+ }
+ 
+ .edio-hero p {
+   font-size: 1.25rem;
+   margin-bottom: 2rem;
+ }
+ 
+ .edio-cta-button {
+   background-color: #2563eb;
+   color: #ffffff;
+   border: none;
+   padding: 0.75rem 1.5rem;
+   font-size: 1.125rem;
+   font-weight: bold;
+   border-radius: 9999px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+ }
+ 
+ .edio-cta-button:hover {
+   background-color: #1d4ed8;
+ }
+ 
+ #edio-features, #edio-about, #edio-contact {
+   padding: 4rem 2rem;
+ }
+ 
+ #edio-features h3, #edio-about h3, #edio-contact h3 {
+   font-size: 2rem;
+   text-align: center;
+   margin-bottom: 2rem;
+ }
+ 
+ .edio-feature-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 2rem;
+ }
+ 
+ #edio-about p {
+   max-width: 800px;
+   margin: 0 auto;
+   text-align: center;
+   font-size: 1.125rem;
+ }
+ 
+ #edio-contact {
+   text-align: center;
+ }
+ 
+ .edio-footer {
+   background-color: #4b5563;
+   color: #ffffff;
+   text-align: center;
+   padding: 2rem;
+   margin-top: auto;
+ }
+ 
+ @media (max-width: 768px) {
+   .edio-hero h1 {
+     font-size: 2.5rem;
+   }
+ 
+   .edio-hero h2 {
+     font-size: 2rem;
+   }
+ 
+   .edio-hero p {
+     font-size: 1rem;
+   }
+ 
+   #edio-features h3, #edio-about h3, #edio-contact h3 {
+     font-size: 1.75rem;
+   }
+ }

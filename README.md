@@ -1,2 +1,6 @@
-# edio-app-frontend
-WebPage REACT frontend for Edio app
+REACT Frontend for Edio
+
+
+Run 'npm install'
+
+Then 'npm run dev'

@@ -1,0 +1,18 @@
+.feature-card {
+   background-color: #68b3e8;
+   padding: 1.5rem;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   text-align: center;
+ }
+ 
+ .feature-icon {
+  color: white;
+   margin-bottom: 1rem;
+ }
+
+
+ .feature-card h4 {
+   font-size: 1.25rem;
+   margin-bottom: 0.5rem;
+ }
