@@ -6,7 +6,7 @@ import Login from 'pages/Login';
 
 import ListModules from 'creators/pages/ListModules';
 import {
-  Creators, DemoHome, CreateDemo, AddQuestionsToSection
+  AdminCreators, AdminModules, DemoHome, CreateDemo, AddQuestionsToSection
 } from "admin";
 import {
   Explore, Chat
@@ -26,10 +26,12 @@ function App() {
         <Route path = '/websock' element = {<WebSock />} />
       
         <Route element = {<RequireAdmin />}>
-          <Route path = "/all-creators" element = {<Creators />} />
-          <Route path = "/demo" element = {<DemoHome />} />
-          <Route path = "/demo/create-demo" element = {<CreateDemo />} />
-          <Route path = "/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />
+          <Route path = "/admin/all-creators" element = {<AdminCreators />} />
+          <Route path = "/admin/all-modules/:creator_id" element = {<AdminModules />} />
+
+          <Route path = "/admin/demo" element = {<DemoHome />} />
+          <Route path = "admin//demo/create-demo" element = {<CreateDemo />} />
+          <Route path = "admin/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />
         </Route>
 
         <Route element = {<RequireCreator />}>

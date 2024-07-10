@@ -14,7 +14,7 @@ import useLogContext from 'hooks/useLogContext';
 import "styles/admin/creators.css";
 
 
-const Creators = () => {
+const AdminCreators = () => {
 
    const [pagerendering, setPageRendering] = useState(true);
    const { development } = useLogContext();
@@ -66,4 +66,4 @@ const Creators = () => {
    )
 }
 
-export default Creators;
+export default AdminCreators;

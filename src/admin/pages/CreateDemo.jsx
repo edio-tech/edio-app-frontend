@@ -77,7 +77,7 @@ const CreateDemo = () => {
       }
       let section_id = content_2.data[0]["branches"][0]["sections"][0]["section_id"]
 
-      navigate(`/demo/add-questions-demo/${module_id}/${section_id}`)
+      navigate(`/admin/demo/add-questions-demo/${module_id}/${section_id}`)
 
    }
 
