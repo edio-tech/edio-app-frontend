@@ -1,5 +1,6 @@
 // React / React Library imports
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // API imports
 import creatorsAPI from 'api_link/creators.js';
@@ -12,7 +13,7 @@ import { Spinner } from 'components';
 import useLogContext from 'hooks/useLogContext';
 
 // Styling
-import "styles/admin/creators.css";
+import "styles/admin/admincreators.css";
 
 
 const AdminCreators = () => {
@@ -21,6 +22,8 @@ const AdminCreators = () => {
    const { development } = useLogContext();
    const [creatordata, creatorData] = useState([]);
    const [errors, setErrors] = useState(null);
+
+   const navigate = useNavigate();
 
    useEffect(() => {
       const fetchData = async () => {
@@ -45,6 +48,10 @@ const AdminCreators = () => {
       fetchData();
    }, [])
 
+   const handleClick = (creator_id) => {
+      navigate(`/admin/all-modules/${creator_id}`)
+   }
+
    if ( pagerendering ) {
       return <div className = "flex-page-container"> <Spinner /> </div>
    }
@@ -56,7 +63,7 @@ const AdminCreators = () => {
    return (
       <div className = "flex-page-container"> 
          { creatordata.map((creator, index) => (
-            <button key = { index } className = "global-button global-trans-button">
+            <button key = { index } onClick={() => handleClick(creator._id)} className = "global-button global-trans-button">
                <CreatorCard
                   name = { creator.name }
                   image = { creator.profile_pic }
