@@ -30,7 +30,7 @@ function App() {
           <Route path = "/admin/all-modules/:creator_id" element = {<AdminModules />} />
 
           <Route path = "/admin/demo" element = {<DemoHome />} />
-          <Route path = "admin//demo/create-demo" element = {<CreateDemo />} />
+          <Route path = "admin/demo/create-demo" element = {<CreateDemo />} />
           <Route path = "admin/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />
         </Route>
 

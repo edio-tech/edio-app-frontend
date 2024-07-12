@@ -14,10 +14,10 @@ const Header = () => {
          auth?.id ? <>
             { auth.role === 'ADMIN' &&
             <>
-               <Link to='/demo' className="flex-navbar-element global-button">
+               <Link to='/admin/demo' className="flex-navbar-element global-button">
                   DEMOS
                </Link>
-               <Link to='/all-creators' className="flex-navbar-element global-button">
+               <Link to='/admin/all-creators' className="flex-navbar-element global-button">
                   ADMIN
                </Link>
             </>

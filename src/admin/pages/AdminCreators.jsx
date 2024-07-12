@@ -6,6 +6,7 @@ import creatorsAPI from 'api_link/creators.js';
 
 // Component imports 
 import CreatorCard from 'admin/components/CreatorCard';
+import { Spinner } from 'components';
 
 // Context imports
 import useLogContext from 'hooks/useLogContext';
@@ -45,7 +46,7 @@ const AdminCreators = () => {
    }, [])
 
    if ( pagerendering ) {
-      return <div className = "flex-page-container"> Loading ... Please Wait </div>
+      return <div className = "flex-page-container"> <Spinner /> </div>
    }
 
    if ( creatordata.length === 0 ) {

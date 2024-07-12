@@ -21,6 +21,7 @@ const Login = () => {
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
    const [errors, setErrors] = useState(null);
+   const redirect = '/admin/all-creators'
 
    useEffect(() => {
       if ( auth?.id ) {
@@ -60,13 +61,13 @@ const Login = () => {
          'creators' : userDetails['user']['your_creators'],
          'token': userDetails['token']
      }
-     Cookies.set('jwtToken', userDetails['token'], { expires: 1 });
-     setAuth(userAuth);
-     let redirect = '/explore-creators'
      if ( userAuth.role === 'ADMIN' ) {
-      redirect = '/all-creators'
+      Cookies.set('jwtToken', userDetails['token'], { expires: 1 });
+      setAuth(userAuth);
+      navigate(redirect)
+     } else {
+      throw Error('This is currently only set up for Admin Logins!')
      }
-     navigate(redirect)
    }; 
 
    return (

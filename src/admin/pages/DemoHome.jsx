@@ -51,7 +51,7 @@ const DemoHome = () => {
    }, [])
 
    const createDemoButton = () => {
-      navigate('/demo/create-demo')
+      navigate('create-demo')
    }
 
    if ( pagerendering ) {
