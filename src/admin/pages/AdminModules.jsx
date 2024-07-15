@@ -128,8 +128,8 @@ const AdminModules = () => {
         { !pageRendering && hasModules &&
           <>
             <div className = "flex-content">
-              {moduleData.map((module, index) => (
-                <button key = { index } onClick={() => handleModuleClick(module.id)}className = "global-button global-trans-button">
+              {currentModuleData.map((module, index) => (
+                <button key = { index } onClick={() => handleModuleClick(module.id)} className = "global-button global-trans-button">
                   <CreatorCard
                     name = { module.module_name }
                     image = { module.module_image }
