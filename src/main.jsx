@@ -6,7 +6,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Custom imports
 import { AuthProvider } from 'context/AuthProvider.jsx';
 import { LogProvider } from 'context/LogProvider.jsx';
+import { CreatorProvider } from 'context/CreatorContext.jsx';
+
 import App from './App.jsx'
+
+// Global Styling
 import './index.css'
 
 
@@ -15,9 +19,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AuthProvider>
         <LogProvider>
-          <Routes>
-            <Route path = '/*' element = {<App />} />
-          </Routes>
+          <CreatorProvider>
+            <Routes>
+              <Route path = '/*' element = {<App />} />
+            </Routes>
+          </CreatorProvider>
         </LogProvider>
       </AuthProvider>
     </BrowserRouter>

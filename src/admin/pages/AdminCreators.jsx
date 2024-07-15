@@ -11,6 +11,7 @@ import { Spinner } from 'components';
 
 // Context imports
 import useLogContext from 'hooks/useLogContext';
+import useCreatorContext from 'hooks/useCreatorContext';
 
 // Styling
 import "styles/admin/admincreators.css";
@@ -18,51 +19,70 @@ import "styles/admin/admincreators.css";
 
 const AdminCreators = () => {
 
-   const [pagerendering, setPageRendering] = useState(true);
+   const [pageRendering, setPageRendering] = useState(false);
    const { development } = useLogContext();
-   const [creatordata, creatorData] = useState([]);
+   const { creatorData, setCreatorData, setModuleData } = useCreatorContext();
    const [errors, setErrors] = useState(null);
 
    const navigate = useNavigate();
 
    useEffect(() => {
       const fetchData = async () => {
-         const res = await creatorsAPI.getAll()
-
-         if ( res['status'] !== 200) {
-            let errors = await res['data']
-            /* Add a way to display errors */
-            if ( development ) {
-               console.log('Failed to retrieve Creators.', errors)
+         try {
+            const res = await creatorsAPI.getAll()
+         
+            if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+               throw new Error(`${res.data}. Status: ${res.status}`);
             }
-            setErrors(errors);
+
+            // Construct the Module Data for each Creator to store in context
+            const creators = res.data
+            const allModules = []
+
+            creators.forEach(creator => {
+               if ( creator.modules ) {
+                  const creatorModules = Object.keys(creator.modules).map(key => ({
+                     id: key,
+                     creator_id: creator._id,
+                     ...creator.modules[key]
+                  }));
+                  allModules.push(...creatorModules)
+               }
+            });
+         setCreatorData(creators);
+         setModuleData(allModules);
+
+         } catch (err) {
+            setErrors(err);
+            if ( development ) {
+              console.log(err.message)
+            }
+         } finally {
             setPageRendering(false);
-            return
          }
 
-         console.log('Incoming Creator Data:',res.data);
-         creatorData(res.data);
-         setPageRendering(false);
       }
-
-      fetchData();
+      if ( creatorData.length === 0 ) {
+         setPageRendering(true);
+         fetchData();
+      }
    }, [])
 
    const handleClick = (creator_id) => {
       navigate(`/admin/all-modules/${creator_id}`)
    }
 
-   if ( pagerendering ) {
+   if ( pageRendering ) {
       return <div className = "flex-page-container"> <Spinner /> </div>
    }
 
-   if ( creatordata.length === 0 ) {
+   if ( creatorData.length === 0 ) {
       return <div className = "flex-page-container"> No creators Found </div>
    }
 
    return (
       <div className = "flex-page-container"> 
-         { creatordata.map((creator, index) => (
+         { creatorData.map((creator, index) => (
             <button key = { index } onClick={() => handleClick(creator._id)} className = "global-button global-trans-button">
                <CreatorCard
                   name = { creator.name }

@@ -6,7 +6,7 @@ import Login from 'pages/Login';
 
 import ListModules from 'creators/pages/ListModules';
 import {
-  AdminCreators, AdminModules, AdminAddModule, DemoHome, CreateDemo, AddQuestionsToSection
+  AdminCreators, AdminModules, AdminAddModule, AdminModule, AdminBuildOutModule, DemoHome, CreateDemo, AddQuestionsToSection
 } from "admin";
 import {
   Explore, Chat
@@ -29,6 +29,8 @@ function App() {
           <Route path = "/admin/all-creators" element = {<AdminCreators />} />
           <Route path = "/admin/all-modules/:creator_id" element = {<AdminModules />} />
           <Route path = "/admin/add-module/:creator_id" element = {<AdminAddModule />} />
+          <Route path = "/admin/module/:creator_id/:module_id" element = {<AdminModule />} />
+          <Route path = "/admin/build-out-module/:creator_id/:module_id" element = {<AdminBuildOutModule />} />
 
           <Route path = "/admin/demo" element = {<DemoHome />} />
           <Route path = "admin/demo/create-demo" element = {<CreateDemo />} />

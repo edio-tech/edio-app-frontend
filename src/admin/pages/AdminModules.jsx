@@ -5,12 +5,13 @@ import { useNavigate, useParams } from "react-router-dom";
 // API imports
 import creatorsAPI from "api_link/creators.js";
 
-
 // Componenet imports
+import { Spinner } from 'components';
 import CreatorCard from 'admin/components/CreatorCard';
 
 // Context imports
 import useLogContext from "hooks/useLogContext";
+import useCreatorContext from "hooks/useCreatorContext";
 
 // Styling
 import "styles/admin/adminmodules.css";
@@ -24,40 +25,51 @@ const AdminModules = () => {
   const { development } = useLogContext();
 
   const [pageRendering, setPageRendering] = useState(true);
+  const [hasModules, setHasModules] = useState(true);
   const [errors, setErrors] = useState(null);
 
-  const [moduledata, setModuleData] = useState([]);
+  const { moduleData } = useCreatorContext();
+  const [currentModuleData, setCurrentModuleData] = useState();
 
   useEffect(() => {
-    const fetchData = async () => {
+    
+    const checkCreatorModules = async () => {
       try {
         const res = await creatorsAPI.getCreator(creator_id)
     
         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-          throw new Error(`Failed to fetch creators module info. Status: ${res.status}`);
+          throw new Error(`${res.data}. Status: ${res.status}`);
         }
 
-        let content = res.data
-        let modules_data = content.modules
-        let modulesArray = Object.keys(modules_data).map(key => ({
-          id: key,
-          ...modules_data[key]
-        }));
-        setModuleData(modulesArray)
-        if ( development ) {
-          console.log('content:',content)
-        } 
-
+        if ( Object.keys(res.data).length > 0 ) {
+          // Creator has modules, but moduleData is empty, likely due to a refresh
+          navigate('/admin/all-creators')
+        } else {
+          setHasModules(false)
+        }
       } catch (err) {
         setErrors(err);
         if ( development ) {
           console.log(err.message)
         }
+      } finally {
+        setPageRendering(false);
       }
     }
 
-    fetchData();
-  }, [creator_id])
+    if ( moduleData.length === 0 ) {
+      // If there are not modules stored in creator context, check to see if modules exist
+      checkCreatorModules();
+    } else {
+      const filteredModules = moduleData.filter(module => module.creator_id === creator_id);
+      setCurrentModuleData(filteredModules);
+      if ( filteredModules.length == 0 ) {
+        setHasModules(false)
+      }
+      setPageRendering(false);
+    }
+
+  }, [])
 
 
   const handleBackClick = () => {
@@ -67,6 +79,30 @@ const AdminModules = () => {
   const handleAddModuleClick = () => {
     navigate(`/admin/add-module/${creator_id}`)
   }
+
+  const handleModuleClick = (module_id) => {
+    navigate(`/admin/module/${creator_id}/${module_id}`)
+  }
+
+  if ( pageRendering ) {
+    return (
+      <div className = "flex-container-col">
+        <div className="flex-top-bar">
+          <div className="flex-bar-left">
+            <div className="top-bar-item">
+              <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
+            </div>
+          </div>
+          <div className="flex-bar-right">
+            <div className="top-bar-item">
+              <button className="global-button global-trans-button" onClick={() => handleAddModuleClick()}> ADD MODULE </button>
+            </div>
+          </div>
+        </div>
+        <div className = "flex-content"><Spinner /> </div>
+      </div>
+    )
+ }
 
   return (
     <>
@@ -83,16 +119,26 @@ const AdminModules = () => {
             </div>
           </div>
         </div>
-        <div className = "flex-content">
-          {moduledata.map((module, index) => (
-            <button key = { index } className = "global-button global-trans-button">
-            <CreatorCard
-               name = { module.module_name }
-               image = { module.module_image }
-            /> 
-         </button>
-          ))}
-        </div>
+        { pageRendering &&
+          <div className = "flex-content"><Spinner /> </div>
+        }
+        { !pageRendering && !hasModules &&
+          <div className = "flex-content"> No modules Found for this Creator </div>
+        }
+        { !pageRendering && hasModules &&
+          <>
+            <div className = "flex-content">
+              {moduleData.map((module, index) => (
+                <button key = { index } onClick={() => handleModuleClick(module.id)}className = "global-button global-trans-button">
+                  <CreatorCard
+                    name = { module.module_name }
+                    image = { module.module_image }
+                  /> 
+                </button>
+              ))}
+          </div>
+          </>
+        }
       </div>
     </>
   )
