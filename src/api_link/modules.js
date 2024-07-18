@@ -42,6 +42,10 @@ class ModulesAPILink {
       return axiosConfig.post(baseURL + `/add-section-content/${section_id}`, body);
    }
 
+   addSectionContentSummary(section_id) {
+      return axiosConfig.post(baseURL + `/add-section-content-summary/${section_id}`);
+   }
+
 }
 
 

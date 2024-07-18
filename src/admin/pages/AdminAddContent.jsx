@@ -26,7 +26,6 @@ const AdminAddContent = () => {
    };
 
    const handleSubmit = async (event) => {
-      console.log('clicked!')
       event.preventDefault();
       if (!selectedFile) {
         console.log('You must upload a file!');
