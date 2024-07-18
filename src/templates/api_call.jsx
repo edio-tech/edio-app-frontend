@@ -6,24 +6,29 @@ const api_call = () => {
       try {
          const res = await modulesAPILink.create(creator_id)
 
-         if (res.status < 200 || res.status >= 300) { 
-            const errorData = await res.json()
-            const error_message = errorData.detail
-            console.log(`${error_message} Status: ${res.status}`)
-            throw new Error(error_message);
+         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+            if ( development ) {
+              setErrors(res.data.detail)
+            } else {
+              setErrors('Use friendly error message')
+            }
+            return
          }
 
-         const content = res.data
+         const content = res.data;
+
          setData(content.data)
          if ( development ) {
             console.log(content.detail)
          }
 
       } catch (err) {
-         setErrors(err);
-         if (development) {
-            console.log(err)
+         setErrors(err.message);
+         if ( development ) {
+           console.log(err.message)
          }
+      } finally {
+         setPageRendering(false);
       }
    };
 

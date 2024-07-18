@@ -1,5 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+// Component imports
+import { Spinner } from 'components';
+
 
 import useAuth from "../hooks/useAuth";
 
@@ -8,7 +11,7 @@ const RequireAuthentication = () =>  {
    const redirectTo = '/login';
     
    if (loading) {
-      return <></>;
+      return <><Spinner/></>;
    }
     
    return auth?.id ? <Outlet /> : <Navigate to={redirectTo} />;

@@ -47,7 +47,12 @@
    background-color: #45bf6b;
  }
 
+ .error-message {
+  color: red;
+  font-weight: bold;
+  width: 100%;
 
- .text-danger {
-   color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
  }

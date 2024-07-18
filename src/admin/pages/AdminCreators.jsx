@@ -21,7 +21,7 @@ const AdminCreators = () => {
 
    const [pageRendering, setPageRendering] = useState(false);
    const { development } = useLogContext();
-   const { creatorData, setCreatorData, setModuleData } = useCreatorContext();
+   const { creatorData, setCreatorData, setModuleSummary } = useCreatorContext();
    const [errors, setErrors] = useState(null);
 
    const navigate = useNavigate();
@@ -50,7 +50,7 @@ const AdminCreators = () => {
                }
             });
          setCreatorData(creators);
-         setModuleData(allModules);
+         setModuleSummary(allModules);
 
          } catch (err) {
             setErrors(err);

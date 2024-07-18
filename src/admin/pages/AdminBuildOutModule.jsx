@@ -21,7 +21,6 @@ const AdminBuildOutModule = () => {
   const { development } = useLogContext();
   const navigate = useNavigate();
 
-
   // File uploading
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileErrors, setFileErrors] = useState(null);
@@ -57,9 +56,8 @@ const AdminBuildOutModule = () => {
     }
     const formData = new FormData();
     formData.append('file', selectedFile)
+
     // Convert the PDf to markdown
-    
-    console.log('Step 1 of 4: Converting the PDF to Markdown')
     try {
       const res = await moduleGenerationAPI.bodyPdfToWordToMarkdown(module_id, formData)
       if (res.status < 200 || res.status >= 300) { 

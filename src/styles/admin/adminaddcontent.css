@@ -1,0 +1,16 @@
+.top-bar {
+   flex: 1;
+
+   display: flex;
+   justify-content: center;
+}
+
+.markdown-content {
+   margin: 20px;
+   padding: 40px;
+
+   overflow-y: auto;
+   height: 100%;
+
+   flex: 8;
+}

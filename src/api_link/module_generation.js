@@ -9,6 +9,10 @@ let axiosConfig = axios.create({
 
 class ModuleGenerationAPILink {
 
+   bodyPdfToWordToMarkdownOneSection(section_id, body) {
+      return axiosConfig.post(baseURL + `/pdf-to-word-to-markdown-one-section/${section_id}`, body);
+   }
+   
    bodyPdfToWordToMarkdown(module_id, body) {
       return axiosConfig.post(baseURL + `/pdf-to-word-to-markdown/${module_id}`, body);
    }

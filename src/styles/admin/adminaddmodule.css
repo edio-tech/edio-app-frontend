@@ -1,0 +1,16 @@
+.flex-top-bar {
+   flex: 1;
+
+   display: flex; 
+   justify-content: start;
+
+   padding: 20px;
+}
+
+.flex-page-contents {
+   flex: 9;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

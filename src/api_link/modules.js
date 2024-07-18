@@ -21,10 +21,27 @@ class ModulesAPILink {
       return axiosConfig.get(baseURL + `/get-module/${module_id}`);
    }
 
+   getModuleFullDetail(module_id) {
+      return axiosConfig.get(baseURL + `/get-all-module-detail/${module_id}`);
+   }
+
+   deleteModule(module_id) {
+      return axiosConfig.delete(baseURL + `/delete-module/${module_id}`);
+   }
+
    // Sections
    getSection(section_id) {
       return axiosConfig.get(baseURL + `/sections/get-section/${section_id}`);
    }
+
+   getSectionFullDetail(section_id) {
+      return axiosConfig.get(baseURL + `/get-all-section-detail/${section_id}`);
+   }
+
+   addSectionContent(section_id, body) {
+      return axiosConfig.post(baseURL + `/add-section-content/${section_id}`, body);
+   }
+
 }
 
 

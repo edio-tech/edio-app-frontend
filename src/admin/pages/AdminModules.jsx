@@ -28,7 +28,7 @@ const AdminModules = () => {
   const [hasModules, setHasModules] = useState(true);
   const [errors, setErrors] = useState(null);
 
-  const { moduleData } = useCreatorContext();
+  const { moduleSummary } = useCreatorContext();
   const [currentModuleData, setCurrentModuleData] = useState();
 
   useEffect(() => {
@@ -38,7 +38,12 @@ const AdminModules = () => {
         const res = await creatorsAPI.getCreator(creator_id)
     
         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-          throw new Error(`${res.data}. Status: ${res.status}`);
+          if ( development ) {
+            setErrors(res.data.detail)
+          } else {
+            setErrors('Creator Not Found')
+          }
+          return
         }
 
         if ( Object.keys(res.data).length > 0 ) {
@@ -48,7 +53,7 @@ const AdminModules = () => {
           setHasModules(false)
         }
       } catch (err) {
-        setErrors(err);
+        setErrors(err.message);
         if ( development ) {
           console.log(err.message)
         }
@@ -57,17 +62,19 @@ const AdminModules = () => {
       }
     }
 
-    if ( moduleData.length === 0 ) {
+    if ( moduleSummary.length === 0 ) {
       // If there are not modules stored in creator context, check to see if modules exist
       checkCreatorModules();
     } else {
-      const filteredModules = moduleData.filter(module => module.creator_id === creator_id);
+      const filteredModules = moduleSummary.filter(module => module.creator_id === creator_id);
       setCurrentModuleData(filteredModules);
       if ( filteredModules.length == 0 ) {
         setHasModules(false)
       }
       setPageRendering(false);
     }
+
+    
 
   }, [])
 
@@ -83,26 +90,6 @@ const AdminModules = () => {
   const handleModuleClick = (module_id) => {
     navigate(`/admin/module/${creator_id}/${module_id}`)
   }
-
-  if ( pageRendering ) {
-    return (
-      <div className = "flex-container-col">
-        <div className="flex-top-bar">
-          <div className="flex-bar-left">
-            <div className="top-bar-item">
-              <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-            </div>
-          </div>
-          <div className="flex-bar-right">
-            <div className="top-bar-item">
-              <button className="global-button global-trans-button" onClick={() => handleAddModuleClick()}> ADD MODULE </button>
-            </div>
-          </div>
-        </div>
-        <div className = "flex-content"><Spinner /> </div>
-      </div>
-    )
- }
 
   return (
     <>
@@ -128,14 +115,19 @@ const AdminModules = () => {
         { !pageRendering && hasModules &&
           <>
             <div className = "flex-content">
-              {currentModuleData.map((module, index) => (
-                <button key = { index } onClick={() => handleModuleClick(module.id)} className = "global-button global-trans-button">
-                  <CreatorCard
-                    name = { module.module_name }
-                    image = { module.module_image }
-                  /> 
-                </button>
-              ))}
+              { errors &&
+                <div>{ errors }</div>
+              }
+              { !errors && 
+                currentModuleData.map((module, index) => (
+                  <button key = { index } onClick={() => handleModuleClick(module.id)} className = "global-button global-trans-button">
+                    <CreatorCard
+                      name = { module.module_name }
+                      image = { module.module_image }
+                    /> 
+                  </button>
+                ))
+              }
           </div>
           </>
         }

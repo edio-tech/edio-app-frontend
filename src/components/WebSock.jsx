@@ -12,7 +12,7 @@ const WebSock = () => {
    const [inputValue, setInputValue] = useState('');
 
    useEffect(() => {
-      const socket = new WebSocket('ws://127.0.0.1:8000/chatbot-test')
+      const socket = new WebSocket('ws://127.0.0.1:8000/chatbot')
       setWs(socket);
 
       socket.onopen = () => {
@@ -45,7 +45,15 @@ const WebSock = () => {
 
    const sendMessage = () => {
       if (ws && inputValue.trim()) { // Check if input is not empty
-         ws.send(inputValue);
+         
+         // NEW STUFF
+         const assisantID = "asst_kL151hYfeng715XgC29aWWvX" // Hard coded for test example
+         const message = JSON.stringify({
+            assistant_api_id: assisantID,
+            prompt: inputValue
+         })
+         
+         ws.send(message);
          setInputValue(''); // Clear input field after sending message
       }
    };

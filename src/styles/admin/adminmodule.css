@@ -1,0 +1,82 @@
+.flex-no-module-container {
+   height: 100%;
+   width: 100%;
+
+   display: flex;
+}
+
+.no-module-box {
+   flex: 1;
+}
+
+.delete-button {
+   background-color: red;
+}
+
+.collapse-button {
+   width: 40px;
+}
+.part-header, .chapter-header, .section-header {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+
+   height: 50px;
+}
+ 
+.chapter-container {
+   margin-left: 20px;
+}
+
+.section-container {
+   margin-left: 40px;
+}
+ 
+.flex-main-page {
+   height: 100%;
+   width: 100%;
+   
+   display: flex;
+}
+
+.flex-left-page {
+   flex: 1;
+   padding: 10px; 
+   
+   display: flex;
+   flex-direction: column;
+
+   overflow-y: scroll;
+}
+
+.flex-right-page {
+   flex: 2;
+   padding: 10px;
+
+   display: flex;
+   flex-direction: column;
+}
+
+.right-page-top-bar {
+   flex: 1;
+
+   display: flex;
+   justify-content: space-between;
+}
+
+.top-button {
+   margin: 10px;
+}
+
+.right-page-content {
+   flex: 9;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.markdown-content { 
+   margin-left: 10px;
+   margin-right: 10px;
+}
