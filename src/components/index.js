@@ -9,3 +9,5 @@ export { default as WebSock } from './WebSock';
 export { default as FeatureCard } from './FeatureCard';
 
 export { default as Spinner } from './Spinner';
+
+export { default as AddModule } from './AddModule';

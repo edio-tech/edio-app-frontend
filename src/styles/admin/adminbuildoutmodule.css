@@ -1,0 +1,50 @@
+.top-bar {
+   flex: 1;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.button-div {
+   flex: 1;
+   padding: 20px;
+}
+
+.markdown-content {
+   flex: 9;
+
+   margin: 40px;
+   overflow-y: scroll;
+}
+
+.flex-json-container {
+   display:flex;
+
+   overflow-y: hidden;
+
+}
+
+.display-json {
+   flex: 1;
+   margin: 30px;
+
+   overflow-y: auto;
+   max-height: 85vh;
+}
+
+.display-markdown {
+   flex: 1;
+
+   margin: 30px;
+   overflow-y: auto;
+   max-height: 85vh;
+
+
+}
+
+.segment-title {
+   display: flex;
+
+
+}

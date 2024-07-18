@@ -2,8 +2,7 @@ import { createContext } from "react";
 
 const LogContext = createContext({});
 
-export const LogProvider = ( {children} ) =>
-{
+export const LogProvider = ( {children} ) => {
     const development = import.meta.env.MODE === 'development';
 
     return (

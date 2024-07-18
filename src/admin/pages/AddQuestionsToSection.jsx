@@ -34,8 +34,9 @@ const AddQuestionsToSection = () => {
          try {
             const res_1 = await modulesAPI.getModule(module_id)
             if (res_1.status < 200 || res_1.status >= 300) { 
-               console.log(`Failed to fetch module info. Status: ${res_1.status}`)
-               throw new Error(`Unable to retrieve module info`);
+               const error_message = 'Failed to fetch module info.'
+               console.log(`${error_message} Status: ${res_1.status}`)
+               throw new Error(error_message);
             }
             let content = res_1.data;
             if ( development ) {
