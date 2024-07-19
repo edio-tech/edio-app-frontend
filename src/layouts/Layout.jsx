@@ -18,7 +18,7 @@ const Layout = () => {
 
    return (
          <div className = "flex-public-layout-container"> 
-            <div className = "flex-navbar-container">
+            <div className = "flex-navbar-container mrg">
                < Header />
                </div>         
             <div className = "main-container">
