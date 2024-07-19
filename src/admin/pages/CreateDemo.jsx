@@ -9,6 +9,7 @@ import useLogContext from 'hooks/useLogContext';
 
 // API imports
 import modulesAPI from 'api_link/modules.js';
+import moduleGenerationAPI from 'api_link/module_generation.js'
 
 const CreateDemo = () => {
 
@@ -61,7 +62,7 @@ const CreateDemo = () => {
          ]
       }
 
-      const res_2 = await modulesAPI.buildOutmodule(module_id, demo_structure)
+      const res_2 = await moduleGenerationAPI.buildOutmodule(module_id, demo_structure)
       
       if ( res_1['status'] !== 201 ) {
          let errors = await res_1['data']
