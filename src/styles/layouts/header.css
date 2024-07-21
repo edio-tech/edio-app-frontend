@@ -1,9 +1,57 @@
-.flex-navbar-element {
+.flex-left-side-navbar {
+   flex: 1;
+
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+
+
+.flex-right-side-navbar {
+   flex: 1;
+
+   display: flex;
+   justify-content: end;
+   align-items: center;
+}
+
+.left-menu-navbar-element {
+   padding-left: 20px;
+   padding-right: 20px;
+}
+
+.flex-left-menu-button { 
    display: flex;
    align-items: center;
-   font-weight: 900;
-   padding-right: 30px;
-   padding-left: 30px;
+}
+.flex-navbar-element {
+   padding-left: 10px;
+   padding-right: 10px;
+
+   display:flex;
+   align-items: center;
+}
+
+.logo {
+   width: 35px;
+}
+
+.edio-navbar-text {
+   width: 90px;
+}
+
+.user-symbol {
    color: white;
-   text-decoration: none;
 } 
+
+.login-navbar-button {
+   color: white;
+   margin: 10px; 
+   border: none;
+   padding: 0.75rem 1.5rem;
+   font-size: 1rem;
+   font-weight: bold;
+   border-radius: 9999px;
+   
+   background-color: var(--clr-custom-pink);
+}

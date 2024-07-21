@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { Book, Brain, BarChart2, MessageCircle } from 'lucide-react';
 
 import { FeatureCard } from "components";
+
+import EdioText from "assets/edio-white-transparent.png"
 import 'styles/pages/landingpage.css'
 
 
@@ -17,10 +19,10 @@ const LandingPage = () => {
    return (
       <div className="edio-landing-page">
       <section className="edio-hero">
-        <h1>Edio</h1>
+        <img className = "edio-text" src={EdioText} />
         <h2>Learning, Gamified and Personalized</h2>
-        <p>Edio transforms educational content into engaging content, powered by AI</p>
-        <button className="edio-cta-button global-button" type="button" onClick={RedirectLogin}>Get Started</button>
+        <p>Edio harnesses the power of generative AI to transforms educational content into an interactive learning experience</p>
+        <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
       </section>
 
       <section id="edio-features">
