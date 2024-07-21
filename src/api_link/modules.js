@@ -12,10 +12,6 @@ class ModulesAPILink {
    create(creator_id, body) {
       return axiosConfig.post(baseURL + `/add-module/${creator_id}`, body);
    }
-   
-   buildOutmodule(module_id, body) {
-      return axiosConfig.post(baseURL + `/contents-as-json-to-db/${module_id}`, body);
-   }
 
    getModule(module_id) {
       return axiosConfig.get(baseURL + `/get-module/${module_id}`);

@@ -71,42 +71,31 @@ const Login = () => {
    }; 
 
    return (
-      <div className = "flex-container">
-         <Form.Root onSubmit = {handleSubmit}>
-            <div className = "flex-form-container">
-               <div className = "form-title">
-                  Log in below
-               </div>
-               <div className = "form-element-email">
-                  <Form.Field name = "email">
-                     <Form.Message match="valueMissing">Email is required</Form.Message>
-                     <Form.Message match="typeMismatch">Please enter a valid email</Form.Message>
-                     <Form.Control asChild>
-                        <input type="email" placeholder = "Enter your admin email..." required />
-                     </Form.Control>
-                  </Form.Field>
-               </div>
-               <div className = "form-element-password">
-                  <Form.Field name = "password">
-                     <Form.Message className="FormMessage" match="valueMissing"> Enter your password </Form.Message>
-                     <Form.Control asChild>
-                        <input type = "password" placeholder = "Enter your password..." required />
-                     </Form.Control>
-                  </Form.Field>
-               </div>
-               <div className = "form-button-element">
-                  <Form.Submit asChild>
-                     <button type = "submit" className = "login-button global-button"> {
-                        loading ? <><BeatLoader /></> : <> LOG IN </>
-                     }         
-                     </button>
-                  </Form.Submit>
-               </div>
+      <div className="flex-container">
+      <div className="login-container">
+         <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+               <label htmlFor="email">Email:</label>
+               <input type="email" id="email" name="email" required />
             </div>
-         </Form.Root>
+            <div className="form-group">
+               <label htmlFor="password">Password:</label>
+               <input type="password" id="password" name="password" required />
+            </div>
+            <div className = "form-button-group">
+            <button type="submit" className="login-button global-button" disabled={loading}>
+               {loading ? 'Logging in...' : 'Login'}
+            </button>
+            </div>
+            <div className = "white-line"></div>
+            <div className="form-footer">
+               <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
+               <span className="signup-link">Don't have an account? - <a href="#sign-up">Sign up</a></span>
+            </div>
+         </form>
       </div>
-
-   )
+      </div>
+   );
 };
 
 export default Login

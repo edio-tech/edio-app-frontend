@@ -1,3 +1,18 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --clr-custom-gray: #2b3945;
+  --clr-custom-dark-gray: hsl(207, 26%, 17%);
+
+  --clr-custom-pink: #A968F8;
+  --clr-custom-blue: #68b3e8;
+  --clr-custom-green: rgb(0, 169, 158);
+
+}
+
 /* Global Styling */
 * {
   margin: 0;
@@ -61,11 +76,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #3877D3; /* color of the tracking area */
+  background: var(--clr-custom-dark-gray); /* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #379de7; /* Thumb color */
+  background: white; /* Thumb color */
   border-radius: 6px; /* Rounded corners of the thumb */
 }
 

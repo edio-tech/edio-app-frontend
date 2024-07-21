@@ -1,12 +1,14 @@
 .flex-public-layout-container {
    display: flex;
    flex-direction: column;
-   background: radial-gradient(circle, #3877D3 1%, #6093df 99%);
+   background: var(--clr-custom-dark-gray);
    height: 100vh;
  }
 
  .flex-navbar-container {
    flex: 1;
+   background: var(--clr-custom-dark-gray);
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 
    padding-right: 10px;
    padding-left: 10px;
@@ -16,10 +18,15 @@
 }
 
 .main-container {
-   flex: 19;
+   flex: 16;
    
    display: flex;
    overflow-y: auto;
 
    font-family: 'Arial';
+}
+
+
+.old { 
+   background: hsl(207, 26%, 17%);
 }
