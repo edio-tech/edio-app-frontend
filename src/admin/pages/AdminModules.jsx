@@ -5,6 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 // API imports
 import creatorsAPI from "api_link/creators.js";
 
+// Hooks
+import useAdminNavbar from "hooks/useAdminNavbar";
+
 // Componenet imports
 import { Spinner } from 'components';
 import CreatorCard from 'admin/components/CreatorCard';
@@ -28,7 +31,7 @@ const AdminModules = () => {
   const [hasModules, setHasModules] = useState(true);
   const [errors, setErrors] = useState(null);
 
-  const { moduleSummary } = useCreatorContext();
+  const { creatorData, moduleSummary } = useCreatorContext();
   const [currentModuleData, setCurrentModuleData] = useState();
 
   useEffect(() => {
@@ -74,18 +77,26 @@ const AdminModules = () => {
       setPageRendering(false);
     }
 
-    
-
   }, [])
 
+  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
 
-  const handleBackClick = () => {
-    navigate('/admin/all-creators')
-  }
+  useEffect(() => {
+    setLeftName('All Creators');
+    setLeftAction(() => () => navigate('/admin/all-creators'));
 
-  const handleAddModuleClick = () => {
-    navigate(`/admin/add-module/${creator_id}`)
-  }
+    let currentCreatorName;
+    creatorData.forEach(item => {
+      if ( item._id === creator_id ) {
+        currentCreatorName = item.name
+      }
+    })
+
+    setTitleName(currentCreatorName);
+    setRightName('Add Module');
+    setRightAction(() => () => navigate(`/admin/add-module/${creator_id}`));
+  }, [])
+
 
   const handleModuleClick = (module_id) => {
     navigate(`/admin/module/${creator_id}/${module_id}`)
@@ -94,27 +105,14 @@ const AdminModules = () => {
   return (
     <>
       <div className = "flex-container-col">
-        <div className="flex-top-bar">
-          <div className="flex-bar-left">
-            <div className="top-bar-item">
-              <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-            </div>
-          </div>
-          <div className="flex-bar-right">
-            <div className="top-bar-item">
-              <button className="global-button global-trans-button" onClick={() => handleAddModuleClick()}> ADD MODULE </button>
-            </div>
-          </div>
-        </div>
         { pageRendering &&
-          <div className = "flex-content"><Spinner /> </div>
+          <Spinner />
         }
         { !pageRendering && !hasModules &&
-          <div className = "flex-content"> No modules Found for this Creator </div>
+          <>No modules Found for this Creator</>
         }
         { !pageRendering && hasModules &&
-          <>
-            <div className = "flex-content">
+          <div className = "admin-module-content">
               { errors &&
                 <div>{ errors }</div>
               }
@@ -129,7 +127,6 @@ const AdminModules = () => {
                 ))
               }
           </div>
-          </>
         }
       </div>
     </>

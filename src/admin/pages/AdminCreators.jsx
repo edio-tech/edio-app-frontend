@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 // API imports
 import creatorsAPI from 'api_link/creators.js';
 
+// Hooks
+import useAdminNavbar from "hooks/useAdminNavbar";
+
 // Component imports 
 import CreatorCard from 'admin/components/CreatorCard';
 import { Spinner } from 'components';
@@ -18,6 +21,16 @@ import "styles/admin/admincreators.css";
 
 
 const AdminCreators = () => {
+
+   const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
+
+   useEffect(() => {
+      setLeftName('');
+      setLeftAction(null);
+      setTitleName('All Creators');
+      setRightName('Add Creator');
+      setRightAction(() => () => navigate('/admin/all-creators/add-creator'));
+   }, [])
 
    const [pageRendering, setPageRendering] = useState(false);
    const { development } = useLogContext();

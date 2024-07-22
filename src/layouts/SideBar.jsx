@@ -28,7 +28,7 @@ const SideBar = () => {
          <>
             <div className = "flex-sidebar-element">
                <div className = "sidebar-logo"> <PanelTopDashed /> </div>
-               <button onClick={() => handleAdminCreatorsClick()} className = "global-trans-button sidebar-text">Creators Panel</button>
+               <button onClick={() => handleAdminCreatorsClick()} className = "global-trans-button sidebar-text">Creators</button>
             </div>
             <div className = "flex-sidebar-element">
                <div className = "sidebar-logo"> <Axe /></div>

@@ -1,39 +1,10 @@
-.flex-top-bar {
-   flex: 1;
+.admin-module-content { 
    width: 100%;
-
-   display: flex;
-   justify-content: start;
-}
-
-.flex-bar-left {
    flex: 1;
-
-   display: flex;
-   justify-content: start;
-   margin-left: 40px;
-}
-
-.flex-bar-right {
-   flex: 1;
-
-   display: flex;
-   justify-content: end;
-   margin-right: 40px;
-}
-
-.top-bar-item {
-   padding: 10px;;
-}
-
-
-.flex-content { 
-   flex: 13;
-   width: 100%;
 
    display: flex;
    justify-content: center;
    align-items: center;
    flex-wrap: wrap;
-   overflow-y: scroll;
+   overflow-y: auto;
 }

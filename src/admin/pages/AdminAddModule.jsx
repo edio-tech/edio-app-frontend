@@ -1,5 +1,9 @@
 // React imports
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+// Hooks
+import useAdminNavbar from "hooks/useAdminNavbar";
 
 // Components imports
 import { AddModule } from "components";
@@ -13,16 +17,18 @@ const AdminAddModule = () => {
 
   const navigate = useNavigate();
 
-  const handleBackClick = () => {
-    navigate(`/admin/all-modules/${creator_id}`)
-  }
+  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
+
+  useEffect(() => {
+    setLeftName('All Modules');
+    setLeftAction(() => () => navigate(`/admin/all-modules/${creator_id}`));
+    setTitleName('Add Module');
+    setRightName('');
+    setRightAction(null);
+  }, [])
+
   return (
     <div className = "flex-container-col">
-      <div className="flex-top-bar">
-        <div>
-          <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-        </div>
-      </div>
       <div className = "flex-page-contents">
         <AddModule creator_id = { creator_id }/>
       </div>
