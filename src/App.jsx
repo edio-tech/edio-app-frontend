@@ -6,7 +6,9 @@ import {
   LandingPage,
   Login,
   Support,
-  Privacy
+  Privacy,
+  AccountSettings,
+  Logout
 } from "pages";
 
 import ListModules from 'creators/pages/ListModules';
@@ -56,6 +58,9 @@ function App() {
         <Route element = {<RequireAuth />}>
           <Route path = "/explore-creators" element = {<Explore />} />
           <Route path = "/chat" element = {<Chat />} />
+
+          <Route path = "/account-settings" element = {<AccountSettings />} />
+          <Route path = "/logout" element = {<Logout />} />
         </Route>
       
       </Route>

@@ -4,7 +4,7 @@ const Support = () => {
   return (
     <div className = "flex-container-col">
       <div className='support-section'>
-        <h1 className='support-title'>support from edio</h1>
+        <h1 className='support-title'>Support from edio</h1>
         <p className='support-paragraph'>
             At edio we are committed to bringing you the best experience.
             If you need further assistance, our support team is here to help. 

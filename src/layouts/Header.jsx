@@ -1,8 +1,11 @@
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, CircleUserRound  } from "lucide-react";
 
+// Hooks
 import useAuth from "hooks/useAuth";
 
+// Styling
 import EdioLogo from "assets/logo.png"
 import EdioText from "assets/edio-white-transparent.png"
 import 'styles/layouts/header.css';
@@ -12,13 +15,29 @@ const Header = ({ setMenuToggled }) => {
    const { auth } = useAuth();
    const navigate = useNavigate();
 
-   const handleLoginClick = () => {
-      navigate('login')
-   }
+   const [togglePopUp, setTogglePopUp] = useState(false);
+   const dropdownRef = useRef(null);
 
-   const handleToggleMenuClick = () => {
-      setMenuToggled(prevState => !prevState)
-   }
+   useEffect(() => {
+      const handleClickOutside = (event) => {
+         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setTogglePopUp(false);
+         }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+         document.removeEventListener('mousedown', handleClickOutside);
+      };
+   }, []);
+
+   const handleLoginClick = () => { navigate('/login') }
+   const handleAccountSettingsClick = () => { navigate('/account-settings') }
+   const handleLogoutClick = () => { navigate('/logout') }
+
+   const handleToggleMenuClick = () => { setMenuToggled(prevState => !prevState) }
+
+   const handleUserIconClick = () => { setTogglePopUp(!togglePopUp) }
 
    return (
       <>
@@ -38,7 +57,17 @@ const Header = ({ setMenuToggled }) => {
             {
                auth?.id ? 
                <>
-                  <Link><CircleUserRound className = "user-symbol"/></Link>
+                  <div className = "dropdown-container" ref={dropdownRef}>
+                  <button onClick={() => handleUserIconClick()} className = "global-trans-button"><CircleUserRound className = "user-symbol"/></button>
+                  { togglePopUp &&(
+                  <>
+                     <div className = "popup-overlay">
+                        <div className="popup-element"> <button onClick={() => handleAccountSettingsClick()} className="global-trans-button big-button-writing">Account Settings</button></div>
+                        <div className="popup-element"> <button onClick={() => handleLogoutClick()} className="global-trans-button big-button-writing">Logout</button></div>
+                     </div>
+                  </>
+                  )}
+               </div>
                </> : <>
                   <button onClick={() => handleLoginClick()} className = "global-button login-navbar-button"> LOG IN </button>
                </>

@@ -1,0 +1,15 @@
+.logout-title {
+   padding-bottom: 30px;
+}
+
+.logout-button {
+   padding: 0.75rem;
+   padding-left: 20px;
+   padding-right: 20px;
+   background-color: var(--clr-custom-green);
+   color: #fff;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: bold;
+}

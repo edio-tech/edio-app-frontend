@@ -11,7 +11,7 @@
   --clr-custom-blue: #68b3e8;
   --clr-custom-green: rgb(0, 169, 158);
 
-  color: white;
+  color: white !important;
 }
 
 /* Global Styling */

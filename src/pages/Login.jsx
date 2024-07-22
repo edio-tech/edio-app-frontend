@@ -20,16 +20,33 @@ const Login = () => {
    const { development } = useLogContext();
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
+
+   const { auth, setAuth } = useAuth();
    const [errors, setErrors] = useState(null);
    const redirect = '/admin/all-creators'
 
+   const [hash, setHash] = useState(window.location.hash)
+;
    useEffect(() => {
       if ( auth?.id ) {
          navigate(redirect)
       } 
    }, [navigate])
 
-   const { auth, setAuth } = useAuth();
+   useEffect(() => {
+      const handleHashChange = () => {
+        setHash(window.location.hash);
+      };
+
+      window.addEventListener('hashchange', handleHashChange);
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+         window.removeEventListener('hashchange', handleHashChange);
+      };
+
+   }, []);
+
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -73,6 +90,7 @@ const Login = () => {
    return (
       <div className="flex-container">
       <div className="login-container">
+      { errors && <div className = "error-message"> { errors.detail } </div>}
          <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
                <label htmlFor="email">Email:</label>
@@ -83,6 +101,7 @@ const Login = () => {
                <input type="password" id="password" name="password" required />
             </div>
             <div className = "form-button-group">
+               
             <button type="submit" className="login-button global-button" disabled={loading}>
                {loading ? 'Logging in...' : 'Login'}
             </button>
@@ -93,6 +112,8 @@ const Login = () => {
                <span className="signup-link">Don't have an account? - <a href="#sign-up">Sign up</a></span>
             </div>
          </form>
+         { hash === '#forgot-password' && <div className = "error-message"> Functionality for resetting password will be added soon </div>}
+         { hash === '#sign-up' && <div className = "error-message"> We are currently in beta and as a result are currently not accepting new sign on's </div>}
       </div>
       </div>
    );
