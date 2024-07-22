@@ -49,3 +49,4 @@ const Header = ({ setMenuToggled }) => {
    )
 }
 
+export default Header;
