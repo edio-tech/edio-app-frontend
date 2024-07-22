@@ -11,6 +11,8 @@
 
 .card-name {
    flex: 1;
+   color:white;
+   font-size: large;
 
    display: flex;
    justify-content: center;

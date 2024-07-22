@@ -1,8 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from 'layouts/Layout';
-import LandingPage from 'pages/LandingPage';
-import Login from 'pages/Login';
+
+import {
+  LandingPage,
+  Login,
+  Support,
+  Privacy
+} from "pages";
 
 import ListModules from 'creators/pages/ListModules';
 import {
@@ -23,6 +28,9 @@ function App() {
       <Route path = "/" element = {<Layout />}>
         <Route path = '/' element = {<LandingPage />} />
         <Route path = "/login" element = {<Login />} />
+        <Route path = "/support" element = {<Support />} />
+        <Route path = "privacy" element = {<Privacy />} />
+
         <Route path = '/websock' element = {<WebSock />} />
       
         <Route element = {<RequireAdmin />}>
