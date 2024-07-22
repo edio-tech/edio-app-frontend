@@ -72,16 +72,12 @@ const AdminCreators = () => {
       navigate(`/admin/all-modules/${creator_id}`)
    }
 
-   if ( pageRendering ) {
-      return <div className = "flex-page-container"> <Spinner /> </div>
-   }
-
-   if ( creatorData.length === 0 ) {
-      return <div className = "flex-page-container"> No creators Found </div>
-   }
-
    return (
       <div className = "flex-page-container"> 
+      { pageRendering && <Spinner />}
+      { !pageRendering && creatorData.length === 0 && <div>No Creators Found</div>}
+      {! pageRendering && creatorData.length !== 0 &&
+      <>
          { creatorData.map((creator, index) => (
             <button key = { index } onClick={() => handleClick(creator._id)} className = "global-button global-trans-button">
                <CreatorCard
@@ -90,6 +86,8 @@ const AdminCreators = () => {
                /> 
             </button>
          ))}
+      </>
+      }
       </div>
    )
 }

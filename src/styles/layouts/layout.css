@@ -3,30 +3,48 @@
    flex-direction: column;
    background: var(--clr-custom-dark-gray);
    height: 100vh;
- }
+   overflow: hidden; /* Prevent scrolling on the main container */
+}
 
- .flex-navbar-container {
-   flex: 1;
+.flex-navbar-container {
+   flex: 1; /* Don't grow, don't shrink, auto basis */
    background: var(--clr-custom-dark-gray);
    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-
    padding-right: 10px;
    padding-left: 10px;
    display: flex;
    justify-content: flex-end;
-   height: 70px;
 }
 
 .main-container {
-   flex: 16;
-   
+   flex: 14;
    display: flex;
-   overflow-y: auto;
-
+   overflow: hidden; /* Prevent scrolling here */
    font-family: 'Arial';
 }
 
+.left-sidebar {
+   flex: 1; /* Don't grow, don't shrink, auto basis */
+   overflow-y: auto; /* Allow sidebar to scroll independently */
+}
 
-.old { 
-   background: hsl(207, 26%, 17%);
+.flex-right-container {
+   flex: 7;
+   display: flex;
+   overflow: hidden; /* Remove scroll from here */
+}
+
+.content-wrapper {
+   flex: 1;
+   overflow-y: auto; /* Add scroll here */
+   background: var(--clr-custom-dark-gray); /* Ensure background color is applied */
+}
+
+/* In your landingpage.css or component-specific CSS */
+.edio-landing-page {
+   min-height: min-content; /* Allow it to shrink to content size */
+   width: 100%;
+   color: white;
+   font-family: Arial, sans-serif;
+   background: var(--clr-custom-dark-gray);
 }

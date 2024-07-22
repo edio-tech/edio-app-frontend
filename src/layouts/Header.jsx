@@ -7,7 +7,7 @@ import EdioLogo from "assets/logo.png"
 import EdioText from "assets/edio-white-transparent.png"
 import 'styles/layouts/header.css';
 
-const Header = () => {
+const Header = ({ setMenuToggled }) => {
 
    const { auth } = useAuth();
    const navigate = useNavigate();
@@ -16,11 +16,15 @@ const Header = () => {
       navigate('login')
    }
 
+   const handleToggleMenuClick = () => {
+      setMenuToggled(prevState => !prevState)
+   }
+
    return (
       <>
       <div className = "flex-left-side-navbar">
          <div className = "left-menu-navbar-element">
-            <button className = "global-button global-trans-button flex-left-menu-button"><Menu style = {{ color : 'white'}}/></button>
+            <button onClick={() => handleToggleMenuClick()} className = "global-button global-trans-button flex-left-menu-button"><Menu style = {{ color : 'white'}}/></button>
          </div>
          <Link to='/' className = "flex-navbar-element">
             <img className = "logo" src={EdioLogo} />
@@ -45,41 +49,3 @@ const Header = () => {
    )
 }
 
-const Bruh = () => {
-
-   const { auth } = useAuth();
-   
-   return (
-      <>
-      { 
-         auth?.id ? 
-         <>
-            { auth.role === 'ADMIN' &&
-            <>
-               <Link to='/admin/demo' className="flex-navbar-element global-button">
-                  DEMOS
-               </Link>
-               <Link to='/admin/all-creators' className="flex-navbar-element global-button">
-                  ADMIN
-               </Link>
-            </>
-            }
-            {/* 
-            <Link to='/explore-creators' className="flex-navbar-element global-button">
-               CREATORS
-            </Link>
-            */}
-         </> : <>
-            <Link to='/' className="flex-navbar-element global-button">
-               HOME
-            </Link>
-            <Link to='/login' className="flex-navbar-element global-button">
-               LOGIN
-            </Link> 
-         </>
-      }
-      </>
-   );
-};
-
-export default Header;

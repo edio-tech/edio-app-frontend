@@ -11,6 +11,7 @@
   --clr-custom-blue: #68b3e8;
   --clr-custom-green: rgb(0, 169, 158);
 
+  color: white;
 }
 
 /* Global Styling */
@@ -63,6 +64,7 @@
   border: none;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 .clickable {
   cursor: pointer;
@@ -87,6 +89,13 @@
 /* Optional: Styling the scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: white; /* Darker shade on hover for better visibility */
+}
+
+.white-line {
+  border: none; /* Remove the default border */
+  height: 2px; /* Set the thickness of the line */
+  background-color: white; /* Set the color of the line */
+  margin: 30px 0; /* Add some vertical spacing if needed */
 }
 
 

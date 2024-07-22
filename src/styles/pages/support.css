@@ -1,0 +1,14 @@
+.support-section {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 800px;
+}
+
+.support-title {
+   margin-bottom: 100px;
+}
+
+.support-paragraph {
+   text-align: center;
+}
