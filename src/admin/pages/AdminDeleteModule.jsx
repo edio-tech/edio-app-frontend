@@ -1,8 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // API imports
 import modulesAPI from "api_link/modules.js"
+
+// Hooks
+import useAdminNavbar from "hooks/useAdminNavbar";
 
 // Context imports
 import useLogContext from "hooks/useLogContext";
@@ -18,9 +21,14 @@ const AdminDeleteModule = () => {
 
   const [errors, setErrors] = useState(null)
 
-   const handleBackClick = () => {
-      navigate(`/admin/module/${creator_id}/${module_id}`)
-   }
+  const { setLeftName, setLeftAction, setRightName, setRightAction } = useAdminNavbar();
+
+  useEffect(() => {
+    setLeftName('Module Info');
+    setLeftAction(() => () => `/admin/module/${creator_id}/${module_id}`);
+    setRightName('');
+    setRightAction(null);
+  }, [])
 
    const handleDeleteClick = async () => {
       try {
@@ -53,12 +61,9 @@ const AdminDeleteModule = () => {
 
   return (
     <div className = "container-flex">
-      <div className="flex-top-bar">
-         <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-      </div>
       <div className = "flex-body">
-         <h2> Are you sure you want to delete this module? This will delete all parts, chapters, sections, goals and questions associated with this module. This action cannot be undone.</h2>
-         <button onClick={() => handleDeleteClick()} className = "global-button delete-button"> DELETE MODULE </button>
+         <h2 style = {{textAlign : "center"}}> Are you sure you want to delete this module? This will delete all parts, chapters, sections, goals and questions associated with this module. This action cannot be undone.</h2>
+         <button style = {{marginTop : "50px"}} onClick={() => handleDeleteClick()} className = "global-button delete-button"> DELETE MODULE </button>
       </div>
     </div>
   )

@@ -13,7 +13,12 @@
    background-color: red;
 }
 
+.white-button {
+   color: white;
+}
+
 .collapse-button {
+   color: white;
    width: 40px;
 }
 .part-header, .chapter-header, .section-header {
@@ -35,7 +40,7 @@
 .flex-main-page {
    height: 100%;
    width: 100%;
-   
+
    display: flex;
 }
 
