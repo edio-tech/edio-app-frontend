@@ -70,11 +70,80 @@
   cursor: pointer;
 }
 
+/* Standard Form Styling */
+
+.flex-global-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.global-form {
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  width: 450px;
+}
+
+.global-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.global-form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.global-form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--clr-custom-green);
+  background-color: transparent;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.global-form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--clr-custom-green);
+  background-color: transparent;
+  color: white;
+  border-radius: 4px;
+}
+
+.global-form-group select option {
+  color: black;
+}
+
+.global-form-button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.global-form-submit-button {
+  padding: 0.75rem;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--clr-custom-green);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.global-form-submit-button:hover {
+  opacity: 0.9;
+}
+
 
 /* ScrollBar */
 
 ::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+  width: 6px; /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
