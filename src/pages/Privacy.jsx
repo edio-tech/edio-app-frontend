@@ -1,4 +1,6 @@
-import Markdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
+
+import "styles/pages/privacy.css"
 
 const markdownPrivacy = `
 # Privacy Policy Version 1.0 for the edio iOS App
@@ -62,8 +64,8 @@ Your privacy is important to us. We will take reasonable steps to protect your p
 
 const Privacy = () => {
   return (
-    <div style={{padding: 24}}>
-        <Markdown>{markdownPrivacy}</Markdown>
+    <div className = "flex-conteiner">
+        <ReactMarkdown className = "markdown-content">{markdownPrivacy}</ReactMarkdown>
     </div>
   )
 }
