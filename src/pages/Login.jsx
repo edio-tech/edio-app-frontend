@@ -25,8 +25,7 @@ const Login = () => {
    const [errors, setErrors] = useState(null);
    const redirect = '/admin/all-creators'
 
-   const [hash, setHash] = useState(window.location.hash)
-;
+   const [hash, setHash] = useState(window.location.hash);
    useEffect(() => {
       if ( auth?.id ) {
          navigate(redirect)
@@ -89,32 +88,32 @@ const Login = () => {
 
    return (
       <div className="flex-container">
-      <div className="login-container">
-      { errors && <div className = "error-message"> { errors.detail } </div>}
-         <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-               <label htmlFor="email">Email:</label>
-               <input type="email" id="email" name="email" required />
-            </div>
-            <div className="form-group">
-               <label htmlFor="password">Password:</label>
-               <input type="password" id="password" name="password" required />
-            </div>
-            <div className = "form-button-group">
-               
-            <button type="submit" className="login-button global-button" disabled={loading}>
-               {loading ? 'Logging in...' : 'Login'}
-            </button>
-            </div>
-            <div className = "white-line"></div>
-            <div className="form-footer">
-               <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
-               <span className="signup-link">Don't have an account? - <a href="#sign-up">Sign up</a></span>
-            </div>
-         </form>
-         { hash === '#forgot-password' && <div className = "error-message"> Functionality for resetting password will be added soon </div>}
-         { hash === '#sign-up' && <div className = "error-message"> We are currently in beta and as a result are currently not accepting new sign on's </div>}
-      </div>
+         <div className="flex-form-container">
+         { errors && <div className = "error-message"> { errors.detail } </div>}
+            <form onSubmit={handleSubmit} className="global-form">
+               <div className="global-form-group">
+                  <label htmlFor="email">Email:</label>
+                  <input type="email" id="email" name="email" required />
+               </div>
+               <div className="global-form-group">
+                  <label htmlFor="password">Password:</label>
+                  <input type="password" id="password" name="password" required />
+               </div>
+               <div className = "global-form-button-group">
+                  
+               <button type="submit" className="global-form-submit-button global-button" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Login'}
+               </button>
+               </div>
+               <div className = "white-line"></div>
+               <div className="form-footer">
+                  <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
+                  <span className="signup-link">Don't have an account? - <a href="#sign-up">Sign up</a></span>
+               </div>
+            </form>
+            { hash === '#forgot-password' && <div className = "error-message"> Functionality for resetting password will be added soon </div>}
+            { hash === '#sign-up' && <div className = "error-message"> We are currently in beta and as a result are currently not accepting new sign on's </div>}
+         </div>
       </div>
    );
 };

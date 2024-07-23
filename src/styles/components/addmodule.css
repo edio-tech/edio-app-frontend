@@ -1,58 +1,36 @@
-.dark-form-container {
-   background-color: #6fa1d4;
-   color: white;
-   padding: 20px;
-   font-family: Arial, sans-serif;
-   border-radius: 20px;
- }
- 
- .form-title {
-   font-size: 24px;
-   margin-bottom: 20px;
- }
- 
- .form-field {
-   margin-bottom: 20px;
- }
- 
- .form-label {
-   display: block;
-   margin-bottom: 5px;
-   font-size: 16px;
- }
- 
- .form-input {
-   width: 100%;
-   padding: 10px;
-   background-color: #2c3035;
-   border: 1px solid #3f4347;
-   border-radius: 4px;
-   color: white;
-   font-size: 14px;
- }
- 
- .form-submit {
-   background-color: #3ba55c;
-   color: white;
-   border: none;
-   padding: 10px 20px;
-   border-radius: 4px;
-   font-size: 16px;
-   cursor: pointer;
-   width: 100%;
-   margin-top: 10px;
- }
- 
- .form-submit:hover {
-   background-color: #45bf6b;
- }
-
- .error-message {
-  color: red;
-  font-weight: bold;
+.global-flex-form-button-container {
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
- }
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  width: 100%;
+  padding-top: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flex-adjusted {
+  display: flex;
+}
+
+.tag-input-field {
+  flex: 7;
+}
+
+.add-tag-logo {
+  flex: 1;
+
+  color: var(--clr-custom-green);
+  width: 50px;
+  height: 100%;
+  margin: 10px;
+}

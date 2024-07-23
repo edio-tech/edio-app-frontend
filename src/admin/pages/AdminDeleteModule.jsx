@@ -24,8 +24,8 @@ const AdminDeleteModule = () => {
   const { setLeftName, setLeftAction, setRightName, setRightAction } = useAdminNavbar();
 
   useEffect(() => {
-    setLeftName('Module Info');
-    setLeftAction(() => () => `/admin/module/${creator_id}/${module_id}`);
+    setLeftName('Module');
+    setLeftAction(() => () => navigate(`/admin/module/${creator_id}/${module_id}`));
     setRightName('');
     setRightAction(null);
   }, [])
