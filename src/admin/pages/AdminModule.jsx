@@ -7,6 +7,9 @@ import { ArrowDown, ArrowRight } from 'lucide-react';
 // API imports
 import modulesAPI from 'api_link/modules.js';
 
+// Hooks
+import useAdminNavbar from "hooks/useAdminNavbar";
+
 // Component imports
 import { Spinner } from 'components';
 
@@ -90,21 +93,20 @@ const AdminModule = () => {
     }
 
   }, [])
-  
-  const handleBackClick = () => {
-    navigate(`/admin/all-modules/${creator_id}`)
-  }
 
-  const handleAddPartClick = () => {
-    //navigate(`/admin/add-module/${creator_id}`)
-  }
+  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
+
+  useEffect(() => {
+    setLeftName('All Modules');
+    setLeftAction(() => () => navigate(`/admin/all-modules/${creator_id}`));
+    setTitleName(currentModuleData.module_name);
+    setRightName('Delete Module');
+    setRightAction(() => () => navigate('delete'));
+  }, [currentModuleData])
+  
 
   const handleBuildOutClick = () => {
     navigate(`/admin/build-out-module/${creator_id}/${module_id}`)
-  }
-
-  const handleDeleteModuleClick = () => {
-    navigate('delete')
   }
 
   const handleSectionSelection = (section_id) => {
@@ -193,26 +195,16 @@ const AdminModule = () => {
 
   return (
     <div className = "flex-container-col">
-      <div className="flex-top-bar">
-        <div className="flex-bar-left">
-          <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-        </div>
-        <div className="flex-bar-middle">
-          { !pageRendering && <h2>{currentModuleData.module_name}</h2>}
-        </div>
-        <div className="flex-bar-right">
-          <button className="global-button delete-button" onClick={() => handleDeleteModuleClick()}> DELETE MODULE </button>
-        </div>
-      </div>
-      <div className = "flex-content">
         { pageRendering &&
           <Spinner /> 
         }
         { !pageRendering && ( !currentModuleData.parts || Object.keys(currentModuleData.parts).length === 0)  && 
             <div className = "flex-no-module-container">
               <div className = "no-module-box">
+                {/* 
                 Add Module Manually. You must already have your content broken down into sections.
                 <button className="global-button" onClick={() => handleAddPartClick()}> ADD PART </button>
+                */}
               </div>
               <div className = "no-module-box">
                 <div className = "no-module-title">
@@ -224,12 +216,12 @@ const AdminModule = () => {
         }
         {!pageRendering && currentModuleData.parts && Object.keys(currentModuleData.parts).length > 0 && (
           <div className = "flex-main-page">
-            <div className = "flex-left-page mrg">
+            <div className = "flex-left-page">
               {Object.values(currentModuleData.parts).map(part => (
                 <div key={part._id}>
                   <div className="part-header">
                     <div className = "collapse-button">
-                      <button onClick={() => toggleCollapse(setCollapsedParts, part._id)} className="global-button global-trans-button">
+                      <button onClick={() => toggleCollapse(setCollapsedParts, part._id)} className="global-button global-trans-button white-button">
                         {collapsedParts[part._id] ? <ArrowRight /> : <ArrowDown />}
                       </button>
                     </div>
@@ -239,7 +231,7 @@ const AdminModule = () => {
                     <div key={chapter._id} className="chapter-container">
                       <div className="chapter-header">
                         <div className = "collapse-button">
-                          <button onClick={() => toggleCollapse(setCollapsedChapters, chapter._id)} className="global-button global-trans-button">
+                          <button onClick={() => toggleCollapse(setCollapsedChapters, chapter._id)} className="global-button global-trans-button white-button">
                             {collapsedChapters[chapter._id] ? <ArrowRight /> : <ArrowDown />}
                           </button>
                         </div>
@@ -248,7 +240,7 @@ const AdminModule = () => {
                       {!collapsedChapters[chapter._id] && Object.values(chapter.sections).map(section => (
                         <div key={section._id} className="section-container">
                           <div className="section-header">
-                            <button onClick={() => handleSectionSelection(section._id)} className="global-button global-trans-button">
+                            <button onClick={() => handleSectionSelection(section._id)} className="global-button global-trans-button white-button">
                               <h5>{section.section_name}</h5>
                             </button>
                           </div>
@@ -334,7 +326,6 @@ const AdminModule = () => {
           </div>
         )}
       </div>
-    </div>  
   )
 };
 

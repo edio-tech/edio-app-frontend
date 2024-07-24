@@ -1,101 +1,181 @@
 // React / React Library imports
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as Form from '@radix-ui/react-form';
 import { useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
+import { SquarePlus } from "lucide-react";
 
 // Context imports 
 import useLogContext from 'hooks/useLogContext';
 
+// Componenet imports
+import { Spinner } from 'components'
+
 // API imports
 import modulesAPI from 'api_link/modules.js'
+import tagsAPI from 'api_link/tags.js'
 
 // Styling
 import "styles/components/addmodule.css";
 
 
-const AddModule = ({ creator_id }) => {
+const AddModule = ({ creator_id, hash, setHash }) => {
 
-   const [loading, setLoading] = useState(false);
-   const { development} = useLogContext();
-   const [errors, setErrors] = useState(null);
-   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const { development } = useLogContext();
+  const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
 
-   const handleSubmit = async (e) => {
-      setLoading(true);
-      e.preventDefault();
+  const [moduleTitle, setModuleTitle] = useState('');
+  const [moduleDescription, setModuleDescription] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
+  
+  const [tagOptionsLoading, setTagOptionsLoading] = useState(true);
+  const [tagOptionsArray, setTagOptionsArray] = useState([]);
 
-      const formdata = Object.fromEntries(new FormData(e.currentTarget));
+  
+  useEffect( () => {
+    const fetchData = async () => {
       try {
-         const res = await modulesAPI.create(creator_id, formdata)
+        const res = await tagsAPI.getAllTags()
+    
+        if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+          throw new Error(`${res.data}. Status: ${res.status}`);
+        }
 
-         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-          if ( development ) {
-            setErrors(res.data.detail)
-          } else {
-            setErrors('There was an error creating your module')
-          }
-          return
-       }
-         let content = res.data
-         if ( development ) {
-            console.log(content.detail)
-         } 
+        const content = res.data
+        const tags_data = content.data
+        const tagOptions = []
+        tags_data.forEach(tag => {
+          tagOptions.push(tag.tag_name)
+        });
 
-         navigate(`/admin/all-modules/${creator_id}`)
+        setTagOptionsArray(tagOptions);
       } catch (err) {
-        setErrors(err.message);
+        setErrors(err);
         if ( development ) {
           console.log(err.message)
         }
       } finally {
-        setLoading(false);
+        setTagOptionsLoading(false);
       }
-   }
+    }
+
+    fetchData();
+  }, [hash])
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    const formdata = {
+      module_name: moduleTitle,
+      module_description: moduleDescription,
+      tag_name: selectedTag
+    };
+
+    try {
+        const res = await modulesAPI.create(creator_id, formdata)
+
+        if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+        if ( development ) {
+          setErrors(res.data.detail)
+        } else {
+          setErrors('There was an error creating your module')
+        }
+        return
+      }
+        let content = res.data
+        if ( development ) {
+          console.log(content.detail)
+        } 
+
+        navigate(`/admin/all-modules/${creator_id}`)
+    } catch (err) {
+      setErrors(err.message);
+      if ( development ) {
+        console.log(err.message)
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
 
    return (
-      <div className="dark-form-container">
-        <div className="form-title">
-          Enter the Module Details Below
+      <div className="flex-form-container">
+        <div className = "global-form">
+          { errors && <div className = "error-message"> { errors }</div>}
+          <Form.Root onSubmit={handleSubmit}>
+            <div className="global-form-group">
+              <Form.Field name="module_name">
+                <Form.Label>Module Title</Form.Label>
+                <Form.Control asChild>
+                  <input 
+                    id="module-title" 
+                    type="text" 
+                    value={moduleTitle} 
+                    onChange={(e) => setModuleTitle(e.target.value)}
+                    required 
+                  />
+                </Form.Control>
+                <Form.Message match="valueMissing" className="error-message">Module Title is required</Form.Message>
+              </Form.Field>
+            </div>
+            <div className="global-form-group">
+              <Form.Field name="module_description">
+                <Form.Label>Module Description</Form.Label>
+                <Form.Control asChild>
+                  <input 
+                    id="module-description" 
+                    type="text" 
+                    value={moduleDescription} 
+                    onChange={(e) => setModuleDescription(e.target.value)} 
+                    required
+                  />
+                </Form.Control>
+                <Form.Message match="valueMissing" className="error-message">A brief Module description is required</Form.Message>
+              </Form.Field>
+            </div>
+            <div className="global-form-group flex-adjusted">
+              <Form.Field name="tag_name" className = "tag-input-field">
+                <Form.Label>Tag</Form.Label>
+                <Form.Control asChild>
+                  <>
+                  <select 
+                    id="tag-name" 
+                    value={selectedTag} 
+                    onChange={(e) => setSelectedTag(e.target.value)} 
+                    required
+                  >
+                    <option style = {{ color: "black" }} value="">Select a tag</option>
+                    { tagOptionsLoading && <Spinner/> }
+                    { !tagOptionsLoading &&
+                    <>
+                    <button className = "global-trans-button"> Add Tag </button>
+                    {tagOptionsArray.map((tag) => (
+                      <option key={tag} value={tag}>
+                        {tag}
+                      </option>
+                    ))}
+                    </>
+                    }
+                  </select>
+                  </>
+                </Form.Control>
+                <Form.Message match="valueMissing" className="error-message">A tag is required.</Form.Message>
+              </Form.Field>
+              <a href="#add-tag" className = "global-trans-button"><SquarePlus className = "add-tag-logo"/></a>
+            </div>
+            <div className = "global-flex-form-button-container">
+              <Form.Submit asChild>
+                <button type="submit" className = "global-form-submit-button">
+                  {loading ? <BeatLoader /> : 'Create Module'}
+                </button>
+              </Form.Submit>
+            </div>
+          </Form.Root>
         </div>
-        { errors && <div className = "error-message"> { errors }</div>}
-        <Form.Root onSubmit={handleSubmit}>
-          <div className="form-field">
-            <Form.Field name="module_name">
-              <Form.Label className="form-label">Module Title</Form.Label>
-              <Form.Message match="valueMissing" className="error-message">Module Title is required</Form.Message>
-              <Form.Control asChild>
-                <input id="module-title" type="text" required className="form-input" />
-              </Form.Control>
-            </Form.Field>
-          </div>
-          <div className="form-field">
-            <Form.Field name="module_description">
-              <Form.Label className="form-label">Module Description</Form.Label>
-              <Form.Message match="valueMissing" className="error-message">A brief Module description is required</Form.Message>
-              <Form.Control asChild>
-                <input id="module-description" type="text" required className="form-input" />
-              </Form.Control>
-            </Form.Field>
-          </div>
-          <div className="form-field">
-            <Form.Field name="tag_name">
-              <Form.Label className="form-label">Tag</Form.Label>
-              <Form.Message match="valueMissing" className="error-message">A tag is required as it is injected into the question generation prompt.</Form.Message>
-              <Form.Control asChild>
-                <input id="tag-name" type="text" required className="form-input" />
-              </Form.Control>
-            </Form.Field>
-          </div>
-          <div className="form-field">
-            <Form.Submit asChild>
-              <button type="submit" className="form-submit">
-                {loading ? <BeatLoader /> : 'Create Module'}
-              </button>
-            </Form.Submit>
-          </div>
-        </Form.Root>
       </div>
     )
 };
