@@ -1,8 +1,8 @@
 import useLogContext from "hooks/useLogContext"
 import * as Form from '@radix-ui/react-form';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from 'react-spinners';
-
 
 // API Imports
 import tagsAPI from 'api_link/tags.js'
@@ -11,6 +11,8 @@ import tagsAPI from 'api_link/tags.js'
 const AddTag = ({ setHash }) => {
 
    const { development } = useLogContext();
+   const navigate = useNavigate();
+   const { creator_id } = useParams();
    const [loading, setLoading] = useState(false);
    const [errors, setErrors] = useState(null);
 

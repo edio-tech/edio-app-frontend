@@ -9,10 +9,7 @@ import { SquarePlus } from "lucide-react";
 import useLogContext from 'hooks/useLogContext';
 
 // Componenet imports
-import { 
-  Spinner,
-  AddTag
- } from 'components'
+import { Spinner } from 'components'
 
 // API imports
 import modulesAPI from 'api_link/modules.js'
@@ -22,32 +19,21 @@ import tagsAPI from 'api_link/tags.js'
 import "styles/components/addmodule.css";
 
 
-const AddModule = ({ creator_id }) => {
+const AddModule = ({ creator_id, hash, setHash }) => {
 
   const [loading, setLoading] = useState(false);
   const { development } = useLogContext();
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
+
+  const [moduleTitle, setModuleTitle] = useState('');
+  const [moduleDescription, setModuleDescription] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
   
   const [tagOptionsLoading, setTagOptionsLoading] = useState(true);
   const [tagOptionsArray, setTagOptionsArray] = useState([]);
 
-  const [hash, setHash] = useState(window.location.hash);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setHash(window.location.hash);
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-       window.removeEventListener('hashchange', handleHashChange);
-    };
-
- }, []);
-
+  
   useEffect( () => {
     const fetchData = async () => {
       try {
@@ -82,7 +68,12 @@ const AddModule = ({ creator_id }) => {
     setLoading(true);
     e.preventDefault();
 
-    const formdata = Object.fromEntries(new FormData(e.currentTarget));
+    const formdata = {
+      module_name: moduleTitle,
+      module_description: moduleDescription,
+      tag_name: selectedTag
+    };
+
     try {
         const res = await modulesAPI.create(creator_id, formdata)
 
@@ -113,7 +104,6 @@ const AddModule = ({ creator_id }) => {
 
    return (
       <div className="flex-form-container">
-        { hash === '' &&
         <div className = "global-form">
           { errors && <div className = "error-message"> { errors }</div>}
           <Form.Root onSubmit={handleSubmit}>
@@ -121,7 +111,13 @@ const AddModule = ({ creator_id }) => {
               <Form.Field name="module_name">
                 <Form.Label>Module Title</Form.Label>
                 <Form.Control asChild>
-                  <input id="module-title" type="text" required/>
+                  <input 
+                    id="module-title" 
+                    type="text" 
+                    value={moduleTitle} 
+                    onChange={(e) => setModuleTitle(e.target.value)}
+                    required 
+                  />
                 </Form.Control>
                 <Form.Message match="valueMissing" className="error-message">Module Title is required</Form.Message>
               </Form.Field>
@@ -130,7 +126,13 @@ const AddModule = ({ creator_id }) => {
               <Form.Field name="module_description">
                 <Form.Label>Module Description</Form.Label>
                 <Form.Control asChild>
-                  <input id="module-description" type="text" required/>
+                  <input 
+                    id="module-description" 
+                    type="text" 
+                    value={moduleDescription} 
+                    onChange={(e) => setModuleDescription(e.target.value)} 
+                    required
+                  />
                 </Form.Control>
                 <Form.Message match="valueMissing" className="error-message">A brief Module description is required</Form.Message>
               </Form.Field>
@@ -140,14 +142,19 @@ const AddModule = ({ creator_id }) => {
                 <Form.Label>Tag</Form.Label>
                 <Form.Control asChild>
                   <>
-                  <select id="tag-name" required>
+                  <select 
+                    id="tag-name" 
+                    value={selectedTag} 
+                    onChange={(e) => setSelectedTag(e.target.value)} 
+                    required
+                  >
                     <option style = {{ color: "black" }} value="">Select a tag</option>
                     { tagOptionsLoading && <Spinner/> }
                     { !tagOptionsLoading &&
                     <>
                     <button className = "global-trans-button"> Add Tag </button>
                     {tagOptionsArray.map((tag) => (
-                      <option className = "mrg" key={tag} value={tag}>
+                      <option key={tag} value={tag}>
                         {tag}
                       </option>
                     ))}
@@ -158,7 +165,7 @@ const AddModule = ({ creator_id }) => {
                 </Form.Control>
                 <Form.Message match="valueMissing" className="error-message">A tag is required.</Form.Message>
               </Form.Field>
-              <a href="#add-tag" onclassName = "global-trans-button"><SquarePlus className = "add-tag-logo"/></a>
+              <a href="#add-tag" className = "global-trans-button"><SquarePlus className = "add-tag-logo"/></a>
             </div>
             <div className = "global-flex-form-button-container">
               <Form.Submit asChild>
@@ -169,8 +176,6 @@ const AddModule = ({ creator_id }) => {
             </div>
           </Form.Root>
         </div>
-        }
-        { hash === '#add-tag' && <AddTag setHash={setHash} /> }
       </div>
     )
 };
