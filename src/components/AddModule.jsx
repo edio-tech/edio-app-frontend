@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { SquarePlus } from "lucide-react";
 
-import useLogContext from 'hooks/useLogContext';
+// API imports
 import modulesAPI from 'api_link/modules.js'
 import tagsAPI from 'api_link/tags.js'
 
+// Context
+import useCreatorContext from 'hooks/useCreatorContext';
+import useLogContext from 'hooks/useLogContext';
+
+// Styling
 import "styles/components/addmodule.css";
 
 const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescription, setModuleDescription, selectedTag, setSelectedTag }) => {
@@ -15,6 +20,8 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
   const { development } = useLogContext();
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
+
+  const { creatorData, setCreatorData, moduleSummary, setModuleSummary } = useCreatorContext();
   
   const [tagOptionsLoading, setTagOptionsLoading] = useState(true);
   const [tagOptionsArray, setTagOptionsArray] = useState([]);
@@ -47,7 +54,6 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
   }, [hash])
 
   const handleSubmit = async (e) => {
-    setSubmitAttempted(true);
     e.preventDefault();
     setLoading(true);
 
@@ -58,7 +64,7 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
     };
 
     try {
-      const res = await modulesAPI.create(creator_id, formdata)
+      const res = await modulesAPI.addModule(creator_id, formdata)
 
       if (res.status < 200 || res.status >= 300) {
         if (development) {
@@ -72,8 +78,44 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
       if (development) {
         console.log(content.detail)
       } 
-      navigate(`/admin/all-modules/${creator_id}`)
-      
+
+      const incoming_module_data = content.data
+
+      // Update creatorData
+      setCreatorData(prevData => {
+        const updatedData = [...prevData];
+        const creatorIndex = updatedData.findIndex(creator => creator._id === incoming_module_data.creator_id);
+        
+        if (creatorIndex !== -1) {
+          const updatedCreator = {...updatedData[creatorIndex]};
+          const newModule = {
+            [incoming_module_data._id]: {
+              order_number: Object.keys(updatedCreator.modules).length + 1,
+              module_name: incoming_module_data.module_name,
+              module_image: '' // Assuming the incoming data doesn't include an image
+            }
+          };
+          updatedCreator.modules = {...updatedCreator.modules, ...newModule};
+          updatedData[creatorIndex] = updatedCreator;
+        }
+
+        return updatedData;
+      });
+
+      // Update moduleSummary
+      setModuleSummary(prevSummary => {
+        const newSummaryItem = {
+          creator_id: incoming_module_data.creator_id,
+          id: incoming_module_data._id,
+          module_image: '',
+          module_name: incoming_module_data.module_name,
+          order_number: moduleSummary.filter(item => item.creator_id === incoming_module_data.creator_id).length + 1
+        };
+        return [...prevSummary, newSummaryItem];
+      });
+
+      navigate(`/admin/module/${creator_id}/${incoming_module_data._id}`)
+
     } catch (err) {
       setErrors(err.message);
       if (development) {
@@ -135,7 +177,7 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
             <a href="#add-tag" className="global-trans-button"><SquarePlus className="add-tag-logo"/></a>
           </div>
           <div className="global-flex-form-button-container">
-            <button type="submit" className="global-form-submit-button" disabled={loading}>
+            <button type="submit" className="global-form-submit-button">
               {loading ? <BeatLoader /> : 'Create Module'}
             </button>
           </div>

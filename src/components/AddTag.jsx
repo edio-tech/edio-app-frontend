@@ -8,7 +8,7 @@ import { BeatLoader } from 'react-spinners';
 import tagsAPI from 'api_link/tags.js'
 
 
-const AddTag = ({ setHash, setLeftName, setLeftAction, setTitleName }) => {
+const AddTag = ({ setHash }) => {
 
    const { development } = useLogContext();
    const [loading, setLoading] = useState(false);

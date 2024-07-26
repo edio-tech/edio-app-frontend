@@ -9,6 +9,7 @@ import useAdminNavbar from "hooks/useAdminNavbar";
 
 // Context imports
 import useLogContext from "hooks/useLogContext";
+import useCreatorContext from "hooks/useCreatorContext"; 
 
 // Styling
 import "styles/admin/admindeletemodule.css"
@@ -21,6 +22,8 @@ const AdminDeleteModule = () => {
 
   const [errors, setErrors] = useState(null)
 
+  const { creatorData, setCreatorData, moduleSummary, setModuleSummary } = useCreatorContext(); 
+
   const { setLeftName, setLeftAction, setRightName, setRightAction } = useAdminNavbar();
 
   useEffect(() => {
@@ -32,30 +35,47 @@ const AdminDeleteModule = () => {
 
    const handleDeleteClick = async () => {
       try {
-         const res = await modulesAPI.deleteModule(module_id)
- 
-         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-           if ( development ) {
-             setErrors(res.data.detail)
-           } else {
-             setErrors('Module unable to be delete.')
-           }
-           return
-         }
- 
-         const content = res.data
-         
-         if ( development ) {
-           console.log(content.detail)
-         }
+        const res = await modulesAPI.deleteModule(module_id)
 
-         navigate(`/admin/all-modules/${creator_id}`)
+        if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+          if ( development ) {
+            setErrors(res.data.detail)
+          } else {
+            setErrors('Module unable to be delete.')
+          }
+          return
+        }
+
+        const content = res.data
+        
+        if ( development ) {
+          console.log(content.detail)
+        }
+
+         // Update creatorData
+        setCreatorData(prevData => {
+          return prevData.map(creator => {
+            if (creator._id === creator_id) {
+              const updatedModules = { ...creator.modules };
+              delete updatedModules[module_id];
+              return { ...creator, modules: updatedModules };
+            }
+            return creator;
+          });
+        });
+
+        // Update moduleSummary
+        setModuleSummary(prevSummary => {
+          return prevSummary.filter(module => module.id !== module_id);
+        });
+
+        navigate(`/admin/all-modules/${creator_id}`)
  
       } catch (err) {
-         setErrors(err.message);
-         if ( development ) {
-           console.log(err.message)
-         }
+        setErrors(err.message);
+        if ( development ) {
+          console.log(err.message)
+        }
       } 
    }
 
