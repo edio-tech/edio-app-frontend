@@ -9,6 +9,10 @@ let axiosConfig = axios.create({
 
 class CreatorsAPILink {
 
+   addCreator(body) {
+      return axiosConfig.get(baseURL + '/creators/add-creator-profile', body);
+   }
+
    getAll() {
       return axiosConfig.get(baseURL + '/get-all');
    }

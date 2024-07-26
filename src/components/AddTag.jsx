@@ -8,11 +8,9 @@ import { BeatLoader } from 'react-spinners';
 import tagsAPI from 'api_link/tags.js'
 
 
-const AddTag = ({ setHash }) => {
+const AddTag = ({ setHash, setLeftName, setLeftAction, setTitleName }) => {
 
    const { development } = useLogContext();
-   const navigate = useNavigate();
-   const { creator_id } = useParams();
    const [loading, setLoading] = useState(false);
    const [errors, setErrors] = useState(null);
 
