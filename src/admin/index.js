@@ -23,3 +23,5 @@ export { default as DemoHome } from './pages/DemoHome';
 export { default as CreateDemo } from './pages/CreateDemo';
 
 export { default as AddQuestionsToSection } from './pages/AddQuestionsToSection';
+
+export { default as Test } from './pages/Test';

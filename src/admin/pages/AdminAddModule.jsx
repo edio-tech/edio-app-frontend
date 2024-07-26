@@ -19,15 +19,27 @@ const AdminAddModule = () => {
 
   const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
 
-  useEffect(() => {
-    setLeftName('All Modules');
-    setLeftAction(() => () => navigate(`/admin/all-modules/${creator_id}`));
-    setTitleName('Add Module');
-    setRightName('');
-    setRightAction(null);
-  }, [])
+  const [hash, setHash] = useState(location.hash);
 
-  const [hash, setHash] = useState(window.location.hash);
+  useEffect(() => {
+    if ( hash === '' ) {
+      setLeftName('All Modules');
+      setLeftAction(() => () => navigate(`/admin/all-modules/${creator_id}`));
+      setTitleName('Add Module');
+      setRightName('');
+      setRightAction(null);
+    } else if ( hash === '#add-tag' ) {
+      setLeftName('Add Module')
+      setLeftAction(() => () => {
+        navigate('', { replace : true });
+        setHash('');
+      })
+        setTitleName('Add Tag')
+      setRightName('');
+      setRightAction(null);
+    }
+  }, [hash])
+
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -43,13 +55,30 @@ const AdminAddModule = () => {
 
  }, []);
 
+  useEffect(() => {
+    setHash(location.hash);
+  }, [location.hash]);
+
+  const [moduleTitle, setModuleTitle] = useState('');
+  const [moduleDescription, setModuleDescription] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
+
   return (
     <div className = "flex-container-col">
       <div className = "flex-page-contents">
       { hash === '' &&
-        <AddModule creator_id = { creator_id } hash = { hash } setHash = { setHash }/>
+        <AddModule 
+        creator_id = { creator_id } 
+        hash = { hash }
+        moduleTitle={moduleTitle}
+        setModuleTitle={setModuleTitle}
+        moduleDescription={moduleDescription}
+        setModuleDescription={setModuleDescription}
+        selectedTag={selectedTag}
+        setSelectedTag={setSelectedTag}
+        />
       }
-      { hash === '#add-tag' && <AddTag setHash = { setHash } /> }
+      { hash === '#add-tag' && <AddTag setHash = { setHash } />}
       </div>
     </div>
   )

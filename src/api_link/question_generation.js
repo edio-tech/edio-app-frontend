@@ -9,14 +9,9 @@ let axiosConfig = axios.create({
 
 class QuestionGenerationAPILink {
 
-   bodyMarkdownToGoalsFromDatabase(section_id) {
-      return axiosConfig.post(baseURL + `/markdown-to-goals-from-section-content/${section_id}`);
+   generateGoalsAndQuestionsForSection(section_id) {
+      return axiosConfig.post(baseURL + `/generate-goals-and-questions-for-section/${section_id}`);
    }
-
-   goalsToQuestionsFromContentInDatabase(section_id) {
-      return axiosConfig.post(baseURL + `/goals-to-questions-from-section-content/${section_id}`);
-   }
-
 }
 
 const questionGenerationAPILink = new QuestionGenerationAPILink();

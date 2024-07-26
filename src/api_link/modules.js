@@ -9,7 +9,7 @@ let axiosConfig = axios.create({
 
 class ModulesAPILink {
    // Modules
-   create(creator_id, body) {
+   addModule(creator_id, body) {
       return axiosConfig.post(baseURL + `/add-module/${creator_id}`, body);
    }
 
