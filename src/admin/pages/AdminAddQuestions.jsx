@@ -32,50 +32,25 @@ const AdminAddQuestions = () => {
     setLoading(true);
 
     try {
-      const res = await QuestionGenerationAPI.bodyMarkdownToGoalsFromDatabase(section_id)
+      const res = await QuestionGenerationAPI.generateGoalsAndQuestionsForSection(section_id)
 
       if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+
         if ( development ) {
           setErrors(res.data.detail)
         } else {
-          setErrors('Unable to generate goals')
+          setErrors('An error occurred when generating goals and questions')
         }
         return
       }
+
+      navigate(`/admin/module/${creator_id}/${module_id}`)
 
       const content = res.data
       if ( development ) {
         console.log(content.detail)
       }
 
-      const res_2 = await QuestionGenerationAPI.goalsToQuestionsFromContentInDatabase(section_id)
-
-      if (res_2.status < 200 || res_2.status >= 300) { // Check if response status is not OK (200-299)
-        if ( development ) {
-          setErrors(res.data.detail)
-        } else {
-          setErrors('Unable to generate questions from goals')
-        }
-        return
-      }
-
-      const content_2 = res_2.data
-      const goals_and_questions = content_2.data
-      
-      if ( development ) {
-        console.log(content_2.detail)
-      }
-
-      const res_3 = await QuestionAPI.addMultipleGoalsAndQuestions(section_id, goals_and_questions)
-
-      if (res_3.status < 200 || res_3.status >= 300) { // Check if response status is not OK (200-299)
-        if ( development ) {
-          setErrors(res.data.detail)
-        } else {
-          setErrors('Unable to upload goals and questions to the database')
-        }
-        return
-      }
 
     } catch (err) {
       setErrors(err.message);

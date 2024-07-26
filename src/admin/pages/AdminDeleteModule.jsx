@@ -22,7 +22,7 @@ const AdminDeleteModule = () => {
 
   const [errors, setErrors] = useState(null)
 
-  const { creatorData, setCreatorData, moduleSummary, setModuleSummary } = useCreatorContext(); 
+  const { setCreatorData, setModuleSummary } = useCreatorContext(); 
 
   const { setLeftName, setLeftAction, setRightName, setRightAction } = useAdminNavbar();
 
@@ -84,6 +84,7 @@ const AdminDeleteModule = () => {
       <div className = "flex-body">
          <h2 style = {{textAlign : "center"}}> Are you sure you want to delete this module? This will delete all parts, chapters, sections, goals and questions associated with this module. This action cannot be undone.</h2>
          <button style = {{marginTop : "50px"}} onClick={() => handleDeleteClick()} className = "global-button delete-button"> DELETE MODULE </button>
+         {errors && <div> There was an error deleting module: {errors}</div>}
       </div>
     </div>
   )
