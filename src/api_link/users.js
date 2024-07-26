@@ -12,7 +12,11 @@ class UsersAPILink {
    login(body) {
       return axiosConfig.post(baseURL + '/login/', body);
    }
-   
+
+   getAllUsers(token) {
+      return axiosConfig.get(baseURL + '/get-all-users/', {headers: {Authorization: `Bearer ${token}`}});
+   }
+
    checkDetails(token) {
       return axiosConfig.get(baseURL + '/me', {headers: {Authorization: `Bearer ${token}`}});
    }

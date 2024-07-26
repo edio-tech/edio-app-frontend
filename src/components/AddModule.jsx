@@ -1,59 +1,41 @@
-// React / React Library imports
-import { useState, useEffect } from 'react';
-import * as Form from '@radix-ui/react-form';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { SquarePlus } from "lucide-react";
 
-// Context imports 
 import useLogContext from 'hooks/useLogContext';
-
-// Componenet imports
-import { Spinner } from 'components'
-
-// API imports
 import modulesAPI from 'api_link/modules.js'
 import tagsAPI from 'api_link/tags.js'
 
-// Styling
 import "styles/components/addmodule.css";
 
-
-const AddModule = ({ creator_id, hash, setHash }) => {
+const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescription, setModuleDescription, selectedTag, setSelectedTag }) => {
 
   const [loading, setLoading] = useState(false);
   const { development } = useLogContext();
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
-
-  const [moduleTitle, setModuleTitle] = useState('');
-  const [moduleDescription, setModuleDescription] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
   
   const [tagOptionsLoading, setTagOptionsLoading] = useState(true);
   const [tagOptionsArray, setTagOptionsArray] = useState([]);
 
-  
-  useEffect( () => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await tagsAPI.getAllTags()
     
-        if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
+        if (res.status < 200 || res.status >= 300) {
           throw new Error(`${res.data}. Status: ${res.status}`);
         }
 
         const content = res.data
         const tags_data = content.data
-        const tagOptions = []
-        tags_data.forEach(tag => {
-          tagOptions.push(tag.tag_name)
-        });
-
+        const tagOptions = tags_data.map(tag => tag.tag_name)
         setTagOptionsArray(tagOptions);
+
       } catch (err) {
-        setErrors(err);
-        if ( development ) {
+        setErrors(err.message);
+        if (development) {
           console.log(err.message)
         }
       } finally {
@@ -65,8 +47,9 @@ const AddModule = ({ creator_id, hash, setHash }) => {
   }, [hash])
 
   const handleSubmit = async (e) => {
-    setLoading(true);
+    setSubmitAttempted(true);
     e.preventDefault();
+    setLoading(true);
 
     const formdata = {
       module_name: moduleTitle,
@@ -75,25 +58,25 @@ const AddModule = ({ creator_id, hash, setHash }) => {
     };
 
     try {
-        const res = await modulesAPI.create(creator_id, formdata)
+      const res = await modulesAPI.create(creator_id, formdata)
 
-        if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-        if ( development ) {
+      if (res.status < 200 || res.status >= 300) {
+        if (development) {
           setErrors(res.data.detail)
         } else {
           setErrors('There was an error creating your module')
         }
         return
       }
-        let content = res.data
-        if ( development ) {
-          console.log(content.detail)
-        } 
-
-        navigate(`/admin/all-modules/${creator_id}`)
+      let content = res.data
+      if (development) {
+        console.log(content.detail)
+      } 
+      navigate(`/admin/all-modules/${creator_id}`)
+      
     } catch (err) {
       setErrors(err.message);
-      if ( development ) {
+      if (development) {
         console.log(err.message)
       }
     } finally {
@@ -101,83 +84,65 @@ const AddModule = ({ creator_id, hash, setHash }) => {
     }
   }
 
-
-   return (
-      <div className="flex-form-container">
-        <div className = "global-form">
-          { errors && <div className = "error-message"> { errors }</div>}
-          <Form.Root onSubmit={handleSubmit}>
-            <div className="global-form-group">
-              <Form.Field name="module_name">
-                <Form.Label>Module Title</Form.Label>
-                <Form.Control asChild>
-                  <input 
-                    id="module-title" 
-                    type="text" 
-                    value={moduleTitle} 
-                    onChange={(e) => setModuleTitle(e.target.value)}
-                    required 
-                  />
-                </Form.Control>
-                <Form.Message match="valueMissing" className="error-message">Module Title is required</Form.Message>
-              </Form.Field>
+  return (
+    <div className="flex-form-container">
+      <div className="global-form">
+        {errors && <div className="error-message">{errors}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="global-form-group">
+            <label htmlFor="module-title">Module Title</label>
+            <input 
+              id="module-title" 
+              type="text" 
+              value={moduleTitle} 
+              onChange={(e) => setModuleTitle(e.target.value)}
+              required 
+            />
+          </div>
+          <div className="global-form-group">
+            <label htmlFor="module-description">Module Description</label>
+            <input 
+              id="module-description" 
+              type="text" 
+              value={moduleDescription} 
+              onChange={(e) => setModuleDescription(e.target.value)} 
+              required
+            />
+          </div>
+          <div className="global-form-group flex-adjusted">
+            <div className="tag-input-field">
+              <label htmlFor="tag_name">Tag</label>
+              {tagOptionsLoading ? (
+                <div className="select-placeholder">
+                  <BeatLoader />
+                </div>
+              ) : (
+                <select 
+                  id="tag_name" 
+                  value={selectedTag} 
+                  onChange={(e) => setSelectedTag(e.target.value)} 
+                  required
+                >
+                  <option value="" disabled>Select a tag</option>
+                  {tagOptionsArray.map((tag) => (
+                    <option key={tag} value={tag}>
+                      {tag}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
-            <div className="global-form-group">
-              <Form.Field name="module_description">
-                <Form.Label>Module Description</Form.Label>
-                <Form.Control asChild>
-                  <input 
-                    id="module-description" 
-                    type="text" 
-                    value={moduleDescription} 
-                    onChange={(e) => setModuleDescription(e.target.value)} 
-                    required
-                  />
-                </Form.Control>
-                <Form.Message match="valueMissing" className="error-message">A brief Module description is required</Form.Message>
-              </Form.Field>
-            </div>
-            <div className="global-form-group flex-adjusted">
-              <Form.Field name="tag_name" className = "tag-input-field">
-                <Form.Label>Tag</Form.Label>
-                <Form.Control asChild>
-                  <>
-                  <select 
-                    id="tag-name" 
-                    value={selectedTag} 
-                    onChange={(e) => setSelectedTag(e.target.value)} 
-                    required
-                  >
-                    <option style = {{ color: "black" }} value="">Select a tag</option>
-                    { tagOptionsLoading && <Spinner/> }
-                    { !tagOptionsLoading &&
-                    <>
-                    <button className = "global-trans-button"> Add Tag </button>
-                    {tagOptionsArray.map((tag) => (
-                      <option key={tag} value={tag}>
-                        {tag}
-                      </option>
-                    ))}
-                    </>
-                    }
-                  </select>
-                  </>
-                </Form.Control>
-                <Form.Message match="valueMissing" className="error-message">A tag is required.</Form.Message>
-              </Form.Field>
-              <a href="#add-tag" className = "global-trans-button"><SquarePlus className = "add-tag-logo"/></a>
-            </div>
-            <div className = "global-flex-form-button-container">
-              <Form.Submit asChild>
-                <button type="submit" className = "global-form-submit-button">
-                  {loading ? <BeatLoader /> : 'Create Module'}
-                </button>
-              </Form.Submit>
-            </div>
-          </Form.Root>
-        </div>
+            <a href="#add-tag" className="global-trans-button"><SquarePlus className="add-tag-logo"/></a>
+          </div>
+          <div className="global-flex-form-button-container">
+            <button type="submit" className="global-form-submit-button" disabled={loading}>
+              {loading ? <BeatLoader /> : 'Create Module'}
+            </button>
+          </div>
+        </form>
       </div>
-    )
+    </div>
+  );
 };
 
 export default AddModule;

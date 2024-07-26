@@ -29,7 +29,8 @@ import {
   AdminDeleteModule, 
   DemoHome, 
   CreateDemo, 
-  AddQuestionsToSection
+  AddQuestionsToSection,
+  Test
 } from "admin";
 
 // Learner Pages
@@ -68,6 +69,10 @@ function App() {
             <Route path = "/admin/module/:creator_id/:module_id/add-questions/:section_id" element = {<AdminAddQuestions />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-content/:section_id" element = {<AdminAddContent />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-summary/:section_id" element = {<AdminAddSummary />} />
+
+            <Route path = "/admin/test" element = {<Test />} />
+
+      
 
             <Route path = "/admin/demo" element = {<DemoHome />} />
             <Route path = "/admin/demo/create-demo" element = {<CreateDemo />} />
