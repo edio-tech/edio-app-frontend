@@ -10,6 +10,10 @@ export { default as AdminModule } from './pages/AdminModule';
 
 export { default as AdminBuildOutModule } from './pages/AdminBuildOutModule';
 
+export { default as AdminAddFirstPart } from './pages/AdminAddFirstPart';
+
+export { default as AdminAddGoalsAndQuestions } from './pages/AdminAddGoalsAndQuestions';
+
 export { default as AdminAddQuestions } from './pages/AdminAddQuestions';
 
 export { default as AdminDeleteModule } from './pages/AdminDeleteModule';

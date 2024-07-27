@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 // API imports
 import QuestionGenerationAPI from "api_link/question_generation.js"
-import QuestionAPI from "api_link/questions.js"
 
 // Component imports
 import { Spinner } from 'components';
 
 // Hook imports
 import useLogContext from "hooks/useLogContext";
-import useAdminNavbar from "hooks/useAdminNavbar";
 
 
-const AdminAddQuestions = () => {
+const AdminAddGoalsAndQuestions = () => {
 
   const [pageRendering, setPageRendering] = useState(false);
   const [errors, setErrors] = useState(null);
@@ -24,30 +22,24 @@ const AdminAddQuestions = () => {
 
   const { creator_id, module_id, section_id } = useParams();
 
-  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
-
-  useEffect(() => {
-    setLeftName('Module Overview');
-    setLeftAction(() => () => navigate(`/admin/module/${creator_id}/${module_id}`));
-    setTitleName('Generate Questions');
-    setRightName('');
-    setRightAction(null);
-  }, [])
+  const handleBackClick = () => {
+    navigate(`/admin/module/${creator_id}/${module_id}`)
+  }
 
   const handleGenerateClick = async () => {
 
     setLoading(true);
 
     try {
-      const res = await QuestionGenerationAPI.generateQuestionsForSection(section_id)
+      const res = await QuestionGenerationAPI.generateGoalsAndQuestionsForSection(section_id)
 
       if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
 
         if ( development ) {
-         console.log(res.data.detail)
-         setErrors(res.data.detail)
+          console.log(res.data.detail)
+          setErrors(res.data.detail)
         } else {
-          setErrors('An error occurred when generating questions')
+          setErrors('An error occurred when generating goals and questions')
         }
         return
       }
@@ -74,6 +66,15 @@ const AdminAddQuestions = () => {
 
   return (
     <div className = "flex-container-col">
+      <div className="flex-top-bar">
+        <div className="flex-bar-left">
+          <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
+        </div>
+        <div className="flex-bar-middle">
+        </div>
+        <div className="flex-bar-right">
+        </div>
+      </div>
       <div className = "flex-content">
         { pageRendering &&
           <Spinner /> 
@@ -81,7 +82,7 @@ const AdminAddQuestions = () => {
         { !pageRendering &&
         <>
           <div>
-            Generate Questions by clicking the button below
+            Generate Goals and questions by clicking the button below
           </div>
           { loading && <Spinner />}
           { !loading &&
@@ -94,4 +95,4 @@ const AdminAddQuestions = () => {
   )
 }
 
-export default AdminAddQuestions
+export default AdminAddGoalsAndQuestions

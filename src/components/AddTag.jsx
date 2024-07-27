@@ -63,11 +63,10 @@ const AddTag = ({ setHash }) => {
             </div>
             <div className="global-form-group">
                <Form.Field name="tag_description">
-                  <Form.Label>Tag Description</Form.Label>
+                  <Form.Label>Tag Description (Optional)</Form.Label>
                   <Form.Control asChild>
-                  <input id="tag-description" type="text" required/>
+                  <input id="tag-description" type="text"/>
                   </Form.Control>
-                  <Form.Message match="valueMissing" className="error-message">A brief tag description is required</Form.Message>
                </Form.Field>
             </div>
             <div className = "global-flex-form-button-container">

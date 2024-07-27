@@ -1,7 +1,7 @@
 // React / React Library imports
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Pencil } from "lucide-react"
 //import ReactMarkdown from 'react-markdown';
 
 // API imports
@@ -11,7 +11,8 @@ import modulesAPI from 'api_link/modules.js';
 import useAdminNavbar from "hooks/useAdminNavbar";
 
 // Component imports
-import { Spinner } from 'components';
+import { Spinner, ModuleDisplay } from 'components';
+
 
 // Context imports
 import useModuleContext from 'hooks/useModuleContext';
@@ -37,20 +38,17 @@ const AdminModule = () => {
   const [currentSectionData, setCurrentSectionData] = useState([]);
   const [sectionErrors, setSectionErrors] = useState(null);
 
+  const [displayModuleList, setDisplayModuleList] = useState(true);
+  const [edittingModule, setEdittingModule] = useState(false);
+
   const [sectionSelected, setSectionSelected] = useState(false);
   const [sectionLoading, setSectionLoading] = useState(false);
-
-  const [collapsedParts, setCollapsedParts] = useState({});
-  const [collapsedChapters, setCollapsedChapters] = useState({});
 
   const [showContent, setShowContent] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
   const [showGoals, setShowGoals] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
 
-  const toggleCollapse = (stateUpdater, id) => {
-    stateUpdater(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,6 +95,7 @@ const AdminModule = () => {
   const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
 
   useEffect(() => {
+    console.log('Current section Data:', currentSectionData)
     setLeftName('All Modules');
     setLeftAction(() => () => navigate(`/admin/all-modules/${creator_id}`));
     setTitleName(currentModuleData.module_name);
@@ -104,10 +103,15 @@ const AdminModule = () => {
     setRightAction(() => () => navigate('delete'));
   }, [currentModuleData])
   
-
+  const handleAddPartClick = () => {
+    navigate(`/admin/add-module-part/${creator_id}/${module_id}`)
+  }
   const handleBuildOutClick = () => {
     navigate(`/admin/build-out-module/${creator_id}/${module_id}`)
   }
+
+  const toggleModuleListDisplay = () => { setDisplayModuleList(!displayModuleList) }
+  const toggleModuleEdit = () => { setEdittingModule(!edittingModule) }
 
   const handleSectionSelection = (section_id) => {
 
@@ -128,8 +132,8 @@ const AdminModule = () => {
         }
 
         const content = res.data
-        setSectionData(prevData => [...prevData, content.data]);
-        setCurrentSectionData(content.data)
+        setSectionData(prevData => [...prevData, content]);
+        setCurrentSectionData(content)
         
         if ( development ) {
           console.log(content.detail)
@@ -156,6 +160,7 @@ const AdminModule = () => {
   }
 
   const handleContentClick = () => {
+    console.log(moduleData)
     setShowContent(true);
     setShowSummary(false);
     setShowGoals(false);
@@ -181,17 +186,13 @@ const AdminModule = () => {
     setShowQuestions(true);
   }
 
-  const handleAddQuestionsClick = (section_id) => {
-    navigate(`add-questions/${section_id}`)
-  }
+  const handleAddGoalsClick = (section_id) => { navigate(`add-goals-and-questions/${section_id}`) }
 
-  const handleAddContentClick = (section_id) => {
-    navigate(`add-content/${section_id}`)
-  }
+  const handleAddContentClick = (section_id) => { avigate(`add-content/${section_id}`) }
 
-  const handleAddSummaryClick = (section_id) => {
-    navigate(`add-summary/${section_id}`)
-  }
+  const handleAddSummaryClick = (section_id) => { navigate(`add-summary/${section_id}`) }
+
+  const handleAddQuestionsClick = (section_id) => { navigate(`add-questions/${section_id}`) }
 
   return (
     <div className = "flex-container-col">
@@ -201,56 +202,37 @@ const AdminModule = () => {
         { !pageRendering && ( !currentModuleData.parts || Object.keys(currentModuleData.parts).length === 0)  && 
             <div className = "flex-no-module-container">
               <div className = "no-module-box">
-                {/* 
+                <h1 style ={{ paddingBottom : "40px"}}> Option 1 - Add Module Manually</h1>
                 Add Module Manually. You must already have your content broken down into sections.
-                <button className="global-button" onClick={() => handleAddPartClick()}> ADD PART </button>
-                */}
+                <div style ={{ paddingTop : "40px"}}>
+                  <button onClick={() => handleAddPartClick()} className="global-button global-form-submit-button"> ADD MANUALLY </button>
+                </div>
               </div>
               <div className = "no-module-box">
                 <div className = "no-module-title">
+                <h1 style ={{ paddingBottom : "40px"}}> Option 2 - Auto Generate Module</h1>
                   Build out Module Automatically up uploading a PDF.
                 </div>
-                <button onClick={() => handleBuildOutClick()} className="global-button">BUILD OUT MODULE</button>
+                <div style ={{ paddingTop : "40px"}}>
+                  <button onClick={() => handleBuildOutClick()} className="global-button global-form-submit-button">BUILD OUT MODULE</button>
+                </div>
               </div>
             </div>
         }
         {!pageRendering && currentModuleData.parts && Object.keys(currentModuleData.parts).length > 0 && (
           <div className = "flex-main-page">
-            <div className = "flex-left-page">
-              {Object.values(currentModuleData.parts).map(part => (
-                <div key={part._id}>
-                  <div className="part-header">
-                    <div className = "collapse-button">
-                      <button onClick={() => toggleCollapse(setCollapsedParts, part._id)} className="global-button global-trans-button white-button">
-                        {collapsedParts[part._id] ? <ArrowRight /> : <ArrowDown />}
-                      </button>
-                    </div>
-                    <h3>{part.part_name}</h3>
-                  </div>
-                  {!collapsedParts[part._id] && Object.values(part.chapters).map(chapter => (
-                    <div key={chapter._id} className="chapter-container">
-                      <div className="chapter-header">
-                        <div className = "collapse-button">
-                          <button onClick={() => toggleCollapse(setCollapsedChapters, chapter._id)} className="global-button global-trans-button white-button">
-                            {collapsedChapters[chapter._id] ? <ArrowRight /> : <ArrowDown />}
-                          </button>
-                        </div>
-                        <h4>{chapter.chapter_name}</h4>
-                      </div>
-                      {!collapsedChapters[chapter._id] && Object.values(chapter.sections).map(section => (
-                        <div key={section._id} className="section-container">
-                          <div className="section-header">
-                            <button onClick={() => handleSectionSelection(section._id)} className="global-button global-trans-button white-button">
-                              <h5>{section.section_name}</h5>
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              ))}
+            { !displayModuleList &&  <div className = "flex-left-page-minimised">
+              <button onClick={toggleModuleListDisplay} className="global-button global-trans-button button-size-minimised"><ChevronRight /></button>
+            </div> }
+            { displayModuleList  && 
+            <div className = "flex-left-page mbg">
+              <div className = "flex-left-page-top-bar">
+                <div className="flex-left-page-top-bar-menu-button"><button onClick={toggleModuleListDisplay} className="global-button global-trans-button button-size"><ChevronLeft /></button></div>
+                <div className="flex-left-page-top-bar-edit-button"><button onClick={toggleModuleEdit} className="global-button global-trans-button button-size"><Pencil /></button></div>
+              </div>
+              < ModuleDisplay handleSectionSelection = { handleSectionSelection } currentModuleData = { currentModuleData } edittingModule = { edittingModule } />
             </div>
+            }
             <div className = "flex-right-page">
               { !sectionSelected && <h1 className = "flex-container">Please Select a Section</h1>}
               { sectionSelected && sectionLoading && <h1 className = "flex-container"><Spinner/></h1> }
@@ -272,20 +254,6 @@ const AdminModule = () => {
                   </button>
                 </div>
                 <div className="right-page-content">
-                  { showGoals && 
-                    <>
-                      {  ( !currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0 ) &&
-                        <>
-                        <div> No Goals - Add here</div>
-                        <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className = "global-button"> Add Questions </button>
-                        </>
-                      }
-                      {
-                        currentSectionData.goals && Object.keys(currentSectionData.goals).length > 0 &&
-                        <div> There are goals generated for this section. Goals will be displayed here. Feature not added yet. </div>
-                      }
-                    </>
-                  }
                   { showContent &&
                   <>
                     { !currentSectionData.full_content &&
@@ -319,6 +287,43 @@ const AdminModule = () => {
                     }
                   </>
                   }
+                  { showGoals && 
+                    <>
+                      {  ( !currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0 ) &&
+                        <>
+                        <div> No Goals - Add here</div>
+                        <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className = "global-button"> Add Questions </button>
+                        </>
+                      }
+                      {
+                        currentSectionData.goals && Object.keys(currentSectionData.goals).length > 0 &&
+                        <div> There are goals generated for this section. Goals will be displayed here. Feature not added yet. </div>
+                      }
+                    </>
+                  }
+                  { showQuestions && 
+                    <>
+                      {(!currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0) ? (
+                        <>
+                          <div>No Goals or Questions - Add Goals First</div>
+                          <button onClick={() => handleAddGoalsClick(currentSectionData._id)} className="global-button">Add Goals</button>
+                        </>
+                      ) : (
+                        <>
+                          {Object.values(currentSectionData.goals).some(goal => goal.questions && goal.questions.length > 0) ? (
+                            <>
+                              <div>There are questions generated for this section. Questions will be displayed here. Feature not added yet.</div>
+                            </>
+                          ) : (
+                            <>
+                              <div>No questions available for any goals in this section.</div>
+                              <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className="global-button">Add Questions</button>
+                            </>
+                          )}
+                        </>
+                      )}
+                    </>
+                  }
                 </div>
               </>
               }
@@ -330,3 +335,15 @@ const AdminModule = () => {
 };
 
 export default AdminModule;
+
+
+// {/* You can add more detailed display of questions here if needed */}
+// {Object.entries(currentSectionData.goals).map(([goalId, goal]) => (
+//   goal.questions && goal.questions.length > 0 && (
+//     <div key={goalId}>
+//       <h4>{goal.summary}</h4>
+//       <p>Number of questions: {goal.questions.length}</p>
+//       <button onClick={() => handleViewQuestionsClick(goalId)} className="global-button">View/Edit Questions</button>
+//     </div>
+//   )
+// ))}

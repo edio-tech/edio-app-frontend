@@ -1,0 +1,37 @@
+.part-header, .chapter-header, .section-header {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+
+   height: 50px;
+}
+
+.add-part-header {
+   color: var(--clr-custom-green);
+   margin-left: 40px;
+}
+
+.add-chapter-header {
+   color: var(--clr-custom-green);
+   margin-left: 60px;
+}
+
+.add-section-header {
+   color: var(--clr-custom-green);
+   margin-left: 40px;
+}
+
+.collapse-button {
+   color: white;
+   width: 40px;
+}
+
+ 
+.chapter-container {
+   margin-left: 20px;
+}
+
+.section-container {
+   margin-left: 40px;
+}
+ 

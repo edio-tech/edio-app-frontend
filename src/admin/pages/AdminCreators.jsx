@@ -1,6 +1,7 @@
 // React / React Library imports
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // API imports
 import creatorsAPI from 'api_link/creators.js';
@@ -42,7 +43,8 @@ const AdminCreators = () => {
    useEffect(() => {
       const fetchData = async () => {
          try {
-            const res = await creatorsAPI.getAll()
+            const token = Cookies.get('jwtToken')
+            const res = await creatorsAPI.getAll(token)
          
             if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
                throw new Error(`${res.data}. Status: ${res.status}`);

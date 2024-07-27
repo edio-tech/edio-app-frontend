@@ -12,6 +12,11 @@ class QuestionGenerationAPILink {
    generateGoalsAndQuestionsForSection(section_id) {
       return axiosConfig.post(baseURL + `/generate-goals-and-questions-for-section/${section_id}`);
    }
+
+   generateQuestionsForSection(section_id) {
+      return axiosConfig.post(baseURL + `/generate-questions-for-section/${section_id}`);
+   }
+
 }
 
 const questionGenerationAPILink = new QuestionGenerationAPILink();

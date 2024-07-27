@@ -7,6 +7,13 @@
 
 .no-module-box {
    flex: 1;
+
+   display:flex;
+   flex-direction: column;
+
+   padding:30px;
+   padding-top: 60px;
+   text-align: center;
 }
 
 .delete-button {
@@ -17,26 +24,6 @@
    color: white;
 }
 
-.collapse-button {
-   color: white;
-   width: 40px;
-}
-.part-header, .chapter-header, .section-header {
-   display: flex;
-   justify-content: start;
-   align-items: center;
-
-   height: 50px;
-}
- 
-.chapter-container {
-   margin-left: 20px;
-}
-
-.section-container {
-   margin-left: 40px;
-}
- 
 .flex-main-page {
    height: 100%;
    width: 100%;
@@ -52,6 +39,40 @@
    flex-direction: column;
 
    overflow-y: scroll;
+}
+
+.flex-left-page-top-bar {
+   display: flex;
+   margin-bottom: 20px;
+   margin-top: 20px;
+}
+
+.flex-left-page-top-bar-menu-button {
+   flex: 1;
+
+   display: flex;
+   justify-content: start;
+}
+
+.flex-left-page-top-bar-edit-button {
+   flex: 1;
+
+   display: flex;
+   justify-content: end;
+}
+
+.button-size {
+   width:30px;
+   color: white;
+}
+.flex-left-page-minimised {
+   display:flex;
+   align-items: center;
+}
+
+.button-size-minimised {
+   width:30px;
+   color: white;
 }
 
 .flex-right-page {

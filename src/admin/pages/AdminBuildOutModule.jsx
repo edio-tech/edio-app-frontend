@@ -1,5 +1,5 @@
 // React / React Library imports
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { ArrowDown, ArrowRight } from 'lucide-react';
@@ -10,9 +10,14 @@ import useLogContext from 'hooks/useLogContext';
 // API imports
 import moduleGenerationAPI from "api_link/module_generation.js"
 
-// Styling
-import "styles/admin/adminbuildoutmodule.css"
+// Hook imports
+import useAdminNavbar from 'hooks/useAdminNavbar';
 
+// Components
+import { Spinner } from "components";
+
+// Styling
+import "styles/admin/adminbuildoutmodule.css";
 
 
 const AdminBuildOutModule = () => {
@@ -24,6 +29,7 @@ const AdminBuildOutModule = () => {
   // File uploading
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileErrors, setFileErrors] = useState(null);
+  const [conversionLoading, setConversionLoading] = useState(false);
 
   const [markdownContent, setMarkdownContent] = useState(null);
   const [jsonContent, setJsonContent] = useState(null);
@@ -47,6 +53,16 @@ const AdminBuildOutModule = () => {
     stateUpdater(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
+
+  useEffect(() => {
+    setLeftName('Build Out Options');
+    setLeftAction(() => () => navigate(`/admin/module/${creator_id}/${module_id}`));
+    setTitleName('Upload File');
+    setRightName('');
+    setRightAction(null);
+  }, [])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!selectedFile) {
@@ -54,8 +70,11 @@ const AdminBuildOutModule = () => {
       setFileErrors('You must upload a file!')
       return
     }
+    setFileErrors(null);
     const formData = new FormData();
     formData.append('file', selectedFile)
+
+    setConversionLoading(true);
 
     // Convert the PDf to markdown
     try {
@@ -68,6 +87,8 @@ const AdminBuildOutModule = () => {
     } catch (err) {
       setFileErrors(err);
       return
+    } finally {
+      setConversionLoading(false);
     }
   }
 
@@ -121,7 +142,7 @@ const AdminBuildOutModule = () => {
   };
 
   return (
-    <div className = "flex-container-col mbg">
+    <div className = "flex-container-col">
       <div className = "top-bar">
       { markdownContent &&
         <>
@@ -134,13 +155,17 @@ const AdminBuildOutModule = () => {
           <div className="button-div">
             <button onClick={() => {handleJsonConversionClick(3)}} className="global-button"> THREE LAYERS </button>
           </div>
+          { jsonErrors && <div>{jsonErrors}</div>}
         </>
       }
         {
           jsonContent &&
+          <>
             <div className="button-div">
               <button onClick={() => {handleCreateModuleClick()}} className="global-button"> CREATE </button>
             </div>
+            { moduleCreationErrors && <div>{moduleCreationErrors}</div>}
+          </>
         } 
       </div>
       { markdownContent && !jsonContent &&
@@ -222,10 +247,14 @@ const AdminBuildOutModule = () => {
         </>
       }
       { !markdownContent && 
-        <form onSubmit = {handleSubmit}>
-          <label htmlFor="file-upload"> Upload PDF File </label>
-          <input type="file" id="file-upload" accept=".pdf" onChange={handleFileChange} />
-          <button type="submit" className="global-button"> Upload File </button>
+        <form onSubmit = {handleSubmit} className = "flex-upload-pdf-form-box">
+          <h4> Please Upload your PDF File below. It may take a few minutes to process.</h4>
+          <div className = "flex-upload-box">
+            <input type="file" id="file-upload" accept=".pdf" className = "global-button" onChange={handleFileChange} />
+            { !conversionLoading && <button type="submit" className="global-button"> Upload File </button>}
+            { conversionLoading && <div> <Spinner /></div>}
+          </div>
+          { fileErrors && <div className = "error-message">{fileErrors}</div>}
         </form>
       }
     </div>

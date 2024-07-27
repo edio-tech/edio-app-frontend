@@ -142,13 +142,12 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
             />
           </div>
           <div className="global-form-group">
-            <label htmlFor="module-description">Module Description</label>
+            <label htmlFor="module-description">Module Description (Optional)</label>
             <input 
               id="module-description" 
               type="text" 
               value={moduleDescription} 
               onChange={(e) => setModuleDescription(e.target.value)} 
-              required
             />
           </div>
           <div className="global-form-group flex-adjusted">

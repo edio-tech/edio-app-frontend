@@ -13,8 +13,8 @@ class CreatorsAPILink {
       return axiosConfig.get(baseURL + '/creators/add-creator-profile', body);
    }
 
-   getAll() {
-      return axiosConfig.get(baseURL + '/get-all');
+   getAll(token) {
+      return axiosConfig.get(baseURL + '/get-all-new', {headers: {Authorization: `Bearer ${token}`}});
    }
 
    getCreator(creator_id) {

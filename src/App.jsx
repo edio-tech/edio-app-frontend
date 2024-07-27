@@ -23,6 +23,8 @@ import {
   AdminAddModule, 
   AdminModule, 
   AdminBuildOutModule, 
+  AdminAddFirstPart,
+  AdminAddGoalsAndQuestions, 
   AdminAddQuestions, 
   AdminAddContent, 
   AdminAddSummary, 
@@ -65,7 +67,9 @@ function App() {
             <Route path = "/admin/add-module/:creator_id" element = {<AdminAddModule />} />
             <Route path = "/admin/module/:creator_id/:module_id" element = {<AdminModule />} />
             <Route path = "/admin/module/:creator_id/:module_id/delete" element = {<AdminDeleteModule />} />
+            <Route path = "/admin/add-module-part/:creator_id/:module_id" element = {<AdminAddFirstPart />} />
             <Route path = "/admin/build-out-module/:creator_id/:module_id" element = {<AdminBuildOutModule />} />
+            <Route path = "/admin/module/:creator_id/:module_id/add-goals-add-questions/:section_id" element = {<AdminAddGoalsAndQuestions />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-questions/:section_id" element = {<AdminAddQuestions />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-content/:section_id" element = {<AdminAddContent />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-summary/:section_id" element = {<AdminAddSummary />} />

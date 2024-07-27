@@ -25,6 +25,11 @@ class ModulesAPILink {
       return axiosConfig.delete(baseURL + `/delete-module/${module_id}`);
    }
 
+   // Parts
+   addPart(module_id, body) {
+      return axiosConfig.post(baseURL + `/parts/add-part/${module_id}`, body);
+   }
+
    // Sections
    getSection(section_id) {
       return axiosConfig.get(baseURL + `/sections/get-section/${section_id}`);
