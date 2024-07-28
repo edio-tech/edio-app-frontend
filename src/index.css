@@ -105,6 +105,16 @@
   border-radius: 4px;
 }
 
+.global-form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--clr-custom-green);
+  background-color: transparent;
+  color: #fff;
+  border-radius: 4px;
+  height: 300px;
+}
+
 .global-form-group select {
   width: 100%;
   padding: 0.75rem;

@@ -23,7 +23,7 @@ const Login = () => {
 
    const { auth, setAuth } = useAuth();
    const [errors, setErrors] = useState(null);
-   const redirect = '/admin/all-creators'
+   const redirect = '/admin/demo'
 
    const [hash, setHash] = useState(window.location.hash);
    useEffect(() => {

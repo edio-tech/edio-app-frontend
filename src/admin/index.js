@@ -24,7 +24,11 @@ export { default as AdminAddSummary } from './pages/AdminAddSummary';
 
 export { default as DemoHome } from './pages/DemoHome';
 
+export { default as CreateSmallDemo } from './pages/CreateSmallDemo';
+
 export { default as CreateDemo } from './pages/CreateDemo';
+
+export { default as CreateDemoSuccess } from './pages/CreateDemoSuccess';
 
 export { default as AddQuestionsToSection } from './pages/AddQuestionsToSection';
 

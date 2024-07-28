@@ -22,6 +22,10 @@ class DemoAPILink {
       return axiosConfig.post(baseURL + `/goals-to-questions-demo/${section_id}`);
    }
 
+   generateDemo(module_id, body) {
+      return axiosConfig.post(baseURL + `/demo-generation/${module_id}`, body);
+   }
+
 }
 
 const demoAPILink = new DemoAPILink();
