@@ -37,7 +37,7 @@
 }
 
 .edio-navbar-text {
-   width: 90px;
+   width: 130px;
 }
 
 .user-symbol {
@@ -47,15 +47,23 @@
 .login-navbar-button {
    color: white;
    margin: 10px; 
-   border: none;
+   border: 1px solid rgba(0, 0, 0, 0.1);
+   border-right: 4px solid rgba(0, 0, 0, 0.929);
+   border-bottom: 4px solid rgba(0, 0, 0, 0.929);
+   border-top: 2px solid rgba(0, 0, 0, 0.929);
+   border-left: 2px solid rgba(0, 0, 0, 0.929);
    padding: 0.75rem 1.5rem;
    font-size: 1rem;
    font-weight: bold;
-   border-radius: 9999px;
+   border-radius: 5px;
    
    background-color: var(--clr-custom-pink);
 }
-
+.login-navbar-button:hover {
+   color: black;
+   background-color: white;
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
 .dropdown-container {
    position: relative;
 }
@@ -86,4 +94,60 @@
 .big-button-writing {
    font-size: large;
    font-weight: bold;
+}
+
+.landing-page-links {
+   display: flex;
+   gap: 1.5rem;
+   align-items: center;
+ 
+   list-style: none;
+ 
+   margin: 0;
+   padding: 0;
+}
+ 
+.landing-page-link {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 1rem;
+ 
+   color: black;
+   font-size: 1.25rem;
+   font-weight: var(--fw-semi-bold);
+   text-decoration: none;
+   padding-bottom: 0.5rem;
+ 
+   position: relative;
+   transition: color 0.2s ease-out;
+}
+
+.landing-page-link:hover {
+   color: black;
+
+   transition: color 0.2s ease-out;
+}
+
+.landing-page-link::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   transform: scaleX(0);
+   height: 4px;
+   bottom: 0;
+   left: 0;
+   background-color: black;
+   transform-origin: bottom right;
+
+   transition: transform 0.2s ease-out;
+}
+
+.landing-page-link:hover::after {
+   transform: scaleX(1);
+   transform-origin: bottom left;
+}
+
+.landing-page-link:focus {
+   border-bottom: 4px solid black;
 }

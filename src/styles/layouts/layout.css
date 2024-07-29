@@ -7,13 +7,13 @@
 }
 
 .flex-navbar-container {
-   flex: 1; /* Don't grow, don't shrink, auto basis */
    background: var(--clr-custom-dark-gray);
    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-   padding-right: 10px;
-   padding-left: 10px;
+
    display: flex;
-   justify-content: flex-end;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .main-container {

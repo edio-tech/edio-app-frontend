@@ -23,9 +23,9 @@ const Layout = () => {
    return (
          <>
          <div className = "flex-public-layout-container"> 
-            <div className = "flex-navbar-container">
+            <header className = "flex-navbar-container">
                < Header setMenuToggled = { setMenuToggled }/>
-            </div>         
+            </header>         
             <div className = "main-container">
             { menuToggled && <div className = "left-sidebar"> <SideBar /></div> }
                <div className = "flex-right-container">

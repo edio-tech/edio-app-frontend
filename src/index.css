@@ -4,14 +4,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --clr-custom-gray: #2b3945;
-  --clr-custom-dark-gray: hsl(207, 26%, 17%);
+  /* --clr-custom-gray: #2b3945; */
+  /* --clr-custom-dark-gray: hsl(207, 26%, 17%); */
 
   --clr-custom-pink: #A968F8;
   --clr-custom-blue: #68b3e8;
   --clr-custom-green: rgb(0, 169, 158);
-
-  color: white !important;
 }
 
 /* Global Styling */

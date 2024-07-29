@@ -6,9 +6,9 @@ import { Menu, CircleUserRound  } from "lucide-react";
 import useAuth from "hooks/useAuth";
 
 // Styling
-import EdioLogo from "assets/logo.png"
-import EdioText from "assets/edio-white-transparent.png"
+import EdioText from "assets/edio-animation-first-frame.png"
 import 'styles/layouts/header.css';
+import HeaderNavigationLinks from "components/HeaderNavigationLinks";
 
 const Header = ({ setMenuToggled }) => {
 
@@ -42,16 +42,18 @@ const Header = ({ setMenuToggled }) => {
    return (
       <>
       <div className = "flex-left-side-navbar">
-         <div className = "left-menu-navbar-element">
-            <button onClick={() => handleToggleMenuClick()} className = "global-button global-trans-button flex-left-menu-button"><Menu style = {{ color : 'white'}}/></button>
-         </div>
+         {/* <div className = "left-menu-navbar-element">
+            <button onClick={() => handleToggleMenuClick()} className = "global-button global-trans-button flex-left-menu-button"><Menu style = {{ color : 'black'}}/></button>
+         </div> */}
          <Link to='/' className = "flex-navbar-element">
-            <img className = "logo" src={EdioLogo} />
             <img className = "edio-navbar-text" src={EdioText} />
          </Link>
          <div className = "navbar-element">
          </div>
       </div>
+
+      <HeaderNavigationLinks />
+
       <div className = "flex-right-side-navbar">
          <div className="flex-navbar-element">
             {
@@ -69,7 +71,7 @@ const Header = ({ setMenuToggled }) => {
                   )}
                </div>
                </> : <>
-                  <button onClick={() => handleLoginClick()} className = "global-button login-navbar-button"> LOG IN </button>
+                  <button onClick={() => handleLoginClick()} className = "login-navbar-button"> LOG IN </button>
                </>
             }
          </div>

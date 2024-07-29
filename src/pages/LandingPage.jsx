@@ -3,7 +3,7 @@ import { Book, Brain, BarChart2, MessageCircle } from 'lucide-react';
 
 import { FeatureCard } from "components";
 
-import EdioText from "assets/edio-white-transparent.png"
+import EdioText from "assets/edio-animation-first-frame.png"
 import 'styles/pages/landingpage.css'
 
 
@@ -22,7 +22,10 @@ const LandingPage = () => {
         <img className = "edio-text" src={EdioText} />
         <h2>Learning, Gamified and Personalized</h2>
         <p>Edio harnesses the power of generative AI to transforms educational content into an interactive learning experience</p>
-        <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
+        <div className="button-row-landing-page-hero">
+          <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
+          <a className='edio-cta-button calendly-link' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
+        </div>
       </section>
 
       <section id="edio-features">
