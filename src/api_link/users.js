@@ -14,6 +14,7 @@ class UsersAPILink {
    }
 
    login(body) {
+      console.log(baseURL);
       return axiosConfig.post(baseURL + '/login/', body);
    }
 
@@ -27,6 +28,7 @@ class UsersAPILink {
    }
 
    checkDetails(token) {
+      console.log(baseURL);
       return axiosConfig.get(baseURL + '/me', {headers: {Authorization: `Bearer ${token}`}});
    }
 

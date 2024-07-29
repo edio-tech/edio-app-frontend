@@ -110,7 +110,7 @@ const CreateDemo = () => {
         if (development) {
           setErrors(res.data.detail)
         } else {
-          setErrors('There was an error creating the demo module')
+          setErrors('There was an error creating the demo user')
         }
         return
       }
@@ -120,8 +120,6 @@ const CreateDemo = () => {
       if (development) {
         console.log(err.message)
       }
-    } finally {
-      setLoading(false);
     }
 
     const formData = new FormData();
@@ -134,7 +132,7 @@ const CreateDemo = () => {
         if (development) {
           setErrors(res.data.detail)
         } else {
-          setErrors('There was an error creating the demo module')
+          setErrors('There was an error adding profile picture')
         }
         return
       }
@@ -143,8 +141,6 @@ const CreateDemo = () => {
       if (development) {
         console.log(err.message)
       }
-    } finally {
-      setLoading(false);
     }
 
     let creator_id;
@@ -162,7 +158,7 @@ const CreateDemo = () => {
         if (development) {
           setErrors(res.data.detail)
         } else {
-          setErrors('There was an error creating the demo module')
+          setErrors('There was an error creating the creator account')
         }
         return
       }
@@ -173,8 +169,6 @@ const CreateDemo = () => {
       if (development) {
         console.log(err.message)
       }
-    } finally {
-      setLoading(false);
     }
 
 
