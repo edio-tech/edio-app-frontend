@@ -25,7 +25,7 @@ const HeaderNavigationLinks = () =>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/demo" className="landing-page-link">
+                            <Link to="/admin/demo/create-demo" className="landing-page-link">
                                 <Axe color="black" />
                                 <span>Demo</span>
                             </Link>

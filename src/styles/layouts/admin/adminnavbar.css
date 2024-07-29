@@ -44,10 +44,10 @@
 }
 
 .admin-content {
-   flex: 10;
-
+   /* flex: 10; */
    display: flex;
+   flex-direction: column;
    width: 100%;
-
-   overflow: scroll;
+   height: 100%;
+   overflow-y: scroll;
 }

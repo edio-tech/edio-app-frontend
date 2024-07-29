@@ -82,7 +82,7 @@ function App() {
 
             <Route path = "/admin/demo" element = {<DemoHome />} />
             <Route path = "/admin/demo/create-small-demo" element = {<CreateSmallDemo />} />
-            <Route path = "/admin/demo/create-demo/:creator_id/" element = {<CreateDemo />} />
+            <Route path = "/admin/demo/create-demo" element = {<CreateDemo />} />
             <Route path = "/admin/demo/:module_id/success" element = {<CreateDemoSuccess />} />
             <Route path = "/admin/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />
           </Route>

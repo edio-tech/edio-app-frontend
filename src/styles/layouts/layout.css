@@ -18,8 +18,8 @@
 
 .main-container {
    flex: 14;
+   overflow: hidden;
    display: flex;
-   overflow: hidden; /* Prevent scrolling here */
    font-family: 'Arial';
 }
 
