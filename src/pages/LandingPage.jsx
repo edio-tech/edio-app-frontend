@@ -20,8 +20,8 @@ const LandingPage = () => {
       <div className="edio-landing-page">
       <section className="edio-hero">
         <img className = "edio-text" src={EdioText} />
-        <h2>Learning, Gamified and Personalized</h2>
-        <p>Edio harnesses the power of generative AI to transforms educational content into an interactive learning experience</p>
+        <h2>Learning Made Fun</h2>
+        <p>Edio harnesses the power of generative AI to transform educational content into an interactive learning experience</p>
         <div className="button-row-landing-page-hero">
           <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
           <a className='edio-cta-button calendly-link' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
@@ -49,7 +49,7 @@ const LandingPage = () => {
           <FeatureCard 
             icon={<MessageCircle size={48} />}
             title="AI Study Buddy"
-            description="24/7 chatbot assistant with course context"
+            description="AI Chatbot with context on your performance and course material"
           />
         </div>
       </section>
