@@ -21,7 +21,7 @@
 }
 
 .white-button {
-   color: white;
+   color: black;
 }
 
 .flex-main-page {
@@ -63,7 +63,7 @@
 
 .button-size {
    width:30px;
-   color: white;
+   color: black;
 }
 .flex-left-page-minimised {
    display:flex;
@@ -72,7 +72,7 @@
 
 .button-size-minimised {
    width:30px;
-   color: white;
+   color: black;
 }
 
 .flex-right-page {

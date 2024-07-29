@@ -44,7 +44,7 @@
 .edio-landing-page {
    min-height: min-content; /* Allow it to shrink to content size */
    width: 100%;
-   color: white;
+   color: black;
    font-family: Arial, sans-serif;
    background: var(--clr-custom-dark-gray);
 }
