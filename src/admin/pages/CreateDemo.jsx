@@ -204,7 +204,7 @@ const CreateDemo = () => {
       console.log('module_id check:', module_id)
 
       const moduleContentFormData = new FormData();
-      moduleContentFormData.append('content', moduleContent);
+      moduleContentFormData.append('file', moduleContent);
 
       const res_2 = await demosAPI.generateDemo(module_id, moduleContentFormData);
 
