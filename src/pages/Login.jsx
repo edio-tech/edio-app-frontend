@@ -23,7 +23,7 @@ const Login = () => {
 
    const { auth, setAuth } = useAuth();
    const [errors, setErrors] = useState(null);
-   const redirect = '/admin/demo'
+   const redirect = '/admin/demo/create-demo'
 
    const [hash, setHash] = useState(window.location.hash);
    useEffect(() => {
@@ -82,7 +82,7 @@ const Login = () => {
       setAuth(userAuth);
       navigate(redirect)
      } else {
-      throw Error('This is currently only set up for Admin Logins!')
+      throw Error('This is currently only set up for Administrators. If you wish to book a demo please do so on the home page.')
      }
    }; 
 

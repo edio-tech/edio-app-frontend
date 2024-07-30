@@ -47,6 +47,12 @@ const CreateDemo = () => {
       setCreatorImage(file);
   }
 
+  const handleModuleContentChange = (e) =>
+  {
+    const module_content = e.target.files[0];
+    setModuleContent(module_content);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -196,11 +202,11 @@ const CreateDemo = () => {
       const incoming_module_data = content.data
       const module_id = incoming_module_data._id
       console.log('module_id check:', module_id)
-      const req_2_body = {
-        "content" : moduleContent
-      }
 
-      const res_2 = await demosAPI.generateDemo(module_id, req_2_body)
+      const moduleContentFormData = new FormData();
+      moduleContentFormData.append('file', moduleContent);
+
+      const res_2 = await demosAPI.generateDemo(module_id, moduleContentFormData);
 
       if (res.status < 200 || res.status >= 300) {
         if (development) {
@@ -262,6 +268,7 @@ const CreateDemo = () => {
             <input
               id="creator-image" 
               type="file" 
+              accept=".jpg, .jpeg"
               onChange={handleFileChange}
               required 
             />
@@ -307,12 +314,11 @@ const CreateDemo = () => {
 
           <div className="global-form-group">
             <label htmlFor="module-title">Module Content</label>
-            <textarea  
-              className = "module-content"
+            <input
               id="module-content" 
-              type="text" 
-              value={moduleContent} 
-              onChange={(e) => setModuleContent(e.target.value)}
+              type="file"
+              accept=".txt"
+              onChange={handleModuleContentChange}
               required 
             />
           </div>
