@@ -1,5 +1,5 @@
 import useAuth from "hooks/useAuth";
-import { Axe, CircleHelp, Cookie, Home, PanelTopDashed } from "lucide-react";
+import { Axe, CircleHelp, Cookie, Home, PanelTopDashed, Tally5 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
@@ -28,6 +28,12 @@ const HeaderNavigationLinks = () =>
                             <Link to="/admin/demo/create-demo" className="landing-page-link">
                                 <Axe color="black" />
                                 <span>Demo</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/leaderboard" className="landing-page-link">
+                                <Tally5 color="black" />
+                                <span>Leaderboard</span>
                             </Link>
                         </li>
                     </>

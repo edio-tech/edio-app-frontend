@@ -10,6 +10,24 @@
   --clr-custom-pink: #A968F8;
   --clr-custom-blue: #68b3e8;
   --clr-custom-green: rgb(0, 169, 158);
+
+  --fw-light: 300;
+  --fw-semi-bold: 600;
+  --fw-extra-bold: 800;
+
+  --clr-bg: hsl(0, 0%, 98%);
+  --clr-accent: hsl(0, 0%, 100%);
+  --landing-page-bg-accent: hsl(0, 6%, 90%);
+  --clr-accent-hover: hsl(0, 3%, 87%);
+  --clr-font: hsl(207, 26%, 17%);
+  --leaderboard-header-bg: var(--landing-page-bg-accent);
+  --leaderboard-header-font: var(--clr-font);
+  --leaderboard-divider: var(--clr-font);
+  --clr-input: hsl(0, 0%, 52%);
+  --clr-bg-sidebar: rgba(192, 192, 192);
+  --clr-scroll: rgb(156, 153, 153);
+  --clr-font-accent: rgb(70, 70, 70);
+  --disclaimer-colour-font: black;
 }
 
 /* Global Styling */

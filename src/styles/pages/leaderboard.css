@@ -1,0 +1,249 @@
+.leaderboard-page {
+    width: 100%;
+
+    font-family: 'Arial';
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+
+    margin: 3rem 5rem;
+
+    align-items: center;
+}
+
+.leaderboard-title {
+    font-size: 3rem;
+
+}
+
+.leaderboard-wrapper {
+    width: 100%;
+}
+
+.classroom-leaderboard-section {
+    width: 100vw;
+}
+
+.top-section-classroom-leaderboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 3rem;
+}
+
+.join-information {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.leaderboard-qr-code {
+    height: 7.5rem;
+    width: auto;
+
+    border-radius: 0.5rem;
+}
+
+.leaderboard-code {
+    font-size: 2rem;
+}
+
+.leaderboard-divider-line {
+    height: 5rem;
+}
+
+.completed-quiz {
+    font-size: 2rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+.school-leaderboard-classroom {
+    margin-top: 2rem;
+    padding: 0 5rem;
+}
+
+.classroom-leaderboard-table {
+    font-size: 2rem;
+}
+
+.classroom-leaderboard-row {
+    text-align: center !important;
+}
+
+.nav-row-classroom-leaderboard {
+    padding-inline: 3.5rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.leaderboard-selection-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.leaderboard-selection-btn {
+    font-size: 1.5rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+.league-btns {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.create-league,
+.join-league {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.league-disclaimer {
+    font-size: 0.875rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+@media (max-width: 800px) {
+    .create-league,
+    .join-league {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.825rem;
+    }
+}
+
+.dashboard-box {
+    min-height: 40vh;
+    min-width: 35vw;
+    max-height: 85vh;
+    max-width: 80vw;
+    overflow-y: scroll;
+
+    background-color: var(--clr-bg);
+    outline: 1px solid var(--brand-primary);
+    border: 0;
+    border-radius: 0.5rem;
+
+    box-sizing: border-box;
+    padding: 1rem 0.5rem;
+}
+
+.dashboard-section-total {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+}
+
+.top-dashboard {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-dashboard {
+    height: 2.5rem;
+    width: auto;
+}
+
+.dashboard-section-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-inline: 1.5rem;
+}
+
+.overall-info {
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.overall-grade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topical-info {
+    max-height: 8rem;
+    overflow-y: scroll;
+}
+
+.school-leaderboard {
+    padding-inline: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.leaderboard-scroll-wrapper {
+    max-height: 16rem; /* Set a maximum height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.leaderboard-table {
+    font-size: 0.8rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--leaderboard-divider);
+}
+
+.leaderboard-table th {
+    background-color: var(--leaderboard-header-bg);
+    color: var(--leaderboard-header-font);
+    font-weight: var(--fw-extra-bold);
+    font-size: 2rem;
+}
+
+.leaderboard-table tr {
+    font-weight: var(--fw-semi-bold);
+    font-size: 1.5rem;
+}
+
+.selected-row {
+    background-color: #e0f7fa;
+    color: #333;
+}
+
+.topicwrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gm-icon {
+    cursor: pointer;
+    height: auto;
+    width: 1.2rem;
+}
+
+.league-section {
+    padding-inline: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.league-section-title {
+    margin: 0;
+}
+
+.league-leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
