@@ -102,7 +102,7 @@ const Login = () => {
                <div className = "global-form-button-group">
                   
                <button type="submit" className="global-form-submit-button global-button" disabled={loading}>
-                  {loading ? 'Logging in...' : 'Login'}
+                  {loading ? <BeatLoader /> : 'Login'}
                </button>
                </div>
                <div className = "white-line"></div>
