@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 // API imports
@@ -9,6 +9,7 @@ import { Spinner } from 'components';
 
 // Hook imports
 import useLogContext from "hooks/useLogContext";
+import useAdminNavbar from "hooks/useAdminNavbar";
 
 
 const AdminAddGoalsAndQuestions = () => {
@@ -22,9 +23,15 @@ const AdminAddGoalsAndQuestions = () => {
 
   const { creator_id, module_id, section_id } = useParams();
 
-  const handleBackClick = () => {
-    navigate(`/admin/module/${creator_id}/${module_id}`)
-  }
+  const { setLeftName, setLeftAction, setTitleName, setRightName, setRightAction } = useAdminNavbar();
+
+  useEffect(() => {
+    setLeftName('Module Overview');
+    setLeftAction(() => () => navigate(`/admin/module/${creator_id}/${module_id}`));
+    setTitleName('Generate Goals and Questions');
+    setRightName('');
+    setRightAction(null);
+  }, [])
 
   const handleGenerateClick = async () => {
 
@@ -66,15 +73,6 @@ const AdminAddGoalsAndQuestions = () => {
 
   return (
     <div className = "flex-container-col">
-      <div className="flex-top-bar">
-        <div className="flex-bar-left">
-          <button className="global-button global-trans-button" onClick={() => handleBackClick()}> BACK </button>
-        </div>
-        <div className="flex-bar-middle">
-        </div>
-        <div className="flex-bar-right">
-        </div>
-      </div>
       <div className = "flex-content">
         { pageRendering &&
           <Spinner /> 

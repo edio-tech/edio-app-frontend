@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
+import { BeatLoader } from 'react-spinners';
+
 
 // API imports
 import modulesAPI from "api_link/modules.js"
@@ -19,6 +21,7 @@ const AdminDeleteModule = () => {
   const navigate = useNavigate();
   const { development } = useLogContext();
   const { creator_id, module_id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState(null)
 
@@ -34,6 +37,7 @@ const AdminDeleteModule = () => {
   }, [])
 
    const handleDeleteClick = async () => {
+    setLoading(true);
       try {
         const res = await modulesAPI.deleteModule(module_id)
 
@@ -76,14 +80,18 @@ const AdminDeleteModule = () => {
         if ( development ) {
           console.log(err.message)
         }
-      } 
+      } finally {
+        setLoading(false);
+      }
    }
 
   return (
     <div className = "container-flex">
       <div className = "flex-body">
-         <h2 style = {{textAlign : "center"}}> Are you sure you want to delete this module? This will delete all parts, chapters, sections, goals and questions associated with this module. This action cannot be undone.</h2>
-         <button style = {{marginTop : "50px"}} onClick={() => handleDeleteClick()} className = "global-button delete-button"> DELETE MODULE </button>
+        <h2 style = {{textAlign : "center"}}> Are you sure you want to delete this module? This will delete all parts, chapters, sections, goals and questions associated with this module. This action cannot be undone.</h2>
+        <button style = {{marginTop : "50px"}} onClick={() => handleDeleteClick()} className = "global-button delete-button"> 
+          {loading ? <BeatLoader /> : 'DELETE MODULE '}
+        </button>
          {errors && <div> There was an error deleting module: {errors}</div>}
       </div>
     </div>
