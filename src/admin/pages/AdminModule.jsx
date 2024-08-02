@@ -188,7 +188,7 @@ const AdminModule = () => {
 
   const handleAddGoalsClick = (section_id) => { navigate(`add-goals-and-questions/${section_id}`) }
 
-  const handleAddContentClick = (section_id) => { avigate(`add-content/${section_id}`) }
+  const handleAddContentClick = (section_id) => { navigate(`add-content/${section_id}`) }
 
   const handleAddSummaryClick = (section_id) => { navigate(`add-summary/${section_id}`) }
 
@@ -287,11 +287,11 @@ const AdminModule = () => {
                     }
                   </>
                   }
-                  { showGoals && 
+                  { showQuestions && 
                     <>
                       {  ( !currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0 ) &&
                         <>
-                        <div> No Goals - Add here</div>
+                        <div> No Questions - Add here</div>
                         <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className = "global-button"> Add Questions </button>
                         </>
                       }
@@ -301,7 +301,7 @@ const AdminModule = () => {
                       }
                     </>
                   }
-                  { showQuestions && 
+                  { showGoals && 
                     <>
                       {(!currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0) ? (
                         <>

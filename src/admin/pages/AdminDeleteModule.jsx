@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
+import { BeatLoader } from 'react-spinners';
+
 
 // API imports
 import modulesAPI from "api_link/modules.js"
@@ -19,6 +21,7 @@ const AdminDeleteModule = () => {
   const navigate = useNavigate();
   const { development } = useLogContext();
   const { creator_id, module_id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState(null)
 
