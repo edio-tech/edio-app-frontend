@@ -46,6 +46,7 @@ import {
 import { 
   RequireAuth, RequireAdmin, RequireCreator, WebSock
 } from "components"
+import Leaderboard from 'admin/pages/Leaderboard';
 
 
 
@@ -62,6 +63,7 @@ function App() {
         <Route path = '/websock' element = {<WebSock />} />
       
         <Route element = {<RequireAdmin />}>
+            <Route path = "/leaderboard" element = {<Leaderboard />} />
             <Route path = "/admin" element = {<AdminNavbar />}>
             <Route path = "/admin/all-creators" element = {<AdminCreators />} />
             <Route path = "/admin/all-creators/add-creator" element = {<AdminAddCreator />} />
