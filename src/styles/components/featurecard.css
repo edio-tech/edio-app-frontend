@@ -1,5 +1,4 @@
 .feature-card {
-<<<<<<< Updated upstream
   background-color: #E0AFFF;
   color: black;
   padding: 1.5rem;
@@ -23,18 +22,6 @@
   margin-bottom: 1rem;
 }
 
-=======
-  background-color: var(--clr-custom-green);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.885);
-  text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-right: 3px solid rgba(0, 0, 0, 0.929);
-  border-bottom: 3px solid rgba(0, 0, 0, 0.929);
-  transition: all 0.3s ease;
-}
-
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
@@ -45,7 +32,6 @@
   margin-bottom: 1rem;
 }
 
->>>>>>> Stashed changes
 .feature-card h4 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
