@@ -287,12 +287,13 @@ const AdminModule = () => {
                     }
                   </>
                   }
-                  { showQuestions && 
+                  { showGoals && 
                     <>
                       {  ( !currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0 ) &&
                         <>
-                        <div> No Questions - Add here</div>
-                        <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className = "global-button"> Add Questions </button>
+                        <div>No Goals or Questions - Add Goals First</div>
+                        <button onClick={() => handleAddGoalsClick(currentSectionData._id)} className="global-button">Add Goals and Questions</button>
+                        
                         </>
                       }
                       {
@@ -301,12 +302,12 @@ const AdminModule = () => {
                       }
                     </>
                   }
-                  { showGoals && 
+                  { showQuestions && 
                     <>
                       {(!currentSectionData.goals || Object.keys(currentSectionData.goals).length === 0) ? (
                         <>
-                          <div>No Goals or Questions - Add Goals First</div>
-                          <button onClick={() => handleAddGoalsClick(currentSectionData._id)} className="global-button">Add Goals</button>
+                          <div> No Questions - Add here</div>
+                          <button onClick={() => handleAddQuestionsClick(currentSectionData._id)} className = "global-button"> Add Questions </button>
                         </>
                       ) : (
                         <>
