@@ -54,6 +54,18 @@ function App() {
   
   return (
     <Routes>
+      <Route 
+        path="/google08bed264bf48f942.html" 
+        element={
+          <div dangerouslySetInnerHTML={{ __html: 'google-site-verification: google08bed264bf48f942.html' }} />
+        } 
+      />
+      <Route 
+        path="/google08bed264bf48f942.html" 
+        element={
+          <div dangerouslySetInnerHTML={{ __html: 'google-site-verification: google0a6dedae1a53f95f.html' }} />
+        } 
+      />
       <Route path = "/" element = {<Layout />}>
         <Route path = '/' element = {<LandingPage />} />
         <Route path = "/login" element = {<Login />} />
