@@ -3,7 +3,7 @@
    flex-direction: column;
    background: var(--clr-custom-dark-gray);
    height: 100vh;
-   overflow: hidden; /* Prevent scrolling on the main container */
+   overflow: hidden /* Prevent scrolling on the main container */
 }
 
 .flex-navbar-container {

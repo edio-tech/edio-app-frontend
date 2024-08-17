@@ -1,0 +1,27 @@
+.section-name-title {
+   flex: 1;
+
+   text-align: center;
+}
+
+.right-page-top-bar {
+   flex: 2;
+
+   display: flex;
+   justify-content: space-between;
+}
+
+.right-page-content {
+   flex: 20;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow-y: hidden;
+}
+
+.markdown-content { 
+   margin-left: 10px;
+   margin-right: 10px;
+   overflow-y: scroll;
+}

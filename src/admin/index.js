@@ -33,3 +33,7 @@ export { default as CreateDemoSuccess } from './pages/CreateDemoSuccess';
 export { default as AddQuestionsToSection } from './pages/AddQuestionsToSection';
 
 export { default as Test } from './pages/Test';
+
+export { default as DisplayQuestions } from './components/DisplayQuestions';
+
+export { default as ModuleDisplay } from './components/ModuleDisplay';
