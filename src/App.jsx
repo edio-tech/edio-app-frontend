@@ -47,6 +47,7 @@ import {
   RequireAuth, RequireAdmin, RequireCreator, WebSock
 } from "components"
 import Leaderboard from 'admin/pages/Leaderboard';
+import DeleteAccountSteps from 'pages/DeleteAccountSteps';
 
 
 
@@ -70,7 +71,8 @@ function App() {
         <Route path = '/' element = {<LandingPage />} />
         <Route path = "/login" element = {<Login />} />
         <Route path = "/support" element = {<Support />} />
-        <Route path = "privacy" element = {<Privacy />} />
+        <Route path = "/privacy" element = {<Privacy />} />
+        <Route path = "/delete-account" element = {<DeleteAccountSteps />} />
 
         <Route path = '/websock' element = {<WebSock />} />
       
