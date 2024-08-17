@@ -48,6 +48,7 @@ import {
 } from "components"
 import Leaderboard from 'admin/pages/Leaderboard';
 import DeleteAccountSteps from 'pages/DeleteAccountSteps';
+import NotFound from 'pages/NotFound';
 
 
 
@@ -117,6 +118,7 @@ function App() {
         </Route>
       
       </Route>
+      <Route path = "/*" element = {<NotFound />} />
     </Routes>
   )
 }
