@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Book, Brain, BarChart2, MessageCircle } from 'lucide-react';
+import Lottie from 'lottie-react';
 
 import { FeatureCard } from "components";
 
-import EdioText from "assets/edio-animation-first-frame.png"
 import 'styles/pages/landingpage.css'
+import edioAnimation from '../assets/edio-loading.json';
 
 
 const LandingPage = () => {
@@ -19,7 +20,9 @@ const LandingPage = () => {
    return (
       <div className="edio-landing-page">
       <section className="edio-hero">
-        <img className = "edio-text" src={EdioText} />
+        <div>
+          <Lottie animationData={edioAnimation} autoPlay loop />
+        </div>
         <h2>Learning Made Fun</h2>
         <p>Edio harnesses the power of generative AI to transform educational content into an interactive learning experience</p>
         <div className="button-row-landing-page-hero">
