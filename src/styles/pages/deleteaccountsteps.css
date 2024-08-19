@@ -1,0 +1,33 @@
+.delete-account-steps-section {
+    display: flex;
+   flex-direction: column;
+   flex: 7;
+   width:100%;
+   overflow-y: auto;
+   color: black;
+   font-family: Arial, sans-serif;
+
+   align-items: center;
+   justify-content: center;
+
+   padding: 40rem 10rem;
+   gap: 2rem;
+}
+
+
+
+
+.delete-account-step {
+    height: 55vh;
+    width: auto;
+
+    border-radius: 1rem;
+    border: 1px solid black;
+}
+
+.delete-account-top-level,
+.delete-account-step-1,
+.delete-account-step-2,
+.delete-account-congrats {
+    text-align: center;
+}
