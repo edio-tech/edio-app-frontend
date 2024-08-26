@@ -4,7 +4,7 @@ import { ArrowDown, ArrowRight, Pencil } from 'lucide-react';
 import "styles/components/moduledisplay.css";
 
 
-const ModuleDisplay = ( {handleSectionSelection, currentModuleData, edittingModule} ) => {
+const ModuleStructureDisplay = ( {handleSectionSelection, currentModuleData, edittingModule} ) => {
 
    const [collapsedParts, setCollapsedParts] = useState({});
    const [collapsedChapters, setCollapsedChapters] = useState({});
@@ -66,4 +66,4 @@ const ModuleDisplay = ( {handleSectionSelection, currentModuleData, edittingModu
 
 }
 
-export default ModuleDisplay
+export default ModuleStructureDisplay

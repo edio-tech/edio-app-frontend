@@ -20,7 +20,7 @@ export { default as AdminDeleteModule } from './pages/AdminDeleteModule';
 
 export { default as AdminAddContent } from './pages/AdminAddContent';
 
-export { default as AdminAddSummary } from './pages/AdminAddSummary';
+export { default as AdminAddCleanedContent } from './pages/AdminAddCleanedContent';
 
 export { default as DemoHome } from './pages/DemoHome';
 
@@ -33,3 +33,7 @@ export { default as CreateDemoSuccess } from './pages/CreateDemoSuccess';
 export { default as AddQuestionsToSection } from './pages/AddQuestionsToSection';
 
 export { default as Test } from './pages/Test';
+
+export { default as DisplayQuestions } from './components/DisplayQuestions';
+
+export { default as ModuleDisplay } from './components/ModuleDisplay';

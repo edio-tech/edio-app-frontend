@@ -104,7 +104,7 @@ const AdminAddCreator = () => {
  }
 
   return (
-    <div className = "flex-container">
+    <div className = "flex-container mrg">
       <div className = "global-form">
          { errors && <div className = "error-message"> { errors }</div>}
          <Form.Root onSubmit={handleSubmit}>

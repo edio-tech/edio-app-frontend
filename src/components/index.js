@@ -12,6 +12,6 @@ export { default as Spinner } from './Spinner';
 
 export { default as AddModule } from './AddModule';
 
-export { default as ModuleDisplay } from './ModuleDisplay';
+export { default as ModuleStructureDisplay } from './ModuleStructureDisplay';
 
 export { default as AddTag } from './AddTag';

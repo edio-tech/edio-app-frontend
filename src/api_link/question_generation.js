@@ -17,6 +17,10 @@ class QuestionGenerationAPILink {
       return axiosConfig.post(baseURL + `/generate-questions-for-section/${section_id}`);
    }
 
+   cleanContentFromSection(section_id) {
+      return axiosConfig.patch(baseURL + `/clean-content-for-section/${section_id}`);
+   }
+
 }
 
 const questionGenerationAPILink = new QuestionGenerationAPILink();
