@@ -80,6 +80,8 @@ function App() {
       
         <Route element = {<RequireAdmin />}>
             <Route path = "/leaderboard" element = {<Leaderboard />} />
+            <Route path="/creator-portal" element={<CreatorPortal />} />
+
             <Route path = "/admin" element = {<AdminNavbar />}>
             <Route path = "/admin/all-creators" element = {<AdminCreators />} />
             <Route path = "/admin/all-creators/add-creator" element = {<AdminAddCreator />} />
@@ -102,7 +104,7 @@ function App() {
             <Route path = "/admin/demo/create-small-demo" element = {<CreateSmallDemo />} />
             <Route path = "/admin/demo/create-demo" element = {<CreateDemo />} />
             <Route path = "/admin/demo/:module_id/success" element = {<CreateDemoSuccess />} />
-            <Route path = "/admin/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />
+            <Route path = "/admin/demo/add-questions-demo/:module_id/:section_id" element = {<AddQuestionsToSection />} />            
           </Route>
         </Route>
 
@@ -118,7 +120,6 @@ function App() {
           <Route path = "/logout" element = {<Logout />} />
         </Route>
       
-        <Route path="/creator-portal" element={<CreatorPortal />} />
       </Route>
       <Route path = "/*" element = {<NotFound />} />
     </Routes>

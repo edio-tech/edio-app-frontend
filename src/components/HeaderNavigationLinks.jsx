@@ -30,15 +30,21 @@ const HeaderNavigationLinks = () =>
                                 <span>Demo</span>
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/leaderboard" className="landing-page-link">
                                 <Tally5 color="black" />
                                 <span>Leaderboard</span>
                             </Link>
+                        </li> */}
+                        <li>
+                            <Link to="/creator-portal" className="landing-page-link">
+                                <PenTool color="black" />
+                                <span>Creator Portal</span>
+                            </Link>
                         </li>
                     </>
                 }
-                <li>
+                {/* <li>
                     <Link to="/support" className="landing-page-link">
                         <CircleHelp color="black" />
                         <span>Help</span>
@@ -49,13 +55,8 @@ const HeaderNavigationLinks = () =>
                         <Cookie color="black" />
                         <span>Privacy</span>
                     </Link>
-                </li>
-                <li>
-                    <Link to="/creator-portal" className="landing-page-link">
-                        <PenTool color="black" />
-                        <span>Creator Portal</span>
-                    </Link>
-                </li>
+                </li> */}
+                
             </ul>
         </nav>
     )
