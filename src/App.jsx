@@ -49,6 +49,7 @@ import {
 import Leaderboard from 'admin/pages/Leaderboard';
 import DeleteAccountSteps from 'pages/DeleteAccountSteps';
 import NotFound from 'pages/NotFound';
+import CreatorPortal from './pages/CreatorPortal';
 
 
 
@@ -117,6 +118,7 @@ function App() {
           <Route path = "/logout" element = {<Logout />} />
         </Route>
       
+        <Route path="/creator-portal" element={<CreatorPortal />} />
       </Route>
       <Route path = "/*" element = {<NotFound />} />
     </Routes>

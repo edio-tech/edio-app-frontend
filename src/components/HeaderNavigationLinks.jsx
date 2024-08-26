@@ -1,5 +1,5 @@
 import useAuth from "hooks/useAuth";
-import { Axe, CircleHelp, Cookie, Home, PanelTopDashed, Tally5 } from "lucide-react";
+import { Axe, CircleHelp, Cookie, Home, PanelTopDashed, Tally5, PenTool } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
@@ -48,6 +48,12 @@ const HeaderNavigationLinks = () =>
                     <Link to="/privacy" className="landing-page-link">
                         <Cookie color="black" />
                         <span>Privacy</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/creator-portal" className="landing-page-link">
+                        <PenTool color="black" />
+                        <span>Creator Portal</span>
                     </Link>
                 </li>
             </ul>

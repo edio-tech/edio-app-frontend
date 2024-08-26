@@ -17,7 +17,7 @@
 }
 
 .main-container {
-   flex: 14;
+   flex: 1;
    overflow: hidden;
    display: flex;
    font-family: 'Arial';
@@ -29,7 +29,7 @@
 }
 
 .flex-right-container {
-   flex: 7;
+   flex: 1;
    display: flex;
    overflow: hidden; /* Remove scroll from here */
 }
