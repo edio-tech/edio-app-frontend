@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, CircleUserRound  } from "lucide-react";
+import Lottie from 'lottie-react';
+
 
 // Hooks
 import useAuth from "hooks/useAuth";
 
 // Styling
+import edioAnimation from '../assets/edio-loading.json';
 import EdioText from "assets/edio-animation-first-frame.png"
 import 'styles/layouts/header.css';
 import HeaderNavigationLinks from "components/HeaderNavigationLinks";
@@ -17,6 +20,9 @@ const Header = ({ setMenuToggled }) => {
 
    const [togglePopUp, setTogglePopUp] = useState(false);
    const dropdownRef = useRef(null);
+
+   const [aspectRatio, _] = useState(250/117);
+
 
    useEffect(() => {
       const handleClickOutside = (event) => {
@@ -46,7 +52,12 @@ const Header = ({ setMenuToggled }) => {
             <button onClick={() => handleToggleMenuClick()} className = "global-button global-trans-button flex-left-menu-button"><Menu style = {{ color : 'black'}}/></button>
          </div> */}
          <Link to='/' className = "flex-navbar-element">
-            <img className = "edio-navbar-text" src={EdioText} />
+            {/* <img className = "edio-navbar-text" src={EdioText} /> */}
+            <div
+               style={{ height: 65, aspectRatio: aspectRatio }}
+            >
+               <Lottie animationData={edioAnimation} autoPlay loop />
+            </div>
          </Link>
          <div className = "navbar-element">
          </div>
