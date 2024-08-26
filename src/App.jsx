@@ -27,7 +27,7 @@ import {
   AdminAddGoalsAndQuestions, 
   AdminAddQuestions, 
   AdminAddContent, 
-  AdminAddSummary, 
+  AdminAddCleanedContent, 
   AdminDeleteModule, 
   DemoHome, 
   CreateDemo, 
@@ -91,7 +91,7 @@ function App() {
             <Route path = "/admin/module/:creator_id/:module_id/add-goals-and-questions/:section_id" element = {<AdminAddGoalsAndQuestions />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-questions/:section_id" element = {<AdminAddQuestions />} />
             <Route path = "/admin/module/:creator_id/:module_id/add-content/:section_id" element = {<AdminAddContent />} />
-            <Route path = "/admin/module/:creator_id/:module_id/add-summary/:section_id" element = {<AdminAddSummary />} />
+            <Route path = "/admin/module/:creator_id/:module_id/add-cleaned-content/:section_id" element = {<AdminAddCleanedContent />} />
 
             <Route path = "/admin/test" element = {<Test />} />
 

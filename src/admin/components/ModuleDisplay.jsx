@@ -14,32 +14,31 @@ const ModuleDisplay = ({sectionData, sectionSelected, sectionLoading}) => {
 
   const navigate = useNavigate();
   const [showContent, setShowContent] = useState(false);
-  const [showSummary, setShowSummary] = useState(false);
+  const [showCleanedContent, setShowCleanedContent] = useState(false);
   const [showGoals, setShowGoals] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
 
   const handleContentClick = () => {
     setShowContent(true);
-    setShowSummary(false);
+    setShowCleanedContent(false);
     setShowGoals(false);
     setShowQuestions(false);
   }
-  const handleSummaryClick = () => {
-    console.log(sectionData.goals)
+  const handleCleanedContentClick = () => {
     setShowContent(false);
-    setShowSummary(true);
+    setShowCleanedContent(true);
     setShowGoals(false);
     setShowQuestions(false);
   }
   const handleGoalsClick = () => {
     setShowContent(false);
-    setShowSummary(false);
+    setShowCleanedContent(false);
     setShowGoals(true);
     setShowQuestions(false);
   }
   const handleQuestionsClick = () => {
     setShowContent(false);
-    setShowSummary(false);
+    setShowCleanedContent(false);
     setShowGoals(false);
     setShowQuestions(true);
   }
@@ -48,7 +47,7 @@ const ModuleDisplay = ({sectionData, sectionSelected, sectionLoading}) => {
 
   const handleAddContentClick = (section_id) => { navigate(`add-content/${section_id}`) }
 
-  const handleAddSummaryClick = (section_id) => { navigate(`add-summary/${section_id}`) }
+  const handleAddCleanedContentClick = (section_id) => { navigate(`add-cleaned-content/${section_id}`) }
 
   const handleAddQuestionsClick = (section_id) => { navigate(`add-questions/${section_id}`) }
 
@@ -64,8 +63,8 @@ const ModuleDisplay = ({sectionData, sectionSelected, sectionLoading}) => {
           <button onClick={() => handleContentClick()} className = "global-button top-button">
             Content
           </button>
-          <button onClick={() => handleSummaryClick()} className = "global-button top-button">
-            Summary
+          <button onClick={() => handleCleanedContentClick()} className = "global-button top-button">
+            Cleaned Content
           </button>
           <button onClick={() => handleGoalsClick()} className = "global-button top-button">
             Goals
@@ -88,38 +87,37 @@ const ModuleDisplay = ({sectionData, sectionSelected, sectionLoading}) => {
             }
           </>
           }
-          { showSummary &&
+          { showCleanedContent &&
           <>
-            { !sectionData.summary &&
+            { !sectionData.cleaned_content &&
             <>
-              { sectionData.goals && Object.keys(sectionData.goals).length > 0 &&
-              <>
-              <div> Add Section Summary here </div>
-              <button onClick = {() => handleAddSummaryClick(sectionData._id)} className="global-button"> ADD SUMMARY </button>
-              </>
-              }
-              { ( !sectionData.goals || Object.keys(sectionData.goals).length === 0)  &&
-                <div> You must generate Goals before you generate a summary </div>
-              }
+              <div> Add Cleaned Content for section here </div>
+              <button onClick = {() => handleAddCleanedContentClick(sectionData._id)} className="global-button"> ADD CLEANED CONTENT </button>            
             </>
             }
-            { sectionData.summary &&
-              <div className ="markdown-content"> { sectionData.summary } </div>
+            { sectionData.cleaned_content &&
+              <div className ="markdown-content"> <ReactMarkdown>{ sectionData.cleaned_content }</ReactMarkdown> </div>
             }
           </>
           }
           { showGoals && 
             <>
-              {  ( !sectionData.goals || Object.keys(sectionData.goals).length === 0 ) &&
+              { ( !sectionData.goals || Object.keys(sectionData.goals).length === 0 ) &&
                 <>
-                <div>No Goals or Questions - Add Goals First</div>
-                <button onClick={() => handleAddGoalsClick(sectionData._id)} className="global-button">Add Goals and Questions</button>
-                
+                  { !sectionData.cleaned_content ? ( 
+                    <div> You must generate cleaned content before generating goals </div> 
+                    ) : ( 
+                    <>
+                    <div>No Goals or Questions - Add Goals First</div>
+                    <button onClick={() => handleAddGoalsClick(sectionData._id)} className="global-button">Add Goals and Questions</button>               
+                    </> 
+                    )
+                  }
+                  {
+                    sectionData.goals && Object.keys(sectionData.goals).length > 0 &&
+                    <div> There are goals generated for this section. Goals will be displayed here. Feature not added yet. </div>
+                  }
                 </>
-              }
-              {
-                sectionData.goals && Object.keys(sectionData.goals).length > 0 &&
-                <div> There are goals generated for this section. Goals will be displayed here. Feature not added yet. </div>
               }
             </>
           }

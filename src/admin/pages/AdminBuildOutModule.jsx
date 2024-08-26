@@ -142,7 +142,7 @@ const AdminBuildOutModule = () => {
   };
 
   return (
-    <div className = "flex-container-col">
+    <div className = "flex-container-col-no-scroll">
       <div className = "top-bar">
       { markdownContent &&
         <>
