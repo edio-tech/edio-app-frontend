@@ -1,23 +1,25 @@
 import useAuth from "hooks/useAuth";
 import { Axe, CircleHelp, Cookie, Home, PanelTopDashed, Tally5, PenTool } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 
 const HeaderNavigationLinks = () =>
 {
+    const location = useLocation();
     const { auth } = useAuth();
 
     return (
         <nav className="landing-page-nav">
             <ul className="landing-page-links">
-                <li>
-                    <Link to="/" className="landing-page-link">
-                        <Home color="black" />
-                        <span>Home</span>
-                    </Link>
-                </li>
                 {
-                    auth?.role === 'ADMIN' && <>
+                    auth?.role === 'ADMIN' && !location.pathname === '/' && <>
+                        {/* <li>
+                            <Link to="/" className="landing-page-link">
+                                <Home color="black" />
+                                <span>Home</span>
+                            </Link>
+                        </li> */}
                         <li>
                             <Link to="/admin/all-creators" className="landing-page-link">
                                 <PanelTopDashed color="black" />
@@ -56,6 +58,32 @@ const HeaderNavigationLinks = () =>
                         <span>Privacy</span>
                     </Link>
                 </li> */}
+                
+                {
+                    location.pathname === '/' && <>
+                        {/* New anchor links for the landing page */}
+                        <li>
+                            <a href="#hero" className="landing-page-link">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#creators" className="landing-page-link">
+                                <span>Creators</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#learners" className="landing-page-link">
+                                <span>Learners</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" className="landing-page-link">
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                    </>
+                }
                 
             </ul>
         </nav>

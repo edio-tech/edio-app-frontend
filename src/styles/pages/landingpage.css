@@ -1,5 +1,6 @@
 /* EdioLandingPage.css */
 .edio-landing-page {
+  scroll-behavior: smooth;
    display: flex;
    flex-direction: column;
    min-height: 100%;
@@ -113,7 +114,7 @@
  }
  
  .edio-footer {
-   background-color: #cfcfcf;
+   background-color: #ffffff;
    color: black;
    text-align: center;
    padding: 2rem;
@@ -137,3 +138,21 @@
      font-size: 1.75rem;
    }
  }
+
+/* LandingPage.css new stuff */
+
+.section {
+  min-height: 90vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.odd {
+  background-color: #ffffff;
+}
+
+.even {
+  background-color: #cfcfcf;
+}
