@@ -15,3 +15,6 @@ export { default as AddModule } from './AddModule';
 export { default as ModuleStructureDisplay } from './ModuleStructureDisplay';
 
 export { default as AddTag } from './AddTag';
+
+export { default as ErrorMessage } from './ErrorMessage';
+

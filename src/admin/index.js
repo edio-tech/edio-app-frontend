@@ -37,3 +37,6 @@ export { default as Test } from './pages/Test';
 export { default as DisplayQuestions } from './components/DisplayQuestions';
 
 export { default as ModuleDisplay } from './components/ModuleDisplay';
+
+export { default as AdminAddUser } from './components/AdminAddUser';
+

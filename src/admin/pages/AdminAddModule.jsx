@@ -53,7 +53,7 @@ const AdminAddModule = () => {
        window.removeEventListener('hashchange', handleHashChange);
     };
 
- }, []);
+  }, []);
 
   useEffect(() => {
     setHash(location.hash);

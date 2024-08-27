@@ -8,6 +8,9 @@ let axiosConfig = axios.create({
 });
 
 class UsersAPILink {
+
+   // Users
+
    register(body)
    {
       return axiosConfig.post(baseURL + '/register', body);
@@ -23,21 +26,15 @@ class UsersAPILink {
       return axiosConfig.patch(baseURL + `/add-creator-profile-pic-for-demo/${id}`, body);
    }
 
-   getAllUsers(token) {
-      return axiosConfig.get(baseURL + '/get-all-users/', {headers: {Authorization: `Bearer ${token}`}});
+   getAllCreatorAndAdminUsers(token) {
+      return axiosConfig.get(baseURL + '/get-all-creator-and-admin-users/', {headers: {Authorization: `Bearer ${token}`}});
    }
 
    checkDetails(token) {
       console.log(baseURL);
       return axiosConfig.get(baseURL + '/me', {headers: {Authorization: `Bearer ${token}`}});
    }
-
-   addCreator(body)
-   {
-      return axiosConfig.post(baseURL + '/creators/add-creator-profile', body);
-   }
 }
-
 
 const usersAPILink = new UsersAPILink();
 export default usersAPILink;
