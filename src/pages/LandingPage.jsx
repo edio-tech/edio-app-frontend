@@ -29,7 +29,7 @@ const LandingPage = () => {
 
    return (
       <div className="edio-landing-page">
-      <section id='hero' className='section odd edio-hero'>
+      <section id='hero' className='section odd edio-hero full-height'>
         {/* <a
           style={{
             display: 'flex',
@@ -52,15 +52,37 @@ const LandingPage = () => {
           <span>F24 Batch</span>
           <ChevronRight />
         </a> */}
-        <h2>Learning Made Fun</h2>
-        <p>Edio harnesses the power of generative AI to transform educational content into an interactive learning experience</p>
-        <div className="button-row-landing-page-hero">
-          <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
-          <a className='edio-cta-button calendly-link' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
+        <div className="hero-content">
+          <h2>Learning Made Fun</h2>
+          <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
+          
+          <div className="feature-section">
+            <div className="educational-content">
+              <p>Educational Content</p>
+            </div>
+            <div className="transformed-images">
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745175/Component_14_1_gyf6db.svg" 
+                alt="Digestible Flashcards"
+                className="feature-image"
+              />
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745404/Group_54_rtpcyq.svg" 
+                alt="Gamified Quizzes"
+                className="feature-image"
+              />
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745457/Component_14_2_xpwg1d.svg" 
+                alt="Personalized AI Tutor"
+                className="feature-image"
+              />
+            </div>
+          </div>
+
+          <div className="cta-container">
+            <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
+          </div>
         </div>
-
-
-        <h3 style={{marginTop: 100}}>About Edio</h3>
       </section>
 
       {/* <section id="creators" className='section even'>

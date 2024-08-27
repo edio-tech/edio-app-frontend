@@ -11,57 +11,60 @@
  }
 
  .edio-hero {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    text-align: center;
-    padding: 4rem 2rem;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Change from center to flex-start */
+  align-items: center;
+  padding: 2rem 1rem; /* Increase padding */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem; /* Reduce top padding */
  }
- 
+
  .edio-text {
   width: 250px;
   padding-bottom: 30px;
+  
  }
 
  .edio-hero h1 {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 50px;
-  color: black;
-  margin-bottom: 1rem;
+  font-size: 3em;
+  margin-bottom: 0.25rem;
+  margin-top: 0; /* Remove negative margin */
  }
  
  .edio-hero h2 {
-   font-size: 2.5rem;
-   margin-bottom: 1rem;
+   font-size: 2.5em;
+   margin-bottom: 0.5rem;
  }
  
  .edio-hero p {
    font-size: 1.25rem;
-   margin-bottom: 2rem;
+   margin-top: 0;
+   margin-bottom: 1rem; /* Reduce bottom margin */
  }
  
 .edio-cta-button {
-   background-color: #00a99e;
+   display: inline-block;
+   padding: 12px 24px;
+   background-color: #007bff;
    text-decoration: none;
    color: white;
-   border-color: black;
-   padding: 0.75rem 1.5rem;
-   font-size: 1.125rem;
-   font-weight: bold;
    border-radius: 5px;
-   cursor: pointer;
+   font-size: 1.1em;
+   font-weight: bold;
+   transition: background-color 0.3s ease;
    border: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 4px solid rgba(0, 0, 0, 0.929);
   border-bottom: 4px solid rgba(0, 0, 0, 0.929);
   border-top: 2px solid rgba(0, 0, 0, 0.929);
   border-left: 2px solid rgba(0, 0, 0, 0.929);
-   transition: background-color 0.3s ease, color 0.3s ease;
-  }
+   cursor: pointer;
+ }
 
 .calendly-link {
-  background-color: white;
-  color: black;
+  background-color: #00a99e;
+  color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 4px solid rgba(0, 0, 0, 0.929);
   border-bottom: 4px solid rgba(0, 0, 0, 0.929);
@@ -71,8 +74,8 @@
 }
   
 .edio-cta-button:hover {
+    background-color: #0056b3;
     color: black;
-    background-color: transparent;
     transition: background-color 0.3s ease, color 0.3s ease;
  }
 
@@ -84,6 +87,8 @@
   display: flex;
   gap: 2rem;
   align-self: center;
+  margin-top: 2em;
+  margin-top: 2rem;
  }
  
  #edio-features, #edio-about, #edio-contact {
@@ -94,6 +99,7 @@
    font-size: 2rem;
    text-align: center;
    margin-bottom: 2rem;
+   
  }
  
  .edio-feature-grid {
@@ -155,4 +161,367 @@
 
 .even {
   background-color: #cfcfcf;
+}
+
+.feature-boxes {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.feature-box {
+  width: 30%;
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.feature-boxes {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.feature-box {
+  width: 30%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.feature-box h4 {
+  margin-bottom: 0.5rem;
+}
+
+.content-types {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}
+
+.transformation {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.transformed-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transformed-content div {
+  margin: 0.2rem 0;
+}
+
+/* Ensure text is visible on teal background */
+.feature-box, .feature-box h4, .feature-box span, .feature-box div {
+  color: white;
+}
+
+.feature-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.content-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.content-and-ai {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.educational-content, .edio-ai {
+  padding: 10px 20px;
+  border: 2px solid #333;
+  border-radius: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.arrow-to-ai {
+  width: 2px;
+  height: 30px;
+  background-color: #333;
+  margin: 10px 0;
+  position: relative;
+}
+
+.arrow-to-ai::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  bottom: -5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #333;
+}
+
+.arrow-to-outputs {
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+  margin: 0 20px;
+  position: relative;
+}
+
+.arrow-to-outputs::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #333;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.transformed-content-boxes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.feature-image {
+  width: auto;
+  height: 80px;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .content-flow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .arrow-to-outputs {
+    width: 2px;
+    height: 30px;
+    margin: 20px 0;
+  }
+  
+  .arrow-to-outputs::after {
+    right: -4px;
+    top: auto;
+    bottom: -5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #333;
+    border-bottom: none;
+  }
+  
+  .transformed-content-boxes {
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  
+  .feature-image {
+    height: 60px;
+  }
+}
+
+.edio-cta-button {
+  background-color: #00b8d4;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.edio-cta-button:hover {
+  background-color: #0095a8;
+}
+
+.cta-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.demo-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.demo-button:hover {
+  background-color: #0052a3;
+}
+
+@media (max-width: 768px) {
+  .cta-container {
+    margin-top: 1rem;
+  }
+  
+  .demo-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+.full-height {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 2rem;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 6rem;
+
+}
+
+/* Ensure proper spacing between sections */
+.section {
+  padding: 6rem 0;
+}
+
+/* Alternating background colors */
+.section.odd {
+  background-color: white;
+}
+
+.section.even {
+  background-color: #f0f0f0;
+}
+
+/* Force the hero section to the top */
+.edio-hero {
+  padding-top: 5px !important;
+  margin-top: 2rem !important;
+}
+
+/* Drastically increase space after the hero text */
+.hero-content {
+  margin-bottom: 20px !important;
+}
+
+/* Force the feature container down */
+.feature-container {
+  margin-top: 2px !important;
+  position: relative !important;
+}
+
+/* Ensure the raw content is not overlapping */
+.raw-content {
+  margin-bottom: 50px !important;
+  width: 400px;
+  margin-top: 5px;
+}
+
+/* Adjust the transformed content boxes */
+.transformed-content-boxes {
+  margin-top: 20px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure the demo button is visible */
+.cta-container {
+  margin-top: 50px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Remove any fixed heights that might be causing issues */
+.full-height, .section {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.feature-image {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.feature-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.transformed-content-boxes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .transformed-content-boxes {
+    flex-direction: column;
+  }
+  
+  .feature-box {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+.feature-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.educational-content {
+  margin-right: 20px;
+}
+
+.transformed-images {
+  display: flex;
+  gap: 20px;
+}
+
+.feature-image {
+  height: 80px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .feature-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .educational-content {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .transformed-images {
+    flex-direction: column;
+  }
 }
