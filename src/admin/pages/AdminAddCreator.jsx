@@ -24,8 +24,6 @@ import useLogContext from "hooks/useLogContext";
 // styling
 import "styles/admin/adminaddcreator.css";
 
-// This doesnt work, stopped halfway through creating it.
-
 const AdminAddCreator = () => {
   const { development } = useLogContext();
   const navigate = useNavigate();

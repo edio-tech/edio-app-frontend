@@ -9,6 +9,8 @@ let axiosConfig = axios.create({
 
 class TagsAPILink {
 
+   // TAGS
+
    addTag(body) {
       return axiosConfig.post(baseURL + '/add-tag', body);
    }
@@ -16,7 +18,20 @@ class TagsAPILink {
    getAllTags() {
       return axiosConfig.get(baseURL + '/get-all-tags');
    }
+
+   // SUB-TAGS
+
+   addSubTag(body) {
+      return axiosConfig.post(baseURL + '/add-sub-tag', body);
+   }
+
+   getAllSubTags() {
+      return axiosConfig.get(baseURL + '/get-all-sub-tags');
+   }
 }
+
+
+
 
 const tagsAPILink = new TagsAPILink();
 export default tagsAPILink;
