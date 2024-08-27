@@ -21,7 +21,19 @@ class UsersAPILink {
       return axiosConfig.post(baseURL + '/login/', body);
    }
 
-   updateProfilePic(id, body)
+   updateProfilePic(id, file, token) {
+      const formData = new FormData();
+      formData.append('profile_picture', file);
+  
+      return axiosConfig.patch(`${baseURL}/update-profile-pic/${id}`, formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+    }
+   
+   updateProfilePicCreator(id, body)
    {
       return axiosConfig.patch(baseURL + `/add-creator-profile-pic-for-demo/${id}`, body);
    }

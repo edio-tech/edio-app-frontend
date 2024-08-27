@@ -5,10 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import Cookies from "js-cookie";
 
+// API imports
 import usersAPI from "api_link/users";
-import useLogContext from "hooks/useLogContext";
-import useAuth from "hooks/useAuth";
 
+// Hook imports
+import useLogContext from "hooks/useLogContext";
+
+// Component imports
+import ErrorMessage from "components/ErrorMessage";
+
+// Styling
 import "styles/pages/login.css";
 
 const AdminAddUser = ({ setHash, setRefetch }) => {
@@ -34,14 +40,12 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("email_verified", false);
-    formData.append("accepted_terms", false);
-    console.log("formData", formData);
+    const data = new FormData(e.currentTarget);
+    data.append("email_verified", false);
+    data.append("accepted_terms", false);
+    data.append("profile_pic", "");
 
-    if (profilePic) {
-      formData.append("profile_pic", profilePic);
-    }
+    const formData = Object.fromEntries(data);
 
     try {
       const res = await usersAPI.register(formData);
@@ -49,8 +53,10 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
       if (res.status < 200 || res.status >= 300) {
         console.log("error result object:", res.data);
         if (development) {
-          setErrors(res.data.detail);
+          // Pass the whole error object in development
+          setErrors(res.data);
         } else {
+          // This remains a string in production
           setErrors("There was an error creating the User.");
         }
         return;
@@ -60,6 +66,25 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
       if (development) {
         console.log("User Creation Successful", user_content);
       }
+
+      if (profilePic) {
+        console.log("profilePic:", profilePic);
+        const token = Cookies.get("jwtToken");
+        const picRes = await usersAPI.updateProfilePic(user_content._id, profilePic, token);
+
+        if (picRes.status < 200 || picRes.status >= 300) {
+          console.log("error result object:", picRes.data);
+          if (development) {
+            // Pass the whole error object in development
+            setErrors(picRes.data);
+          } else {
+            // This remains a string in production
+            setErrors("There was an error uploading the User's profile picture. The user still created.");
+          }
+          return;
+        }
+      }
+
       setHash("");
       setRefetch(true);
     } catch (err) {
@@ -75,7 +100,7 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
   };
 
   return (
-    <div className="flex-container mrg">
+    <div className="flex-container">
       <div className="global-form">
         <Form.Root onSubmit={handleSubmit}>
           <div className="global-form-group">
@@ -140,7 +165,11 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
               {profilePic && <p>Selected file: {profilePic.name}</p>}
             </Form.Field>
           </div>
-          {errors && <div className="error-message">{errors}</div>}
+          {errors && (
+            <div className="error-message">
+              <ErrorMessage errors={errors} />
+            </div>
+          )}
           <div className="global-flex-form-button-container">
             <Form.Submit asChild>
               <button type="submit" className="global-form-submit-button">
