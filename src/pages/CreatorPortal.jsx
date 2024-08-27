@@ -5,34 +5,34 @@ import '../styles/pages/creatorportal.css';
 
 const CreatorPortal = () => {
   const performanceData = [
-    { name: 'Math', score: 85 },
-    { name: 'Science', score: 72 },
-    { name: 'History', score: 90 },
-    { name: 'Literature', score: 78 },
-    { name: 'Art', score: 95 },
+    { name: 'Physical Geography', score: 85 },
+    { name: 'Human Geography', score: 72 },
+    { name: 'Cartography', score: 90 },
+    { name: 'Climate', score: 78 },
+    { name: 'Geopolitics', score: 95 },
   ];
 
   const signUpTrendData = [
-    { date: '2023-01-01', signUps: 100 },
-    { date: '2023-02-01', signUps: 150 },
-    { date: '2023-03-01', signUps: 200 },
-    { date: '2023-04-01', signUps: 180 },
-    { date: '2023-05-01', signUps: 250 },
+    { date: '2025-08-18', signUps: 100 },
+    { date: '2025-08-20', signUps: 150 },
+    { date: '2025-08-22', signUps: 200 },
+    { date: '2025-08-24', signUps: 180 },
+    { date: '2025-08-26', signUps: 250 },
   ];
 
   const detailedPerformanceData = [
-    { topic: 'Algebra', correctRate: 75, avgTimeSpent: 120 },
-    { topic: 'Geometry', correctRate: 68, avgTimeSpent: 150 },
-    { topic: 'Calculus', correctRate: 62, avgTimeSpent: 180 },
-    { topic: 'Statistics', correctRate: 80, avgTimeSpent: 100 },
+    { topic: 'Landforms', correctRate: 75, avgTimeSpent: 120 },
+    { topic: 'Population', correctRate: 68, avgTimeSpent: 150 },
+    { topic: 'Ecosystems', correctRate: 62, avgTimeSpent: 180 },
+    { topic: 'Urban Geography', correctRate: 80, avgTimeSpent: 100 },
   ];
 
   const questionHotspots = [
-    { id: 1, question: "What is the capital of France?", topic: "Geography", successRate: 45 },
-    { id: 2, question: "What is the square root of 144?", topic: "Mathematics", successRate: 52 },
-    { id: 3, question: "Who wrote 'To Kill a Mockingbird'?", topic: "Literature", successRate: 58 },
-    { id: 4, question: "What is the chemical symbol for gold?", topic: "Chemistry", successRate: 60 },
-    { id: 5, question: "In which year did World War II end?", topic: "History", successRate: 63 },
+    { id: 1, question: "What is the capital of France?", topic: "European Geography", successRate: 45 },
+    { id: 2, question: "Which river is the longest in the world?", topic: "Physical Geography", successRate: 52 },
+    { id: 3, question: "What is the largest desert by area?", topic: "Climate Geography", successRate: 58 },
+    { id: 4, question: "Which country has the highest population density?", topic: "Human Geography", successRate: 60 },
+    { id: 5, question: "What is the name of the imaginary line that runs around the Earth at 0° latitude?", topic: "Cartography", successRate: 63 },
   ];
 
   return (
@@ -119,40 +119,42 @@ const CreatorPortal = () => {
           </div>
         </section>
         
-        <section className="insights">
-          <h2>Insights</h2>
-          <div className="insight-card">
-            <h3>Content Improvement Opportunity</h3>
-            <p>
-              Based on the performance data, users seem to be struggling the most with Science content. 
-              Consider creating more explanatory content or practice exercises in this area to boost engagement and understanding.
-            </p>
-          </div>
-          <div className="insight-card">
-            <h3>High Performer</h3>
-            <p>
-              Art content is performing exceptionally well. You might want to explore creating more advanced 
-              or specialized Art courses to cater to this highly engaged audience segment.
-            </p>
-          </div>
-        </section>
-        
-        <section className="question-hotspots">
-          <h2>Question Hotspots</h2>
-          <p>These are the top 5 MCQ questions that users are struggling with:</p>
-          <div className="hotspot-list">
-            {questionHotspots.map((question) => (
-              <div key={question.id} className="hotspot-item">
-                <AlertCircle className="hotspot-icon" />
-                <div className="hotspot-content">
-                  <h3>{question.question}</h3>
-                  <p>Topic: {question.topic}</p>
-                  <p>Success Rate: {question.successRate}%</p>
+        <div style={{ marginTop: '10rem' }}>
+          <section className="insights">
+            <h2>Insights</h2>
+            <div className="insight-card">
+              <h3>Content Improvement Opportunity</h3>
+              <p>
+                Based on the performance data, users seem to be struggling the most with Human Geography content. 
+                Consider creating more explanatory content or practice exercises in this area to boost engagement and understanding.
+              </p>
+            </div>
+            <div className="insight-card">
+              <h3>High Performer</h3>
+              <p>
+                Geopolitics content is performing exceptionally well. You might want to explore creating more advanced 
+                or specialized Geopolitics courses to cater to this highly engaged audience segment.
+              </p>
+            </div>
+          </section>
+          
+          <section className="question-hotspots">
+            <h2>Question Hotspots</h2>
+            <p>These are the top 5 MCQ questions that users are struggling with:</p>
+            <div className="hotspot-list">
+              {questionHotspots.map((question) => (
+                <div key={question.id} className="hotspot-item">
+                  <AlertCircle className="hotspot-icon" />
+                  <div className="hotspot-content">
+                    <h3>{question.question}</h3>
+                    <p>Topic: {question.topic}</p>
+                    <p>Success Rate: {question.successRate}%</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   );

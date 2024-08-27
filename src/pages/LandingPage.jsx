@@ -29,38 +29,38 @@ const LandingPage = () => {
 
    return (
       <div className="edio-landing-page">
-      <section id='hero' className='section odd edio-hero'>
-        <a
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 10,
-            border: '1px solid black',
-            padding: '2px 20px',
-            borderRadius: 100,
-            textDecoration: 'none',
-            color: 'black'
-          }}
-          href='https://www.ycombinator.com/apply'
-        >
-          <img src={'https://cdn.prod.website-files.com/6663a47b46313d7251a0c908/666b624f2e0b455fde127556_yc_logo.png'}
-            style={{
-              width: 150,
-            }}
-          />
-          <span>F24 Batch</span>
-          <ChevronRight />
-        </a>
-        <h2>Learning Made Fun</h2>
-        <p>Edio harnesses the power of generative AI to transform educational content into an interactive learning experience</p>
-        <div className="button-row-landing-page-hero">
-          <button className="edio-cta-button" type="button" onClick={RedirectLogin}>Get Started</button>
-          <a className='edio-cta-button calendly-link' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
+      <section id='hero' className='section odd edio-hero full-height'>
+        <div className="hero-content">
+          <h2>Learning Made Fun</h2>
+          <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
+          
+          <div className="feature-section">
+            <div className="educational-content">
+              <p>Educational Content</p>
+            </div>
+            <div className="transformed-images">
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745175/Component_14_1_gyf6db.svg" 
+                alt="Digestible Flashcards"
+                className="feature-image"
+              />
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745404/Group_54_rtpcyq.svg" 
+                alt="Gamified Quizzes"
+                className="feature-image"
+              />
+              <img 
+                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745457/Component_14_2_xpwg1d.svg" 
+                alt="Personalized AI Tutor"
+                className="feature-image"
+              />
+            </div>
+          </div>
+
+          <div className="cta-container">
+            <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
+          </div>
         </div>
-
-
-        <h3 style={{marginTop: 100}}>About Edio</h3>
       </section>
 
       {/* <section id="creators" className='section even'>
