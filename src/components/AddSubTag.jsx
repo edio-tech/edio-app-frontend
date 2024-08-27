@@ -11,7 +11,7 @@ import tagsAPI from "api_link/tags.js";
 // Component Imports
 import { Spinner } from "components";
 
-const AddSubTag = ({ setHash, refetch, setRefetch }) => {
+const AddSubTag = ({ hash, setHash, refetch, setRefetch, setLeftName, setLeftAction, setTitleName }) => {
   const { development } = useLogContext();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
@@ -80,72 +80,84 @@ const AddSubTag = ({ setHash, refetch, setRefetch }) => {
     }
   };
 
-  const handleAddTagClick = () => {};
+  const handleAddTagClick = () => {
+    setLeftName("Add Sub-Tag");
+    setLeftAction(() => () => {
+      setHash("#add-sub-tag");
+    });
+    setTitleName("Add Tag");
+    setHash("#add-tag");
+  };
 
   return (
-    <div className="global-form">
-      {errors && <div className="error-message"> {errors}</div>}
-      <Form.Root onSubmit={handleSubmit}>
-        <div className="global-form-group flex-adjusted">
-          <div className="input-field-with-plus-logo">
-            <Form.Field name="tag_id">
-              <Form.Label>Parent Tag</Form.Label>
-              {tagOptionsLoading ? (
-                <Spinner />
-              ) : (
+    <>
+      {hash === "#add-tag" && <AddTag setHash={setHash} setRefetch={setRefetch} />}
+      {hash === "#add-sub-tag" && (
+        <div className="global-form">
+          {errors && <div className="error-message"> {errors}</div>}
+          <Form.Root onSubmit={handleSubmit}>
+            <div className="global-form-group flex-adjusted">
+              <div className="input-field-with-plus-logo">
+                <Form.Field name="tag_id">
+                  <Form.Label>Parent Tag</Form.Label>
+                  {tagOptionsLoading ? (
+                    <Spinner />
+                  ) : (
+                    <Form.Control asChild>
+                      <select id="tag-id" required>
+                        <option style={{ color: "black" }} value="">
+                          Select a tag
+                        </option>
+                        {tagOptionsArray.map((tag) => (
+                          <option key={tag._id} value={tag._id}>
+                            {tag.tag_name}
+                          </option>
+                        ))}
+                      </select>
+                    </Form.Control>
+                  )}
+                  <Form.Message match="valueMissing" className="error-message">
+                    Parent Tag is required
+                  </Form.Message>
+                </Form.Field>
+              </div>
+              <button type="button" onClick={handleAddTagClick} className="global-trans-button">
+                <SquarePlus className="plus-logo" />
+              </button>
+            </div>
+
+            <div className="global-form-group">
+              <Form.Field name="sub_tag_name">
+                <Form.Label>Sub-Tag Name</Form.Label>
                 <Form.Control asChild>
-                  <select id="tag-id" required>
-                    <option style={{ color: "black" }} value="">
-                      Select a tag
-                    </option>
-                    {tagOptionsArray.map((tag) => (
-                      <option key={tag._id} value={tag._id}>
-                        {tag.tag_name}
-                      </option>
-                    ))}
-                  </select>
+                  <input id="subtag-name" type="text" required />
                 </Form.Control>
-              )}
-              <Form.Message match="valueMissing" className="error-message">
-                Parent Tag is required
-              </Form.Message>
-            </Form.Field>
-          </div>
-          <button onClick={handleAddTagClick} className="global-trans-button">
-            <SquarePlus className="plus-logo" />
-          </button>
-        </div>
+                <Form.Message match="valueMissing" className="error-message">
+                  Sub-Tag name is required
+                </Form.Message>
+              </Form.Field>
+            </div>
 
-        <div className="global-form-group">
-          <Form.Field name="sub_tag_name">
-            <Form.Label>Sub-Tag Name</Form.Label>
-            <Form.Control asChild>
-              <input id="subtag-name" type="text" required />
-            </Form.Control>
-            <Form.Message match="valueMissing" className="error-message">
-              Sub-Tag name is required
-            </Form.Message>
-          </Form.Field>
-        </div>
+            <div className="global-form-group">
+              <Form.Field name="sub_tag_description">
+                <Form.Label>Sub-Tag Description (Optional)</Form.Label>
+                <Form.Control asChild>
+                  <input id="sub-tag-description" type="text" />
+                </Form.Control>
+              </Form.Field>
+            </div>
 
-        <div className="global-form-group">
-          <Form.Field name="sub_tag_description">
-            <Form.Label>Sub-Tag Description (Optional)</Form.Label>
-            <Form.Control asChild>
-              <input id="sub-tag-description" type="text" />
-            </Form.Control>
-          </Form.Field>
+            <div className="global-flex-form-button-container">
+              <Form.Submit asChild>
+                <button type="submit" className="global-form-submit-button">
+                  {loading ? <BeatLoader /> : "Add Sub-Tag"}
+                </button>
+              </Form.Submit>
+            </div>
+          </Form.Root>
         </div>
-
-        <div className="global-flex-form-button-container">
-          <Form.Submit asChild>
-            <button type="submit" className="global-form-submit-button">
-              {loading ? <BeatLoader /> : "Add Sub-Tag"}
-            </button>
-          </Form.Submit>
-        </div>
-      </Form.Root>
-    </div>
+      )}
+    </>
   );
 };
 

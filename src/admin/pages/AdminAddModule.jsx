@@ -28,6 +28,20 @@ const AdminAddModule = () => {
       setTitleName("Add Module");
       setRightName("");
       setRightAction(null);
+    } else if (hash === "#add-sub-tag") {
+      setLeftName("Add Module");
+      setLeftAction(() => () => {
+        setHash("");
+      });
+      setTitleName("Add Sub-Tag");
+      setRefetch(true);
+    } else if (hash === "#add-tag") {
+      setLeftName("Add Sub-Tag");
+      setLeftAction(() => () => {
+        setHash("#add-sub-tag");
+      });
+      setTitleName("Add Tag");
+      setRefetch(true);
     }
   }, [hash]);
 
@@ -73,7 +87,7 @@ const AdminAddModule = () => {
             setTitleName={setTitleName}
           />
         )}
-        {hash === "#add-sub-tag" && <AddSubTag setHash={setHash} refetch={refetch} setRefetch={setRefetch} />}
+        {hash === "#add-sub-tag" && <AddSubTag hash={hash} setHash={setHash} refetch={refetch} setRefetch={setRefetch} setLeftName={setLeftName} setLeftAction={setLeftAction} setTitleName={setTitleName} />}
       </div>
     </div>
   );
