@@ -38,6 +38,8 @@ const Header = ({ setMenuToggled }) => {
    }, []);
 
    const handleLoginClick = () => { navigate('/login') }
+
+   const handleCreatorPortalClick = () => { navigate('/creator-portal')}
    const handleAccountSettingsClick = () => { navigate('/account-settings') }
    const handleLogoutClick = () => { navigate('/logout') }
 
@@ -75,6 +77,7 @@ const Header = ({ setMenuToggled }) => {
                   { togglePopUp &&(
                   <>
                      <div className = "popup-overlay">
+                        <div className="popup-element"> <button onClick={() => handleCreatorPortalClick()} className="global-trans-button big-button-writing">Creator Portal</button></div>
                         <div className="popup-element"> <button onClick={() => handleAccountSettingsClick()} className="global-trans-button big-button-writing">Account Settings</button></div>
                         <div className="popup-element"> <button onClick={() => handleLogoutClick()} className="global-trans-button big-button-writing">Logout</button></div>
                      </div>

@@ -13,7 +13,7 @@ const HeaderNavigationLinks = () =>
         <nav className="landing-page-nav">
             <ul className="landing-page-links">
                 {
-                    auth?.role === 'ADMIN' && <>
+                    auth?.role === 'ADMIN' && location.pathname !== '/' && <>
                         {/* <li>
                             <Link to="/" className="landing-page-link">
                                 <Home color="black" />

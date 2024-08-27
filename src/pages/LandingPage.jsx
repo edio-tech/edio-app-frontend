@@ -30,7 +30,7 @@ const LandingPage = () => {
    return (
       <div className="edio-landing-page">
       <section id='hero' className='section odd edio-hero'>
-        <a
+        {/* <a
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -51,7 +51,7 @@ const LandingPage = () => {
           />
           <span>F24 Batch</span>
           <ChevronRight />
-        </a>
+        </a> */}
         <h2>Learning Made Fun</h2>
         <p>Edio harnesses the power of generative AI to transform educational content into an interactive learning experience</p>
         <div className="button-row-landing-page-hero">
