@@ -4,6 +4,7 @@ import { Book, Brain, BarChart2, MessageCircle, ChevronRight } from 'lucide-reac
 import { FeatureCard } from "components";
 
 import 'styles/pages/landingpage.css'
+import { useState } from 'react';
 
 
 // SECTIONS
@@ -20,7 +21,16 @@ import 'styles/pages/landingpage.css'
 
 const LandingPage = () => {
 
+  const [currentIndex, setCurrentIndex] = useState(1);
   const navigate = useNavigate();
+
+  const handleImageClick = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
 
   const RedirectLogin = () => {
     navigate('/login')
@@ -53,35 +63,49 @@ const LandingPage = () => {
           <ChevronRight />
         </a> */}
         <div className="hero-content">
-          <h2>Learning Made Fun</h2>
-          <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
-          
-          <div className="feature-section">
-            <div className="educational-content">
-              <p>Educational Content</p>
+          <div className="hero-left">
+            <div className="hero-text">
+              <h2>Learning Made Fun</h2>
+              <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
             </div>
-            <div className="transformed-images">
-              <img 
-                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745175/Component_14_1_gyf6db.svg" 
-                alt="Digestible Flashcards"
-                className="feature-image"
-              />
-              <img 
-                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745404/Group_54_rtpcyq.svg" 
-                alt="Gamified Quizzes"
-                className="feature-image"
-              />
-              <img 
-                src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745457/Component_14_2_xpwg1d.svg" 
-                alt="Personalized AI Tutor"
-                className="feature-image"
-              />
+            <div className="hero-content-transform">
+              <p>Transforming</p>
+            </div>
+          </div>
+          
+          <div className="carousel">
+            <div className="carousel-container">
+              {['https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745175/Component_14_1_gyf6db.svg', 
+                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745404/Group_54_rtpcyq.svg', 
+                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745457/Component_14_2_xpwg1d.svg'].map((src, index) => (
+                <div 
+                  className="carousel-slide" 
+                  key={index} 
+                  onClick={() => handleImageClick(index)} // Add click handler
+                >
+                  <img 
+                    src={src} 
+                    alt={`Image ${index + 1}`} 
+                    className={`feature-image ${currentIndex === index ? 'selected-feature-image' : ''}`} 
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="dots-container">
+              {['1', '2', '3'].map((_, index) => (
+                <span 
+                  key={index} 
+                  className={`dot ${currentIndex === index ? 'active' : ''}`} 
+                  onClick={() => handleDotClick(index)} // Add click handler for dots
+                />
+              ))}
             </div>
           </div>
 
-          <div className="cta-container">
-            <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
-          </div>
+
+        </div>
+        <div className="cta-container">
+          <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Book a Demo</a>
         </div>
       </section>
 
