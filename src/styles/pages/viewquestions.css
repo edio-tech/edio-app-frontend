@@ -1,0 +1,38 @@
+
+
+.view-questions-container {
+    width: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 2.5rem 15rem;
+}
+
+.title-and-disclaimer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.view-questions-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.view-questions-disclaimer {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.loading-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

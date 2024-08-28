@@ -50,6 +50,7 @@ import Leaderboard from 'admin/pages/Leaderboard';
 import DeleteAccountSteps from 'pages/DeleteAccountSteps';
 import NotFound from 'pages/NotFound';
 import CreatorPortal from './pages/CreatorPortal';
+import ViewQuestions from 'pages/ViewQuestions';
 
 
 
@@ -120,6 +121,7 @@ function App() {
           <Route path = "/logout" element = {<Logout />} />
         </Route>
       
+        <Route path = "/view-all-poker-questions" element = {<ViewQuestions />} />  
       </Route>
       <Route path = "/*" element = {<NotFound />} />
     </Routes>
