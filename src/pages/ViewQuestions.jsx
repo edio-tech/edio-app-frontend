@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 
 import questionsAPILink from 'api_link/questions';
 import '../styles/pages/viewquestions.css';
@@ -38,9 +39,9 @@ const ViewQuestions = () =>
         setQuestionsLoading(false);
     }
 
-    // useEffect(() => {
-    //     fetchAllPokerQuestions();
-    // }, []);
+    useEffect(() => {
+        fetchAllPokerQuestions();
+    }, []);
 
     const [expandedBook, setExpandedBook] = useState(null);
     const [expandedChapter, setExpandedChapter] = useState(null);
@@ -66,29 +67,69 @@ const ViewQuestions = () =>
             {
                 questionsLoading && <div className='loading-container'>
                     <Lottie animationData={edioAnimation} autoPlay loop />
+                    <span>Loading... (Can take up to 30 seconds)</span>
                 </div>
             }
 
             {
-                Object.keys(questions).length > 0 && (
+                Object.keys(questions).length > 0 && !questionsLoading && (
                     <div className='questions-container'>
                         {Object.entries(questions).map(([book, chapters], bookIndex) => (
                             <div className='book-container' key={bookIndex}>
                                 <button className='book-title' onClick={() => toggleBook(book)}>
-                                    {book}
+                                    <span>{bookIndex + 1}. {book}</span>
+                                    {expandedBook === book ? <ChevronDown size={40} /> : <ChevronRight size={40} />}
                                 </button>
                                 {expandedBook === book && (
                                     <div className='chapters-container'>
                                         {Object.entries(chapters).map(([chapter, chapterQuestions], chapterIndex) => (
                                             <div className='chapter-container' key={chapterIndex}>
                                                 <button className='chapter-title' onClick={() => toggleChapter(chapter)}>
-                                                    {chapter}
+                                                    <span>{chapterIndex + 1}. {chapter}</span>
+                                                    {expandedChapter === chapter ? <ChevronDown size={32} /> : <ChevronRight size={32} />}
                                                 </button>
                                                 {expandedChapter === chapter && (
                                                     <div className='questions-list'>
                                                         {chapterQuestions.map((question, questionIndex) => (
                                                             <div className='question-container' key={questionIndex}>
-                                                                {question.question}
+                                                                <div className="question-text">
+                                                                    <h3 className='question-text-title'>Question:</h3>
+                                                                    <p className='question-text-question'>{question.question}</p>
+                                                                </div>
+                                                                <div className="answer-options">
+                                                                    <h3 className='answer-options-title'>Answer Options (Correct option has a green background):</h3>
+                                                                    <div className="answer-options-container">
+                                                                        {
+                                                                            (question.question_type === 'MCQ' || question.question_type === 'TRUE_FALSE') && Object.values(question.answers).map((answer, answerIndex) => {
+                                                                                if(answer === null) return;
+                                                                                return (
+                                                                                    <div className={`answer-option ${answerIndex+1 === parseInt(question.correct_answer_number) ? 'correct-answer' : ''}`} key={answerIndex}>
+                                                                                        <span>{answer}</span>
+                                                                                    </div>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                        {
+                                                                            question.question_type === 'FILL_BLANK' && question.options.map((option, optionIndex) => {
+                                                                                return (
+                                                                                    <div className={`answer-option ${option === question.correct_answer ? 'correct-answer' : ''}`} key={optionIndex}>
+                                                                                        <span>{option}</span>
+                                                                                    </div>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                                <div className="hint-info">
+                                                                    <h3 className='hint-info-title'>Hint:</h3>
+                                                                    <p className='hint-info-hint'>{question.hint}</p>
+                                                                </div>
+                                                                <div className="explanation-info">
+                                                                    <h3 className='explanation-info-title'>Explanation:</h3>
+                                                                    <p className='explanation-info-explanation'>{question.explanation}</p>
+                                                                </div>
+
+
                                                             </div>
                                                         ))}
                                                     </div>
