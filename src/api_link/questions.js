@@ -13,9 +13,14 @@ class QuestionsAPILink {
       return axiosConfig.post(baseURL + `/bulk-add-questions-and-goals/${section_id}`, body);
    }
 
-   getAllQuestionsFromCreator(creator_id)
+   getAllQuestionsFromCreator(creator_id, body)
    {
-      return axiosConfig.get(baseURL + `/all-questions-from-creator/${creator_id}`);
+      return axiosConfig.post(baseURL + `/all-questions-from-creator/${creator_id}`, body);
+   }
+
+   reviewQuestion(question_id, body)
+   {
+      return axiosConfig.post(baseURL + `/question-reviewed-by-expert/${question_id}`, body);
    }
 }
 

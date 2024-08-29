@@ -213,3 +213,119 @@
     font-weight: 500;
 }
 
+
+.review-question-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.review-question-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.review-question-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.review-question-option {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+
+    background-color: #FFFFFF;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #000000;
+
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.review-question-option:hover {
+    cursor: pointer;
+    opacity: 0.6;
+
+    transition: opacity 0.3s ease;
+}
+
+.great {
+    background-color: #89f189;
+    border: 1px solid #095909;
+}
+
+.good {
+    background-color: #b1d9b4;
+    border: 1px solid #5a774f;
+}
+
+.ok {
+    background-color: #f1f189;
+    border: 1px solid #595909;
+}
+
+.bad {
+    background-color: #f18989;
+    border: 1px solid #590909;
+}
+
+
+.review-question-modal {
+    margin-top: -2.8rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ecece9;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #000000;
+}
+
+.review-question-modal-comment {
+    height: 6rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #000000;
+    resize: vertical;
+}
+
+.review-question-modal-submit {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+
+    background-color: #d3e9c0;
+    color: #000000;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+
+    border-radius: 0.5rem;
+    border: 1px solid #000000;
+
+    transition: opacity 0.3s ease;
+}
+
+.review-question-modal-submit:hover {
+    cursor: pointer;
+    opacity: 0.6;
+
+    transition: opacity 0.3s ease;
+}
+
+.review-question-modal-bad-rating-options {
+    margin-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}

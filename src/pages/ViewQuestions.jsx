@@ -6,6 +6,7 @@ import questionsAPILink from 'api_link/questions';
 import '../styles/pages/viewquestions.css';
 import useLogContext from 'hooks/useLogContext';
 import edioAnimation from '../assets/edio-loading.json';
+import ViewQuestion from 'components/ViewQuestion';
 
 const ViewQuestions = () =>
 {
@@ -19,7 +20,7 @@ const ViewQuestions = () =>
     const fetchAllPokerQuestions = async () =>
     {
         setQuestionsLoading(true);
-        const res = await questionsAPILink.getAllQuestionsFromCreator('666853a17f50b564b88d81ab');
+        const res = await questionsAPILink.getAllQuestionsFromCreator('666853a17f50b564b88d81ab', {filter_out_reviewed: true});
 
         if(development)
         {
@@ -91,46 +92,7 @@ const ViewQuestions = () =>
                                                 {expandedChapter === chapter && (
                                                     <div className='questions-list'>
                                                         {chapterQuestions.map((question, questionIndex) => (
-                                                            <div className='question-container' key={questionIndex}>
-                                                                <div className="question-text">
-                                                                    <h3 className='question-text-title'>Question:</h3>
-                                                                    <p className='question-text-question'>{question.question}</p>
-                                                                </div>
-                                                                <div className="answer-options">
-                                                                    <h3 className='answer-options-title'>Answer Options (Correct option has a green background):</h3>
-                                                                    <div className="answer-options-container">
-                                                                        {
-                                                                            (question.question_type === 'MCQ' || question.question_type === 'TRUE_FALSE') && Object.values(question.answers).map((answer, answerIndex) => {
-                                                                                if(answer === null) return;
-                                                                                return (
-                                                                                    <div className={`answer-option ${answerIndex+1 === parseInt(question.correct_answer_number) ? 'correct-answer' : ''}`} key={answerIndex}>
-                                                                                        <span>{answer}</span>
-                                                                                    </div>
-                                                                                )
-                                                                            })
-                                                                        }
-                                                                        {
-                                                                            question.question_type === 'FILL_BLANK' && question.options.map((option, optionIndex) => {
-                                                                                return (
-                                                                                    <div className={`answer-option ${option === question.correct_answer ? 'correct-answer' : ''}`} key={optionIndex}>
-                                                                                        <span>{option}</span>
-                                                                                    </div>
-                                                                                )
-                                                                            })
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                                <div className="hint-info">
-                                                                    <h3 className='hint-info-title'>Hint:</h3>
-                                                                    <p className='hint-info-hint'>{question.hint}</p>
-                                                                </div>
-                                                                <div className="explanation-info">
-                                                                    <h3 className='explanation-info-title'>Explanation:</h3>
-                                                                    <p className='explanation-info-explanation'>{question.explanation}</p>
-                                                                </div>
-
-
-                                                            </div>
+                                                            <ViewQuestion question={question} key={questionIndex} />
                                                         ))}
                                                     </div>
                                                 )}
