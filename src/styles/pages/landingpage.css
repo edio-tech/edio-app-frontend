@@ -8,6 +8,7 @@
    overflow-y: auto;
    color: black;
    font-family: Arial, sans-serif;
+   overflow-x: hidden;
  }
 
  .edio-hero {
@@ -533,11 +534,12 @@
 }
 
 .hero-left {
-  width: 34%;
+  width: 40%;
   margin-left: 1rem;
 }
 
 .hero-text {
+  color: #000;
   text-align: center;
 }
 
@@ -546,7 +548,7 @@
 }
 
 .carousel {
-  width: 66%;
+  width: 60%;
 }
 
 .carousel-container {
@@ -560,11 +562,13 @@
 }
 
 .carousel-slide {
-  margin-inline: 0.5rem;
+  width: min-content;
+  display: flex;
+  overflow: visible;
 }
 
 .feature-image {
-  width: 13.5rem;
+  min-width: 12rem;
   height: auto;
   transform: scale(1);
   transition: transform 0.3s ease;
@@ -611,4 +615,157 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+
+.creator-features {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  margin-top: 5rem;
+}
+
+
+.feature-row,
+.feature-row-reverse {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feature-text {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-inline: 1.5rem;
+  gap: 1rem;
+}
+
+.feature-image {
+  width: 60%;
+  margin-inline: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.feature-image-reverse {
+  justify-content: flex-start;
+}
+
+.creator-feature-image {
+  width: 80%;
+  height: auto;
+
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Animation for Creator Portal title and description */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.creator-portal-title,
+.creator-portal-description {
+  margin-inline: 25rem;
+  text-align: center;
+  color: #000;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.creator-portal-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.creator-portal-description {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Animations for feature rows */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.feature-row {
+  opacity: 0;
+}
+
+.feature-row.animate .feature-text,
+.feature-row.animate .feature-image {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.feature-row.animate .feature-image-reverse,
+.feature-row.animate .feature-text:last-child {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Intersection Observer styles */
+.creator-features .feature-row {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.creator-features .feature-row.visible {
+  opacity: 1;
+}
+
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-inline: 20rem;
+}
+
+.schedule-a-call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.contact-description {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
 }

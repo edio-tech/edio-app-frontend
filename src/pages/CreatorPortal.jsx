@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { TrendingUp, Users, DollarSign, AlertCircle } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, AlertCircle, Check, Flame, SquarePlus, Plus } from 'lucide-react';
 import '../styles/pages/creatorportal.css';
 
 const CreatorPortal = () => {
@@ -152,6 +152,36 @@ const CreatorPortal = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          <section className='flexible-pricing'>
+            <h2>Flexible Pricing</h2>
+            <p>Set your own pricing tiers, from free to premium. As your content grows, easily add new tiers to match your expanding offerings.</p>
+            <div className="pricing-tiers">
+              <div className="pricing-card free-tier">
+                <h3>Free Tier</h3>
+                <Flame size={100} color='red' />
+                <p className="price">€0</p>
+                <ul>
+                  <li className='tier-item'><Check size={16} color='green' /><span>Basic access to content</span></li>
+                  <li className='tier-item'><Check size={16} color='green' /><span>Limited features</span></li>
+                </ul>
+              </div>
+              <div className="pricing-card beginner-tier">
+                <h3>Beginner Tier</h3>
+                <Flame size={100} color='blue' />
+                <p className="price">€10</p>
+                <ul>
+                  <li className='tier-item'><Check size={16} color='green' /><span>Full access to content</span></li>
+                  <li className='tier-item'><Check size={16} color='green' /><span>Access to Chatbot</span></li>
+                  <li className='tier-item'><Check size={16} color='green' /><span>Basic analytics</span></li>
+                </ul>
+              </div>
+              <div className="pricing-card create-tier" title="Create Tier">
+                <Plus  size={120} color='black' />
+                <p>Create Tier</p>
+              </div>
             </div>
           </section>
         </div>

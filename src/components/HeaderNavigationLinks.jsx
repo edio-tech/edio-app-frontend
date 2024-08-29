@@ -20,7 +20,7 @@ const HeaderNavigationLinks = () =>
                                 <span>Home</span>
                             </Link>
                         </li> */}
-                        <li>
+                        {/* <li>
                             <Link to="/admin/all-creators" className="landing-page-link">
                                 <PanelTopDashed color="black" />
                                 <span>Creators</span>
@@ -31,7 +31,7 @@ const HeaderNavigationLinks = () =>
                                 <Axe color="black" />
                                 <span>Demo</span>
                             </Link>
-                        </li>
+                        </li> */}
                         {/* <li>
                             <Link to="/leaderboard" className="landing-page-link">
                                 <Tally5 color="black" />

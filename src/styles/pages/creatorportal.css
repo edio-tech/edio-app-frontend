@@ -130,3 +130,86 @@ h2 {
   font-size: 0.9rem;
   color: #6c757d;
 }
+
+
+.flexible-pricing {
+  margin-block: 5rem;
+  margin-bottom: 10rem;
+
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.pricing-tiers {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pricing-card {
+  background-color: #FFFFFF;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-15px);
+}
+
+.pricing-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card .price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pricing-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pricing-card li {
+  margin-bottom: 0.5rem;
+}
+
+.create-tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.create-tier .plus-icon {
+  font-size: 4rem;
+  color: var(--accent-color);
+}
+
+.tier-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .pricing-tiers {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+

@@ -4,8 +4,7 @@ import { Book, Brain, BarChart2, MessageCircle, ChevronRight, Cog, FileStack, Mo
 import { FeatureCard } from "components";
 
 import 'styles/pages/landingpage.css'
-import { useState } from 'react';
-
+import { useState, useRef, useEffect } from 'react';
 
 // SECTIONS
 
@@ -36,9 +35,53 @@ const LandingPage = () => {
     navigate('/login')
   }
 
+  const creatorsRef = useRef(null);
+  const featureRow1Ref = useRef(null);
+  const featureRow2Ref = useRef(null);
+  const featureRow3Ref = useRef(null);
+  const featureRow4Ref = useRef(null);
 
-   return (
-      <div className="edio-landing-page">
+  useEffect(() => {
+    const creatorsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInDown 1.5s ease-out forwards';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const featureRowsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate', 'visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (creatorsRef.current) {
+      creatorsObserver.observe(creatorsRef.current);
+    }
+
+    [featureRow1Ref, featureRow2Ref, featureRow3Ref, featureRow4Ref].forEach((ref) => {
+      if (ref.current) {
+        featureRowsObserver.observe(ref.current);
+      }
+    });
+
+    return () => {
+      creatorsObserver.disconnect();
+      featureRowsObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <div className="edio-landing-page">
       <section id='hero' className='section odd edio-hero full-height'>
         {/* <a
           style={{
@@ -144,16 +187,70 @@ const LandingPage = () => {
         </div>
       </section> */}
 
-      <section id="creators" className='section even'>
-        <h3>Creators</h3>
+      <section id="creators" className='section even full-height'>
+        <div className="creator-portal-title-part" ref={creatorsRef}>
+          <h2 className='creator-portal-title'>Creator Portal</h2>
+          <p className='creator-portal-description'>
+            Edio empowers creators to transform their content into interactive learning experiences.
+            Our platform leverages AI to create engaging, personalized learning experiences.
+          </p>
+        </div>
+        
+        <div className="creator-features">
+          <div className="feature-row" ref={featureRow1Ref}>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Performance Overview</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Get a bird's-eye view of your content's performance and user engagement. Track sign-ups, completions, and more in real-time.</p>
+            </div>
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724939817/edio/landing_page/Creator_Portal_Sign_Ups_jcf0a8.png" alt="Performance Overview Dashboard" className="creator-feature-image" />
+            </div>
+          </div>
+
+          <div className="feature-row reverse" ref={featureRow2Ref}>
+            <div className="feature-image feature-image-reverse">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724948633/edio/landing_page/Creator_Portal_Flexible_Pricing_ntji02.png" alt="Flexible Pricing Options" className="creator-feature-image" />
+            </div>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Flexible Pricing</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Set your own pricing tiers, from free to premium. As your content grows, easily add new tiers to match your expanding offerings.</p>
+            </div>
+          </div>
+
+          <div className="feature-row" ref={featureRow3Ref}>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Detailed User Insights</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Dive deep into user performance across different sections of your content. Identify areas where learners excel or struggle.</p>
+            </div>
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724940935/edio/landing_page/Creator_Portal_Detail_Insights_apghyy.png" alt="User Performance Insights" className="creator-feature-image" />
+            </div>
+          </div>
+
+          <div className="feature-row reverse" ref={featureRow4Ref}>
+            <div className="feature-image feature-image-reverse">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724940927/edio/landing_page/Creator_Portal_Content_Insights_kkpiva.png" alt="Content Direction Insights" className="creator-feature-image" />
+            </div>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Content Direction Insights</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Leverage unique AI-driven insights to guide your content creation. Discover what resonates with your audience and optimize future offerings.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="learners" className='section odd'>
+      <section id="learners" className='section odd full-height'>
         <h3>Learners</h3>
       </section>
 
-      <section id="contact" className='section even'>
-        <h3>Contact</h3>
+      <section id="contact" className='section even full-height contact-section'>
+        <h2>Get in Touch</h2>
+        <div className="schedule-a-call">
+          <p className='contact-description'>We're always eager to enhance our offerings and are open to incorporating new features or tailoring our services to meet your specific needs. If you have any particular requirements or unique scenarios in mind, feel free to reach out—we're here to make sure you get exactly what you need.</p>
+          <div className="cta-container">
+            <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Schedule a Call</a>
+          </div>
+        </div>
       </section>
 
       {/* <section id="learners" className='section odd'>
