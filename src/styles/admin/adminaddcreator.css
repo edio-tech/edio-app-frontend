@@ -1,0 +1,32 @@
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-label {
+   flex: 4;
+}
+
+.checkbox-control {
+   flex: 1;
+}
+
+
+.plus-logo {
+   flex: 1;
+ 
+   color: var(--clr-custom-green);
+   width: 50px;
+   height: 100%;
+   margin: 10px;
+}
+
+.flex-adjusted {
+   display: flex;
+}
+
+.input-field-with-plus-logo {
+   flex: 7;
+ }
+ 

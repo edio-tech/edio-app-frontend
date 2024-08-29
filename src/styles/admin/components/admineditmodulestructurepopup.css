@@ -1,0 +1,60 @@
+.popup-container {
+   position: relative;
+ }
+
+ .toggle-button {
+   padding: 10px 20px;
+   background-color: #3498db;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+
+ .toggle-button:hover {
+   background-color: #2980b9;
+ }
+
+ .popup-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .popup-content {
+   background-color: white;
+   padding: 20px;
+   border-radius: 5px;
+   width: 90%;
+   max-width: 600px;
+   max-height: 90vh;
+   overflow: auto;
+ }
+
+ .popup-content h2 {
+   font-size: 24px;
+   margin-bottom: 15px;
+ }
+
+ .popup-content p {
+   margin-bottom: 15px;
+ }
+
+ .close-button {
+   padding: 10px 20px;
+   background-color: #e74c3c;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+
+ .close-button:hover {
+   background-color: #c0392b;
+ }

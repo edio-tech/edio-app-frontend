@@ -37,3 +37,12 @@ export { default as Test } from './pages/Test';
 export { default as DisplayQuestions } from './components/DisplayQuestions';
 
 export { default as ModuleDisplay } from './components/ModuleDisplay';
+
+export { default as AdminAddUser } from './components/AdminAddUser';
+
+export { default as AdminBuildOutBook } from './components/AdminBuildOutBook';
+
+export { default as AdminBuildOutPDF } from "./components/AdminBuildOutPDF";
+
+export { default as AdminEditModuleStructurePopUp } from "./components/AdminEditModuleStructurePopUp";
+

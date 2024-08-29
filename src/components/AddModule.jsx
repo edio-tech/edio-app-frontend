@@ -1,57 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BeatLoader } from 'react-spinners';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 import { SquarePlus } from "lucide-react";
 
 // API imports
-import modulesAPI from 'api_link/modules.js'
-import tagsAPI from 'api_link/tags.js'
+import modulesAPI from "api_link/modules.js";
+import tagsAPI from "api_link/tags.js";
 
 // Context
-import useCreatorContext from 'hooks/useCreatorContext';
-import useLogContext from 'hooks/useLogContext';
+import useCreatorContext from "hooks/useCreatorContext";
+import useLogContext from "hooks/useLogContext";
 
 // Styling
 import "styles/components/addmodule.css";
 
-const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescription, setModuleDescription, selectedTag, setSelectedTag }) => {
-
+const AddModule = ({ creator_id, refetch, setRefetch, setHash, hash, moduleTitle, setModuleTitle, moduleDescription, setModuleDescription, selectedSubTag, setSelectedSubTag, setLeftName, setLeftAction, setTitleName }) => {
   const [loading, setLoading] = useState(false);
   const { development } = useLogContext();
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
   const { creatorData, setCreatorData, moduleSummary, setModuleSummary } = useCreatorContext();
-  
-  const [tagOptionsLoading, setTagOptionsLoading] = useState(true);
-  const [tagOptionsArray, setTagOptionsArray] = useState([]);
+
+  const [subTagOptionsLoading, setSubTagOptionsLoading] = useState(true);
+  const [subTagOptionsArray, setSubTagOptionsArray] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await tagsAPI.getAllTags()
-    
+        const res = await tagsAPI.getAllSubTags();
+
         if (res.status < 200 || res.status >= 300) {
           throw new Error(`${res.data}. Status: ${res.status}`);
         }
 
-        const content = res.data
-        const tags_data = content.data
-        const tagOptions = tags_data.map(tag => tag.tag_name)
-        setTagOptionsArray(tagOptions);
-
+        const content = res.data;
+        const sub_tags_data = content.data;
+        const subTagOptions = sub_tags_data.map((tag) => tag.sub_tag_name);
+        setSubTagOptionsArray(subTagOptions);
       } catch (err) {
         setErrors(err.message);
         if (development) {
-          console.log(err.message)
+          console.log(err.message);
         }
       } finally {
-        setTagOptionsLoading(false);
+        setSubTagOptionsLoading(false);
       }
-    }
+    };
 
     fetchData();
-  }, [hash])
+    setRefetch(false);
+  }, [hash, refetch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,42 +59,42 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
     const formdata = {
       module_name: moduleTitle,
       module_description: moduleDescription,
-      tag_name: selectedTag
+      sub_tag_name: selectedSubTag,
     };
 
     try {
-      const res = await modulesAPI.addModule(creator_id, formdata)
+      const res = await modulesAPI.addModule(creator_id, formdata);
 
       if (res.status < 200 || res.status >= 300) {
         if (development) {
-          setErrors(res.data.detail)
+          setErrors(res.data.detail);
         } else {
-          setErrors('There was an error creating your module')
+          setErrors("There was an error creating your module");
         }
-        return
+        return;
       }
-      let content = res.data
+      let content = res.data;
       if (development) {
-        console.log(content.detail)
-      } 
+        console.log(content.detail);
+      }
 
-      const incoming_module_data = content.data
+      const incoming_module_data = content.data;
 
       // Update creatorData
-      setCreatorData(prevData => {
+      setCreatorData((prevData) => {
         const updatedData = [...prevData];
-        const creatorIndex = updatedData.findIndex(creator => creator._id === incoming_module_data.creator_id);
-        
+        const creatorIndex = updatedData.findIndex((creator) => creator._id === incoming_module_data.creator_id);
+
         if (creatorIndex !== -1) {
-          const updatedCreator = {...updatedData[creatorIndex]};
+          const updatedCreator = { ...updatedData[creatorIndex] };
           const newModule = {
             [incoming_module_data._id]: {
               order_number: Object.keys(updatedCreator.modules).length + 1,
               module_name: incoming_module_data.module_name,
-              module_image: '' // Assuming the incoming data doesn't include an image
-            }
+              module_image: "", // Assuming the incoming data doesn't include an image
+            },
           };
-          updatedCreator.modules = {...updatedCreator.modules, ...newModule};
+          updatedCreator.modules = { ...updatedCreator.modules, ...newModule };
           updatedData[creatorIndex] = updatedCreator;
         }
 
@@ -103,28 +102,37 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
       });
 
       // Update moduleSummary
-      setModuleSummary(prevSummary => {
+      setModuleSummary((prevSummary) => {
         const newSummaryItem = {
           creator_id: incoming_module_data.creator_id,
           id: incoming_module_data._id,
-          module_image: '',
+          module_image: "",
           module_name: incoming_module_data.module_name,
-          order_number: moduleSummary.filter(item => item.creator_id === incoming_module_data.creator_id).length + 1
+          order_number: moduleSummary.filter((item) => item.creator_id === incoming_module_data.creator_id).length + 1,
         };
         return [...prevSummary, newSummaryItem];
       });
 
-      navigate(`/admin/module/${creator_id}/${incoming_module_data._id}`)
-
+      navigate(`/admin/module/${creator_id}/${incoming_module_data._id}`);
     } catch (err) {
       setErrors(err.message);
       if (development) {
-        console.log(err.message)
+        console.log(err.message);
       }
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const handleAddSubTagClick = () => {
+    setLeftName("Add Module");
+    setLeftAction(() => () => {
+      setHash("");
+    });
+    setTitleName("Add Sub-Tag");
+    setRefetch(true);
+    setHash("#add-sub-tag");
+  };
 
   return (
     <div className="flex-form-container">
@@ -133,51 +141,39 @@ const AddModule = ({ creator_id, hash, moduleTitle, setModuleTitle, moduleDescri
         <form onSubmit={handleSubmit}>
           <div className="global-form-group">
             <label htmlFor="module-title">Module Title</label>
-            <input 
-              id="module-title" 
-              type="text" 
-              value={moduleTitle} 
-              onChange={(e) => setModuleTitle(e.target.value)}
-              required 
-            />
+            <input id="module-title" type="text" value={moduleTitle} onChange={(e) => setModuleTitle(e.target.value)} required />
           </div>
           <div className="global-form-group">
             <label htmlFor="module-description">Module Description (Optional)</label>
-            <input 
-              id="module-description" 
-              type="text" 
-              value={moduleDescription} 
-              onChange={(e) => setModuleDescription(e.target.value)} 
-            />
+            <input id="module-description" type="text" value={moduleDescription} onChange={(e) => setModuleDescription(e.target.value)} />
           </div>
           <div className="global-form-group flex-adjusted">
             <div className="tag-input-field">
-              <label htmlFor="tag_name">Tag</label>
-              {tagOptionsLoading ? (
+              <label htmlFor="sub_tag_name">Sub-Tag</label>
+              {subTagOptionsLoading ? (
                 <div className="select-placeholder">
                   <BeatLoader />
                 </div>
               ) : (
-                <select 
-                  id="tag_name" 
-                  value={selectedTag} 
-                  onChange={(e) => setSelectedTag(e.target.value)} 
-                  required
-                >
-                  <option value="" disabled>Select a tag</option>
-                  {tagOptionsArray.map((tag) => (
-                    <option key={tag} value={tag}>
-                      {tag}
+                <select id="sub_tag_name" value={selectedSubTag} onChange={(e) => setSelectedSubTag(e.target.value)} required>
+                  <option value="" disabled>
+                    Select a sub-tag
+                  </option>
+                  {subTagOptionsArray.map((subTag) => (
+                    <option key={subTag} value={subTag}>
+                      {subTag}
                     </option>
                   ))}
                 </select>
               )}
             </div>
-            <a href="#add-tag" className="global-trans-button"><SquarePlus className="add-tag-logo"/></a>
+            <button type="button" onClick={handleAddSubTagClick} className="global-trans-button">
+              <SquarePlus className="add-tag-logo" />
+            </button>
           </div>
           <div className="global-flex-form-button-container">
             <button type="submit" className="global-form-submit-button">
-              {loading ? <BeatLoader /> : 'Create Module'}
+              {loading ? <BeatLoader /> : "Create Module"}
             </button>
           </div>
         </form>

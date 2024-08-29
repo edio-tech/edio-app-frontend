@@ -1,3 +1,17 @@
+.flex-container-document-buttons {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.large-document-type-button {
+   flex: 1;
+   margin: 10px;
+
+   width: 100px;
+   height: 100px;
+}
+
 .top-bar {
    flex: 1;
 
