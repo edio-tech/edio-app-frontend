@@ -621,7 +621,7 @@
 .creator-features {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 10rem;
   margin-top: 5rem;
 }
 
@@ -640,6 +640,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   margin-inline: 1.5rem;
   gap: 1rem;
@@ -657,7 +658,7 @@
 }
 
 .creator-feature-image {
-  width: 80%;
+  width: 100%;
   height: auto;
 
   border-radius: 1rem;
@@ -734,13 +735,66 @@
 }
 
 /* Intersection Observer styles */
-.creator-features .feature-row {
+.creator-features .feature-row,
+.learner-features .feature-row {
   opacity: 0;
   transition: opacity 0.5s ease-out;
 }
 
-.creator-features .feature-row.visible {
+.creator-features .feature-row.visible,
+.learner-features .feature-row.visible {
   opacity: 1;
+}
+
+
+.learner-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.learner-title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 25rem;
+  gap: 1rem;
+  text-align: center;
+
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.learner-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.learner-description {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.learner-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  margin-top: 10rem;
+}
+
+.app-screenshot {
+  align-items: center;
+  justify-content: center;
+}
+
+.learner-feature-image {
+  width: 18rem;
+  height: auto;
+  border-radius: 0.5rem;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 

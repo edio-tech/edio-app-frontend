@@ -36,17 +36,33 @@ const LandingPage = () => {
   }
 
   const creatorsRef = useRef(null);
+  const learnersRef = useRef(null);
   const featureRow1Ref = useRef(null);
   const featureRow2Ref = useRef(null);
   const featureRow3Ref = useRef(null);
   const featureRow4Ref = useRef(null);
+  const learnerRow1Ref = useRef(null);
+  const learnerRow2Ref = useRef(null);
+  const learnerRow3Ref = useRef(null);
+  const learnerRow4Ref = useRef(null);
 
   useEffect(() => {
     const creatorsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInDown 1.5s ease-out forwards';
+            entry.target.style.animation = 'fadeInDown 1s ease-out forwards';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const learnersObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInDown 1s ease-out forwards';
           }
         });
       },
@@ -64,8 +80,23 @@ const LandingPage = () => {
       { threshold: 0.1 }
     );
 
+    const learnerRowsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate', 'visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
     if (creatorsRef.current) {
       creatorsObserver.observe(creatorsRef.current);
+    }
+
+    if (learnersRef.current) {
+      learnersObserver.observe(learnersRef.current);
     }
 
     [featureRow1Ref, featureRow2Ref, featureRow3Ref, featureRow4Ref].forEach((ref) => {
@@ -74,9 +105,17 @@ const LandingPage = () => {
       }
     });
 
+    [learnerRow1Ref, learnerRow2Ref, learnerRow3Ref, learnerRow4Ref].forEach((ref) => {
+      if (ref.current) {
+        learnerRowsObserver.observe(ref.current);
+      }
+    });
+
     return () => {
       creatorsObserver.disconnect();
+      learnersObserver.disconnect();
       featureRowsObserver.disconnect();
+      learnerRowsObserver.disconnect();
     };
   }, []);
 
@@ -239,14 +278,59 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section id="learners" className='section odd full-height'>
-        <h3>Learners</h3>
+      <section id="learners" className='section odd full-height learner-section'>
+        <div className="learner-title-section" ref={learnersRef}>
+          <h2 className='learner-title'>What your learners get</h2>
+          <p className='learner-description'>Your learners get a personalized, interactive learning experience that makes learning fun and engaging via our app.</p>
+        </div>
+
+        <div className="learner-features">
+          <div className="feature-row" ref={learnerRow1Ref}>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Bite-Sized Flashcards</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Key information from the content is presented in easy-to-digest flashcards, making learning quick and efficient.</p>
+            </div>
+            <div className="feature-image app-screenshot">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Flashcard_crnvmc.png" alt="Bite-Sized Flashcards" className="learner-feature-image" />
+            </div>
+          </div>
+
+          <div className="feature-row reverse" ref={learnerRow2Ref}>
+            <div className="feature-image app-screenshot">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Quiz_k9wvzp.png" alt="Quiz Games" className="learner-feature-image" />
+            </div>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Interactive Quiz Games</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Engaging quiz games to test and reinforce key information from the content, making learning fun and memorable.</p>
+            </div>
+          </div>
+
+          <div className="feature-row" ref={learnerRow3Ref}>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>Personalized Analytics</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Gain insights into your learning progress, identifying strong sections and areas for improvement.</p>
+            </div>
+            <div className="feature-image app-screenshot">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Analytics_1_uvnpbw.png" alt="Personalized Analytics" className="learner-feature-image" />
+            </div>
+          </div>
+
+          <div className="feature-row reverse" ref={learnerRow4Ref}>
+            <div className="feature-image app-screenshot">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Chat_vygoul.png" alt="AI Assistant Chatbot" className="learner-feature-image" />
+            </div>
+            <div className="feature-text">
+              <h3 style={{ fontSize: '2rem' }}>AI Assistant Chatbot</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Access a knowledgeable AI chatbot that understands the content and your quiz performance, providing personalized support.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="contact" className='section even full-height contact-section'>
         <h2>Get in Touch</h2>
         <div className="schedule-a-call">
-          <p className='contact-description'>We're always eager to enhance our offerings and are open to incorporating new features or tailoring our services to meet your specific needs. If you have any particular requirements or unique scenarios in mind, feel free to reach out—we're here to make sure you get exactly what you need.</p>
+          <p className='contact-description'>We're always eager to enhance our offerings and are open to incorporating new features or tailoring our services to meet your specific needs. If you have any particular requirements or unique scenarios in mind, feel free to reach out — we're here to make sure you get exactly what you need.</p>
           <div className="cta-container">
             <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Schedule a Call</a>
           </div>
