@@ -533,7 +533,8 @@
 }
 
 .hero-left {
-  width: 40%;
+  width: 34%;
+  margin-left: 1rem;
 }
 
 .hero-text {
@@ -545,7 +546,7 @@
 }
 
 .carousel {
-  width: 60%;
+  width: 66%;
 }
 
 .carousel-container {
@@ -563,14 +564,14 @@
 }
 
 .feature-image {
-  width: 12rem;
+  width: 13.5rem;
   height: auto;
   transform: scale(1);
   transition: transform 0.3s ease;
 }
 
 .selected-feature-image {
-  transform: scale(1.1);
+  transform: scale(1.2);
   transition: transform 0.3s ease;
 
 }
@@ -578,7 +579,7 @@
 .dots-container {
   display: flex;
   justify-content: center; /* Center the dots */
-  margin-top: 1.5rem; /* Space above the dots */
+  margin-top: 2.5rem; /* Space above the dots */
 
 }
 
@@ -595,4 +596,19 @@
 
 .dot.active {
   background-color: black; /* Color for the active dot */
+}
+
+.hero-content-transform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.document-section,
+.ai-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }

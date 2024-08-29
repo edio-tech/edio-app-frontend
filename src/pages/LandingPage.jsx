@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Book, Brain, BarChart2, MessageCircle, ChevronRight } from 'lucide-react';
+import { Book, Brain, BarChart2, MessageCircle, ChevronRight, Cog, FileStack, MoveRight } from 'lucide-react';
 
 import { FeatureCard } from "components";
 
@@ -69,7 +69,16 @@ const LandingPage = () => {
               <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
             </div>
             <div className="hero-content-transform">
-              <p>Transforming</p>
+              <div className="document-section">
+                <FileStack size={100} color='#000000' />
+                <span>Content</span>
+              </div>
+              <MoveRight size={100} color='#000000' />
+              <div className="ai-section">
+                <Cog size={100} color='#000000' />
+                <span>Transformed by AI</span>
+              </div>
+              <MoveRight size={100} color='#000000' />
             </div>
           </div>
           
