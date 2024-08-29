@@ -40,3 +40,9 @@ export { default as ModuleDisplay } from './components/ModuleDisplay';
 
 export { default as AdminAddUser } from './components/AdminAddUser';
 
+export { default as AdminBuildOutBook } from './components/AdminBuildOutBook';
+
+export { default as AdminBuildOutPDF } from "./components/AdminBuildOutPDF";
+
+export { default as AdminEditModuleStructurePopUp } from "./components/AdminEditModuleStructurePopUp";
+

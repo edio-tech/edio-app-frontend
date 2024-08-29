@@ -32,6 +32,30 @@ class ModuleGenerationAPILink {
    bodyJsonToDatabase(module_id, body) {
       return axiosConfig.post(baseURL + `/body-as-json-to-db/${module_id}`, body);
    }
+
+   convertPdfToMarkdownLLMStructured(module_id, formData) {
+      return axiosConfig.post(
+         baseURL + `/convert-pdf-to-markdown-llm-structured-content/${module_id}`,
+         formData,
+         {
+            headers: {
+               'Content-Type': 'multipart/form-data'
+            }
+         }
+      );
+   }
+
+   convertPdfToMarkdownLLMUnstructured(module_id, formData) {
+      return axiosConfig.post(
+         baseURL + `/convert-pdf-to-markdown-llm-unstructured-content/${module_id}`,
+         formData,
+         {
+            headers: {
+               'Content-Type': 'multipart/form-data'
+            }
+         }
+      );
+   }
    
 }
 
