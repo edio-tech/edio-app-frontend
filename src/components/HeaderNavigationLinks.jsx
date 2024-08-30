@@ -40,7 +40,7 @@ const HeaderNavigationLinks = () =>
                         </li> */}
                         <li>
                             <Link to="/creator-portal" className="landing-page-link">
-                                <PenTool color="black" />
+                               
                                 <span>Creator Portal</span>
                             </Link>
                         </li>

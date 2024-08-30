@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Book, Brain, BarChart2, MessageCircle, ChevronRight, Cog, FileStack, MoveRight } from 'lucide-react';
+import { Book, Brain, BarChart2, MessageCircle, ChevronRight, MoveRight } from 'lucide-react';
+import noteIcon from '../assets/note.png';
+import React from 'react';
+import Lottie from 'lottie-react';
+import edioAnimation from '../assets/new_edio.json';
 
 import { FeatureCard } from "components";
 
@@ -122,28 +126,6 @@ const LandingPage = () => {
   return (
     <div className="edio-landing-page">
       <section id='hero' className='section odd edio-hero full-height'>
-        {/* <a
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 10,
-            border: '1px solid black',
-            padding: '2px 20px',
-            borderRadius: 100,
-            textDecoration: 'none',
-            color: 'black'
-          }}
-          href='https://www.ycombinator.com/apply'
-        >
-          <img src={'https://cdn.prod.website-files.com/6663a47b46313d7251a0c908/666b624f2e0b455fde127556_yc_logo.png'}
-            style={{
-              width: 150,
-            }}
-          />
-          <span>F24 Batch</span>
-          <ChevronRight />
-        </a> */}
         <div className="hero-content">
           <div className="hero-left">
             <div className="hero-text">
@@ -151,16 +133,20 @@ const LandingPage = () => {
               <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
             </div>
             <div className="hero-content-transform">
-              <div className="document-section">
-                <FileStack size={100} color='#000000' />
-                <span>Content</span>
+              <div className="hero-content-item">
+                <img src={noteIcon} alt="Note" className="hero-icon note-icon" />
               </div>
-              <MoveRight size={100} color='#000000' />
+              <MoveRight size={60} color='#F0EDE6' />
               <div className="ai-section">
-                <Cog size={100} color='#000000' />
-                <span>Transformed by AI</span>
+                <Lottie 
+                  animationData={edioAnimation} 
+                  loop={true}
+                  autoplay={true}
+                  style={{ width: 150, height: 150 }} // Adjust size as needed
+                />
+               
               </div>
-              <MoveRight size={100} color='#000000' />
+              <MoveRight size={60} color='#F0EDE6' />
             </div>
           </div>
           
@@ -242,27 +228,27 @@ const LandingPage = () => {
               <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Get a bird's-eye view of your content's performance and user engagement. Track sign-ups, completions, and more in real-time.</p>
             </div>
             <div className="feature-image">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724939817/edio/landing_page/Creator_Portal_Sign_Ups_jcf0a8.png" alt="Performance Overview Dashboard" className="creator-feature-image" />
+              <img src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724990653/Screenshot_2024-08-29_at_21.02.36_bnncxh.png" alt="Performance Overview Dashboard" className="creator-feature-image" />
             </div>
           </div>
 
           <div className="feature-row reverse" ref={featureRow2Ref}>
             <div className="feature-image feature-image-reverse">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724948633/edio/landing_page/Creator_Portal_Flexible_Pricing_ntji02.png" alt="Flexible Pricing Options" className="creator-feature-image" />
+              <img src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724992308/Screenshot_2024-08-29_at_21.30.11_fwtjvs.png" alt="Flexible Pricing Options" className="creator-feature-image" />
             </div>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Flexible Pricing</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Set your own pricing tiers, from free to premium. As your content grows, easily add new tiers to match your expanding offerings.</p>
+              <h3 style={{ fontSize: '2rem' }}>Detailed User Insights</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Dive deep into user performance across different sections of your content. Identify areas where learners excel or struggle.</p>
             </div>
           </div>
 
           <div className="feature-row" ref={featureRow3Ref}>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Detailed User Insights</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Dive deep into user performance across different sections of your content. Identify areas where learners excel or struggle.</p>
+              <h3 style={{ fontSize: '2rem' }}>Content Direction Insights</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Leverage unique AI-driven insights to guide your content creation. Discover what areas of the subject your audience struggles with and optimize your content to address these areas.</p>
             </div>
             <div className="feature-image">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724940935/edio/landing_page/Creator_Portal_Detail_Insights_apghyy.png" alt="User Performance Insights" className="creator-feature-image" />
+              <img src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1724992448/Screenshot_2024-08-29_at_21.32.33_z41vp7.png" alt="User Performance Insights" className="creator-feature-image" />
             </div>
           </div>
 
