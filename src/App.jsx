@@ -51,6 +51,7 @@ import DeleteAccountSteps from 'pages/DeleteAccountSteps';
 import NotFound from 'pages/NotFound';
 import CreatorPortal from './pages/CreatorPortal';
 import ViewQuestions from 'pages/ViewQuestions';
+import RegisterInterest from 'pages/RegisterInterest';
 
 
 
@@ -121,7 +122,8 @@ function App() {
           <Route path = "/logout" element = {<Logout />} />
         </Route>
       
-        <Route path = "/view-all-poker-questions" element = {<ViewQuestions />} />  
+        <Route path = "/view-all-poker-questions" element = {<ViewQuestions />} />
+        <Route path = "/register-interest" element = {<RegisterInterest />} />
       </Route>
       <Route path = "/*" element = {<NotFound />} />
     </Routes>
