@@ -46,6 +46,12 @@ class UsersAPILink {
       console.log(baseURL);
       return axiosConfig.get(baseURL + '/me', {headers: {Authorization: `Bearer ${token}`}});
    }
+
+
+   registerInterest(body)
+   {
+      return axiosConfig.post(baseURL + '/register-interest', body);
+   }
 }
 
 const usersAPILink = new UsersAPILink();
