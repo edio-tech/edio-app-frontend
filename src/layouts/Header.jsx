@@ -8,7 +8,7 @@ import Lottie from 'lottie-react';
 import useAuth from "hooks/useAuth";
 
 // Styling
-import edioAnimation from '../assets/edio-loading.json';
+import newEdioAnimation from '../assets/new_edio.json';
 import EdioText from "assets/edio-animation-first-frame.png"
 import 'styles/layouts/header.css';
 import HeaderNavigationLinks from "components/HeaderNavigationLinks";
@@ -58,7 +58,7 @@ const Header = ({ setMenuToggled }) => {
             <div
                style={{ height: 65, aspectRatio: aspectRatio }}
             >
-               <Lottie animationData={edioAnimation} autoPlay loop />
+               <Lottie animationData={newEdioAnimation} autoPlay loop />
             </div>
          </Link>
          <div className = "navbar-element">

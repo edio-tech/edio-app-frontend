@@ -4,31 +4,28 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --clr-custom-gray: #2b3945; */
-  /* --clr-custom-dark-gray: hsl(207, 26%, 17%); */
-
-  --clr-custom-pink: #A968F8;
-  --clr-custom-blue: #68b3e8;
-  --clr-custom-green: rgb(0, 169, 158);
-  --clr-custom-light-green: rgb(155, 236, 230);
+  --clr-custom-pink: #AE5630;
+  --clr-custom-blue: #AE5630;
+  --clr-custom-green: #AE5630;
+  --clr-custom-light-green: #F0EDE6;
 
   --fw-light: 300;
   --fw-semi-bold: 600;
   --fw-extra-bold: 800;
 
-  --clr-bg: hsl(0, 0%, 98%);
-  --clr-accent: hsl(0, 0%, 100%);
-  --landing-page-bg-accent: hsl(0, 6%, 90%);
-  --clr-accent-hover: hsl(0, 3%, 87%);
-  --clr-font: hsl(207, 26%, 17%);
-  --leaderboard-header-bg: var(--landing-page-bg-accent);
-  --leaderboard-header-font: var(--clr-font);
-  --leaderboard-divider: var(--clr-font);
-  --clr-input: hsl(0, 0%, 52%);
-  --clr-bg-sidebar: rgba(192, 192, 192);
-  --clr-scroll: rgb(156, 153, 153);
-  --clr-font-accent: rgb(70, 70, 70);
-  --disclaimer-colour-font: black;
+  --clr-bg: #292926;
+  --clr-accent: #F0EDE6;
+  --landing-page-bg-accent: #F0EDE6;
+  --clr-accent-hover: #d8d5ce;
+  --clr-font: #F0EDE6;
+  --leaderboard-header-bg: #F0EDE6;
+  --leaderboard-header-font: #292926;
+  --leaderboard-divider: #AE5630;
+  --clr-input: #F0EDE6;
+  --clr-bg-sidebar: #F0EDE6;
+  --clr-scroll: #AE5630;
+  --clr-font-accent: #F0EDE6;
+  --disclaimer-colour-font: #F0EDE6;
 }
 
 /* Global Styling */
@@ -237,3 +234,15 @@ body {
  .mog {
    border: 3px solid orange;
  }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--clr-bg);
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-font);
+}
