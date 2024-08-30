@@ -18,5 +18,5 @@
  
  .signup-link {
    padding-top: 20px;
-   color: black;
+   color: var(--clr-font);
  }

@@ -126,7 +126,7 @@ body {
 .global-form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: black;
+  color: var(--clr-font);
 }
 
 .global-form-group input {
@@ -134,7 +134,7 @@ body {
   padding: 0.75rem;
   border: 1px solid var(--clr-custom-green);
   background-color: transparent;
-  color: black;
+  color: var(--clr-font);
   border-radius: 4px;
 }
 
@@ -143,7 +143,7 @@ body {
   padding: 0.75rem;
   border: 1px solid var(--clr-custom-green);
   background-color: transparent;
-  color: black;
+  color: var(--clr-font);
   border-radius: 4px;
   resize: vertical;
   height: 200px;
@@ -154,12 +154,12 @@ body {
   padding: 0.75rem;
   border: 1px solid var(--clr-custom-green);
   background-color: transparent;
-  color: black;
+  color: var(--clr-font);
   border-radius: 4px;
 }
 
 .global-form-group select option {
-  color: black;
+  color: var(--clr-font);
 }
 
 .global-form-button-group {
@@ -172,7 +172,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   background-color: var(--clr-custom-green);
-  color: black;
+  color: var(--clr-font);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -195,19 +195,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black; /* Thumb color */
+  background: var(--clr-font); /* Thumb color */
   border-radius: 6px; /* Rounded corners of the thumb */
 }
 
 /* Optional: Styling the scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: black; /* Darker shade on hover for better visibility */
+  background: var(--clr-font); /* Darker shade on hover for better visibility */
 }
 
 .white-line {
   border: none; /* Remove the default border */
   height: 2px; /* Set the thickness of the line */
-  background-color: black; /* Set the color of the line */
+  background-color: var(--clr-font); /* Set the color of the line */
   margin: 30px 0; /* Add some vertical spacing if needed */
 }
 
