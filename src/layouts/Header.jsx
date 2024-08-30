@@ -39,6 +39,8 @@ const Header = ({ setMenuToggled }) => {
 
    const handleLoginClick = () => { navigate('/login') }
 
+   const handleRegisterInterestClick = () => { navigate('/register-interest') }
+
    const handleCreatorPortalClick = () => { navigate('/creator-portal')}
    const handleAccountSettingsClick = () => { navigate('/account-settings') }
    const handleLogoutClick = () => { navigate('/logout') }
@@ -85,7 +87,7 @@ const Header = ({ setMenuToggled }) => {
                   )}
                </div>
                </> : <>
-                  <button onClick={() => handleLoginClick()} className = "login-navbar-button"> LOG IN </button>
+                  <button onClick={() => handleRegisterInterestClick()} className = "login-navbar-button">Register Interest</button>
                </>
             }
          </div>
