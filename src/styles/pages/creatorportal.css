@@ -238,20 +238,39 @@
   grid-column: span 12;
   display: flex;
   flex-direction: column;
-  min-height: 450px; /* Reduced from 500px */
+  min-height: 450px;
   padding: 1.5rem;
+}
+
+.flexible-pricing h2 {
+  text-align: left;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: var(--text-dark);
+}
+
+.pricing-explainer {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  width: 100%; /* Changed from max-width to width */
+}
+
+.pricing-explainer p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  font-size: 1.1rem;
 }
 
 .pricing-tiers {
   display: flex;
-  justify-content: space-evenly; /* Changed from space-between to center */
-  gap: 1rem; /* Reduced gap to bring cards closer */
-  margin-top: 1.25rem;
+  justify-content: space-between;
+  gap: 1rem;
   flex-grow: 1;
 }
 
 .pricing-card {
-  flex: 0 1 280px; /* Changed from flex: 1 to set a fixed width */
+  flex: 0 1 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,15 +285,15 @@
 }
 
 .pricing-card.free-tier {
-  background-color: #F0EDE6; /* Light beige for free tier */
+  background-color: #F0EDE6;
 }
 
 .pricing-card.beginner-tier {
-  background-color: #E6F0ED; /* Light mint for beginner tier */
+  background-color: #E6F0ED;
 }
 
 .pricing-card.create-tier {
-  background-color: #EDE6F0; /* Light lavender for create tier */
+  background-color: #EDE6F0;
 }
 
 .pricing-card:hover {

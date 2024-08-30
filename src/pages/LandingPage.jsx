@@ -214,10 +214,10 @@ const LandingPage = () => {
 
       <section id="creators" className='section even full-height'>
         <div className="creator-portal-title-part" ref={creatorsRef}>
-          <h2 className='creator-portal-title'>Creator Portal</h2>
+          <h2 className='creator-portal-title'>What creators can do</h2>
           <p className='creator-portal-description'>
-            Edio empowers creators to transform their content into interactive learning experiences.
-            Our platform leverages AI to create engaging, personalized learning experiences.
+            Edio empowers creators to transform their content or expertise into interactive learning experiences.
+            We allow you to monetize your content, expertise and knowledge. We also provide you with data-driven insights to help you improve your content, based on what your audience needs. 
           </p>
         </div>
         
@@ -254,11 +254,11 @@ const LandingPage = () => {
 
           <div className="feature-row reverse" ref={featureRow4Ref}>
             <div className="feature-image feature-image-reverse">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724940927/edio/landing_page/Creator_Portal_Content_Insights_kkpiva.png" alt="Content Direction Insights" className="creator-feature-image" />
+              <img src="https://res.cloudinary.com/dyjzdczw8/image/upload/v1725001195/Screenshot_2024-08-29_at_23.58.16_g8z0bb.png" alt="Content Direction Insights" className="creator-feature-image" />
             </div>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Content Direction Insights</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Leverage unique AI-driven insights to guide your content creation. Discover what resonates with your audience and optimize future offerings.</p>
+              <h3 style={{ fontSize: '2rem' }}>You control the Pricing</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Each creator can set their own pricing structure. You can set your own prices, and define access permissions for each tier. You can also have a free tier to attract new learners.</p>
             </div>
           </div>
         </div>
@@ -266,56 +266,58 @@ const LandingPage = () => {
 
       <section id="learners" className='section odd full-height learner-section'>
         <div className="learner-title-section" ref={learnersRef}>
-          <h2 className='learner-title'>What your learners get</h2>
-          <p className='learner-description'>Your learners get a personalized, interactive learning experience that makes learning fun and engaging via our app.</p>
+          <h2 className="learner-title">For Learners</h2>
+          <p className="learner-description">
+            Edio transforms how you learn, making education more engaging and effective.
+          </p>
         </div>
 
         <div className="learner-features">
           <div className="feature-row" ref={learnerRow1Ref}>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Bite-Sized Flashcards</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Key information from the content is presented in easy-to-digest flashcards, making learning quick and efficient.</p>
+              <h3 style={{ fontSize: '2rem' }}>Personalized Learning Paths</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Digestible summaries optimized for micro-learning. Swipe through notes and later take a quiz to test your knowledge.</p>
             </div>
-            <div className="feature-image app-screenshot">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Flashcard_crnvmc.png" alt="Bite-Sized Flashcards" className="learner-feature-image" />
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Flashcard_crnvmc.png" alt="Personalized Learning" className="learner-feature-image" />
             </div>
           </div>
 
           <div className="feature-row reverse" ref={learnerRow2Ref}>
-            <div className="feature-image app-screenshot">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Quiz_k9wvzp.png" alt="Quiz Games" className="learner-feature-image" />
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Quiz_k9wvzp.png" alt="Interactive Content" className="learner-feature-image" />
             </div>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Interactive Quiz Games</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Engaging quiz games to test and reinforce key information from the content, making learning fun and memorable.</p>
+              <h3 style={{ fontSize: '2rem' }}>Gamified Learning</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Engage with dynamic, interactive content that makes learning fun and engaging. Your users can earn coins, and spend them on bonuses such as hints and AI assistance.</p>
             </div>
           </div>
 
           <div className="feature-row" ref={learnerRow3Ref}>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>Personalized Analytics</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Gain insights into your learning progress, identifying strong sections and areas for improvement.</p>
+              <h3 style={{ fontSize: '2rem' }}>Progress Tracking</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Monitor your learning journey with detailed analytics and insights.</p>
             </div>
-            <div className="feature-image app-screenshot">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Analytics_1_uvnpbw.png" alt="Personalized Analytics" className="learner-feature-image" />
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Analytics_1_uvnpbw.png" alt="Progress Tracking" className="learner-feature-image" />
             </div>
           </div>
 
           <div className="feature-row reverse" ref={learnerRow4Ref}>
-            <div className="feature-image app-screenshot">
-              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Chat_vygoul.png" alt="AI Assistant Chatbot" className="learner-feature-image" />
+            <div className="feature-image">
+              <img src="https://res.cloudinary.com/dphekriyz/image/upload/v1724959738/edio/landing_page/Chat_vygoul.png" alt="Community Learning" className="learner-feature-image" />
             </div>
             <div className="feature-text">
-              <h3 style={{ fontSize: '2rem' }}>AI Assistant Chatbot</h3>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Access a knowledgeable AI chatbot that understands the content and your quiz performance, providing personalized support.</p>
+              <h3 style={{ fontSize: '2rem' }}>Personalized AI Study Buddy</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Consult with an AI chatbot that is trained on your creators content, and is constantly updated on your progress and performance.</p>
             </div>
           </div>
         </div>
       </section>
 
       <section id="contact" className='section even full-height contact-section'>
-        <h2>Get in Touch</h2>
         <div className="schedule-a-call">
+          <h2>Get in Touch</h2>
           <p className='contact-description'>We're always eager to enhance our offerings and are open to incorporating new features or tailoring our services to meet your specific needs. If you have any particular requirements or unique scenarios in mind, feel free to reach out — we're here to make sure you get exactly what you need.</p>
           <div className="cta-container">
             <a className='demo-button' href='https://calendly.com/ross-edio/30min'>Schedule a Call</a>
@@ -339,6 +341,7 @@ const LandingPage = () => {
 
       <footer className="edio-footer">
         <p>&copy; 2024 Edio. All rights reserved.</p>
+        <p>Contact: <a href="mailto:ross@edio.cc">ross@edio.cc</a></p>
       </footer>
     </div>
    )

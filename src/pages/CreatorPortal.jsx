@@ -159,31 +159,51 @@ const CreatorPortal = () => {
 
           <section className='flexible-pricing card'>
             <h2>Flexible Pricing</h2>
-            <p>Set your own pricing tiers, from free to premium. As your content grows, easily add new tiers to match your expanding offerings.</p>
+            <div className="pricing-explainer">
+              <p>
+                As a creator, you have complete control over your pricing structure. Customize tier levels, 
+                set your own prices, and define access permissions for each tier. This flexibility allows you 
+                to tailor your offerings to your audience and maximize your content's value.
+              </p>
+              <p>
+                The below prices are just placeholder values. These are based on prices that other creators have set.
+                Adjust and expand your tiers as your channel grows and evolves.
+              </p>
+            </div>
             <div className="pricing-tiers">
               <div className="pricing-card free-tier">
                 <h3>Free Tier</h3>
-                <Flame size={70} color='red' />
-                <p className="price">€0</p>
+                <Flame size={65} color='#FF6B6B' />
+                <p className="price">£0</p>
                 <ul>
                   <li className='tier-item'><Check size={18} color='green' /><span>Basic access to content</span></li>
-                  <li className='tier-item'><Check size={18} color='green' /><span>Limited features</span></li>
-                  <li className='tier-item'><Check size={18} color='green' /><span>Ad-supported experience</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Access to Questions</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Limited usage</span></li>
                 </ul>
               </div>
-              <div className="pricing-card beginner-tier">
-                <h3>Beginner Tier</h3>
-                <Flame size={70} color='blue' />
-                <p className="price">€10</p>
+              <div className="pricing-card basic-tier">
+                <h3>Basic Tier</h3>
+                <Flame size={65} color='#4ECDC4' />
+                <p className="price">£20</p>
                 <ul>
                   <li className='tier-item'><Check size={18} color='green' /><span>Full access to content</span></li>
-                  <li className='tier-item'><Check size={18} color='green' /><span>Access to Chatbot</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Unlimited usage</span></li>
                   <li className='tier-item'><Check size={18} color='green' /><span>Basic analytics</span></li>
-                  <li className='tier-item'><Check size={18} color='green' /><span>Ad-free experience</span></li>
+                </ul>
+              </div>
+              <div className="pricing-card premium-tier">
+                <h3>Premium Tier</h3>
+                <Flame size={65} color='#45B7D1' />
+                <p className="price">£40</p>
+                <ul>
+                  <li className='tier-item'><Check size={18} color='green' /><span>All Basic tier features</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Advanced analytics</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Personal AI tutor</span></li>
+                  <li className='tier-item'><Check size={18} color='green' /><span>Priority support</span></li>
                 </ul>
               </div>
               <div className="pricing-card create-tier" title="Create Tier">
-                <Plus size={70} color='black' />
+                <Plus size={65} color='#292926' />
                 <p>Create Tier</p>
               </div>
             </div>
