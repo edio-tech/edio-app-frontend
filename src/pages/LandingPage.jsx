@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Book, Brain, BarChart2, MessageCircle, ChevronRight, MoveRight } from 'lucide-react';
 import noteIcon from '../assets/note.png';
+import paper from '../assets/slides.svg';
 import React from 'react';
 import Lottie from 'lottie-react';
 import edioAnimation from '../assets/new_edio.json';
@@ -134,19 +135,21 @@ const LandingPage = () => {
             </div>
             <div className="hero-content-transform">
               <div className="hero-content-item">
-                <img src={noteIcon} alt="Note" className="hero-icon note-icon" />
+                <img src={paper} alt="Note" className="hero-icon note-icon" />
               </div>
-              <MoveRight size={60} color='#F0EDE6' />
-              <div className="ai-section">
-                <Lottie 
-                  animationData={edioAnimation} 
-                  loop={true}
-                  autoplay={true}
-                  style={{ width: 150, height: 150 }} // Adjust size as needed
-                />
-               
+              <div className="transform-section">
+                <MoveRight size={60} color='#F0EDE6' className='arrow' />
+                <div className="ai-section">
+                  <Lottie
+                    animationData={edioAnimation}
+                    loop={true}
+                    autoplay={true}
+                    style={{ width: 150, height: 150 }} // Adjust size as needed
+                  />
+                
+                </div>
+                <MoveRight size={60} color='#F0EDE6' className='arrow' />
               </div>
-              <MoveRight size={60} color='#F0EDE6' />
             </div>
           </div>
           
@@ -163,7 +166,7 @@ const LandingPage = () => {
                   <img 
                     src={src} 
                     alt={`Image ${index + 1}`} 
-                    className={`feature-image ${currentIndex === index ? 'selected-feature-image' : ''}`} 
+                    className={`hero-carousel-image ${currentIndex === index ? 'selected-hero-carousel-image' : ''}`}
                   />
                 </div>
               ))}
