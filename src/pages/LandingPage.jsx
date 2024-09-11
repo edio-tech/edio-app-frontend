@@ -135,7 +135,7 @@ const LandingPage = () => {
             </div>
             <div className="hero-content-transform">
               <div className="hero-content-item">
-                <img src={paper} alt="Note" className="hero-icon note-icon" />
+                <img src={'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057880/Component_1_idanhu.png'} alt="Note" className="hero-icon note-icon" />
               </div>
               <div className="transform-section">
                 <MoveRight size={60} color='#F0EDE6' className='arrow' />
@@ -155,9 +155,9 @@ const LandingPage = () => {
           
           <div className="carousel">
             <div className="carousel-container">
-              {['https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745175/Component_14_1_gyf6db.svg', 
-                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745404/Group_54_rtpcyq.svg', 
-                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1724745457/Component_14_2_xpwg1d.svg'].map((src, index) => (
+              {['https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel1_yewcuf.png', 
+                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel2_l6gqnz.png', 
+                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel3_1_bi6jgk.png'].map((src, index) => (
                 <div 
                   className="carousel-slide" 
                   key={index} 

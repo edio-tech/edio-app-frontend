@@ -667,11 +667,11 @@
   }
 
   .hero-carousel-image {
-    width: 7.5rem;
+    width: 7rem;
   }
 
   .carousel-slide {
-    margin-inline: 0;
+    margin-inline: 0.2rem;
   }
 
   .demo-button {
