@@ -18,6 +18,18 @@
   text-align: center;
 }
 
+.warning-message {
+  color: orange;
+  font-weight: bold;
+  width: 100%;
+  padding-top: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .flex-adjusted {
   display: flex;
 }

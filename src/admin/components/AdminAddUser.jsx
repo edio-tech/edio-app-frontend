@@ -23,6 +23,7 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
+  const [nameLength, setNameLength] = useState(0);
 
   const onDrop = useCallback((acceptedFiles) => {
     setProfilePic(acceptedFiles[0]);
@@ -107,11 +108,29 @@ const AdminAddUser = ({ setHash, setRefetch }) => {
             <Form.Field name="name">
               <Form.Label>Name</Form.Label>
               <Form.Control asChild>
-                <input id="name" type="text" required />
+                <input 
+                  id="name" 
+                  type="text" 
+                  required 
+                  maxLength={25} 
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value.length <= 25) {
+                      e.target.value = value; // Update the input value
+                    }
+                    setNameLength(value.length); // Update character count
+                  }} 
+                />
               </Form.Control>
               <Form.Message match="valueMissing" className="error-message">
                 Name is required
               </Form.Message>
+              {nameLength == 25 && (
+                  <p className="warning-message">
+                    Name cannot be longer than 25 characters
+                  </p>
+              )}
+              <p style={{textAlign: 'right', paddingTop: '8px', fontSize: '14px'}}>{nameLength}/25</p> {/* Display character count */}
             </Form.Field>
           </div>
           <div className="global-form-group">
