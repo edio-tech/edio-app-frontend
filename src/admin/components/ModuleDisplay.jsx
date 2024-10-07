@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { DisplayQuestions } from 'admin';
 import { Spinner } from 'components';
+import { DisplayGoals } from 'admin';
+
 
 import "styles/admin/components/moduledisplay.css"
 
@@ -102,10 +104,10 @@ const ModuleDisplay = ({ sectionData, sectionSelected, sectionLoading }) => {
             }
             {showGoals &&
               <>
-                {(!sectionData.goals || Object.keys(sectionData.goals).length === 0) &&
+                {(!sectionData.goals || Object.keys(sectionData.goals).length === 0) ? (
                   <>
                     {!sectionData.cleaned_content ? (
-                      <div> You must generate cleaned content before generating goals </div>
+                      <div> You must have cleaned content stored before generating goals if you want to generate them directly. </div>
                     ) : (
                       <>
                         <div>No Goals or Questions - Add Goals First</div>
@@ -118,6 +120,9 @@ const ModuleDisplay = ({ sectionData, sectionSelected, sectionLoading }) => {
                       <div> There are goals generated for this section. Goals will be displayed here. Feature not added yet. </div>
                     }
                   </>
+                ) : (
+                  <DisplayGoals goals={sectionData.goals} />
+                )
                 }
               </>
             }

@@ -105,7 +105,12 @@ const AdminAddCreator = () => {
     setLoading(true);
     e.preventDefault();
 
-    const formdata = Object.fromEntries(new FormData(e.currentTarget));
+    let formdata = Object.fromEntries(new FormData(e.currentTarget));
+    console.log("formdata:", formdata);
+    // Add another field to the formdata object for the creator's email.
+    formdata.short_description = "";
+    formdata.subject = "economics";
+    console.log("formdata:", formdata);
     try {
       const res = await creatorsAPI.addCreator(formdata);
 
