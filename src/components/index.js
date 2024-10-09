@@ -20,3 +20,5 @@ export { default as AddSubTag } from './AddSubTag';
 
 export { default as ErrorMessage } from './ErrorMessage';
 
+export { default as RequireReviewer } from './RequireReviewer';
+

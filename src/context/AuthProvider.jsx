@@ -16,6 +16,7 @@ export const AuthProvider = ({children}) => {
          const userData = await usersAPI.checkDetails(token);
 
          if (userData['status'] === 200) {
+            console.log('userData:', userData)
             const userInfo = await userData['data'];
             userInfo['token'] = token;
             setAuth(userInfo);
