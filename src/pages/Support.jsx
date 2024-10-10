@@ -9,7 +9,7 @@ const Support = () => {
             At edio we are committed to bringing you the best experience.
             If you need further assistance, our support team is here to help. 
             If you can't find the information you're looking for, feel free to reach out to us directly. 
-            You can email us at <b>matthew@edio.cc</b> for personalized assistance. 
+            You can email us at <b>contact@edio.cc</b> for personalized assistance. 
             We're committed to providing you with the best service possible and will respond to your inquiry as quickly as we can.
         </p>
       </div>
