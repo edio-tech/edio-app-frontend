@@ -129,10 +129,10 @@ const LandingPage = () => {
       <section id='hero' className='section odd edio-hero full-height'>
         <div className="hero-content">
           <div className="hero-left">
-            <div className="hero-text">
+            {/* <div className="hero-text">
               <h2>Learning Made Fun</h2>
               <p>Edio leverages AI to transform educational content into an interactive learning experience</p>
-            </div>
+            </div> */}
             <div className="hero-content-transform">
               <div className="hero-content-item">
                 <img src={'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057880/Component_1_idanhu.png'} alt="Note" className="hero-icon note-icon" />
@@ -146,36 +146,36 @@ const LandingPage = () => {
                     autoplay={true}
                     style={{ width: 150, height: 150 }} // Adjust size as needed
                   />
-                
+
                 </div>
                 <MoveRight size={60} color='#F0EDE6' className='arrow' />
               </div>
             </div>
           </div>
-          
+
           <div className="carousel">
             <div className="carousel-container">
-              {['https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel1_yewcuf.png', 
-                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel2_l6gqnz.png', 
+              {['https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel1_yewcuf.png',
+                'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel2_l6gqnz.png',
                 'https://res.cloudinary.com/dyjzdczw8/image/upload/v1726057557/carousel3_1_bi6jgk.png'].map((src, index) => (
-                <div 
-                  className="carousel-slide" 
-                  key={index} 
-                  onClick={() => handleImageClick(index)} // Add click handler
-                >
-                  <img 
-                    src={src} 
-                    alt={`Image ${index + 1}`} 
-                    className={`hero-carousel-image ${currentIndex === index ? 'selected-hero-carousel-image' : ''}`}
-                  />
-                </div>
-              ))}
+                  <div
+                    className="carousel-slide"
+                    key={index}
+                    onClick={() => handleImageClick(index)} // Add click handler
+                  >
+                    <img
+                      src={src}
+                      alt={`Image ${index + 1}`}
+                      className={`hero-carousel-image ${currentIndex === index ? 'selected-hero-carousel-image' : ''}`}
+                    />
+                  </div>
+                ))}
             </div>
             <div className="dots-container">
               {['1', '2', '3'].map((_, index) => (
-                <span 
-                  key={index} 
-                  className={`dot ${currentIndex === index ? 'active' : ''}`} 
+                <span
+                  key={index}
+                  className={`dot ${currentIndex === index ? 'active' : ''}`}
                   onClick={() => handleDotClick(index)} // Add click handler for dots
                 />
               ))}
@@ -220,10 +220,10 @@ const LandingPage = () => {
           <h2 className='creator-portal-title'>What creators can do</h2>
           <p className='creator-portal-description'>
             Edio empowers creators to transform their content or expertise into interactive learning experiences.
-            We allow you to monetize your content, expertise and knowledge. We also provide you with data-driven insights to help you improve your content, based on what your audience needs. 
+            We allow you to monetize your content, expertise and knowledge. We also provide you with data-driven insights to help you improve your content, based on what your audience needs.
           </p>
         </div>
-        
+
         <div className="creator-features">
           <div className="feature-row" ref={featureRow1Ref}>
             <div className="feature-text">
@@ -347,7 +347,7 @@ const LandingPage = () => {
         <p>Contact: <a href="mailto:ross@edio.cc">ross@edio.cc</a></p>
       </footer>
     </div>
-   )
+  )
 }
 
 

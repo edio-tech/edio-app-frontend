@@ -5,14 +5,14 @@ import { Spinner } from 'components';
 
 import useAuth from "../hooks/useAuth";
 
-const RequireCreator = () => {
+const RequireReviewer = () => {
    const { auth, loading } = useAuth();
 
    if(loading) {
       return <><Spinner/></>;
    }
 
-   return auth.role === 'CREATOR' || auth.role === 'ADMIN' ? <Outlet /> : <Navigate to={'/'} />;
+   return auth.role === 'REVIEWER' || auth.role === 'ADMIN' ? <Outlet /> : <Navigate to={'/'} />;
 }
 
-export default RequireCreator;
+export default RequireReviewer;

@@ -8,7 +8,7 @@ import useLogContext from 'hooks/useLogContext';
 import edioAnimation from '../assets/edio-loading.json';
 import ViewQuestion from 'components/ViewQuestion';
 
-const ViewQuestions = () =>
+const ViewQuestions = (creator_id) =>
 {
 
     const { development } = useLogContext();
@@ -20,7 +20,7 @@ const ViewQuestions = () =>
     const fetchAllPokerQuestions = async () =>
     {
         setQuestionsLoading(true);
-        const res = await questionsAPILink.getAllQuestionsFromCreator('666853a17f50b564b88d81ab', {filter_out_reviewed: true});
+        const res = await questionsAPILink.getAllQuestionsFromCreator(creator_id, {filter_out_reviewed: true});
 
         if(development)
         {

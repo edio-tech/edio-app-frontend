@@ -47,7 +47,7 @@ class ModuleGenerationAPILink {
 
    convertPdfToMarkdownLLMUnstructured(module_id, formData) {
       return axiosConfig.post(
-         baseURL + `/convert-pdf-to-markdown-llm-unstructured-content/${module_id}`,
+         baseURL + `/convert-pdf-to-markdown-llm-unstructured-content/${module_id}/null/null`,
          formData,
          {
             headers: {

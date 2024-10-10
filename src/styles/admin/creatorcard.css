@@ -2,7 +2,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   flex-direction:column;
+   flex-direction: column;
    height: 400px;
    width: 300px;
 
@@ -11,8 +11,8 @@
 
 .card-name {
    flex: 1;
-   color:black;
    font-size: large;
+   color: white;
 
    display: flex;
    justify-content: center;
