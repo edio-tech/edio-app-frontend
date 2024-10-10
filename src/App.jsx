@@ -11,7 +11,9 @@ import {
   Support,
   Privacy,
   AccountSettings,
-  Logout
+  Logout,
+  SelectReviewQuestions,
+  ViewQuestions
 } from "pages";
 
 // ADmin Pages
@@ -44,13 +46,13 @@ import {
 
  // Components
 import { 
-  RequireAuth, RequireAdmin, RequireCreator, WebSock
+  RequireAuth, RequireAdmin, RequireCreator, RequireReviewer, WebSock
 } from "components"
+
 import Leaderboard from 'admin/pages/Leaderboard';
 import DeleteAccountSteps from 'pages/DeleteAccountSteps';
 import NotFound from 'pages/NotFound';
 import CreatorPortal from './pages/CreatorPortal';
-import ViewQuestions from 'pages/ViewQuestions';
 import RegisterInterest from 'pages/RegisterInterest';
 
 
@@ -78,7 +80,12 @@ function App() {
         <Route path = "/privacy" element = {<Privacy />} />
         <Route path = "/delete-account" element = {<DeleteAccountSteps />} />
 
+        <Route path = "/register-interest" element = {<RegisterInterest />} />
+
         <Route path = '/websock' element = {<WebSock />} />
+
+
+        {/* Admin Only Routes */}
       
         <Route element = {<RequireAdmin />}>
             <Route path = "/leaderboard" element = {<Leaderboard />} />
@@ -100,8 +107,6 @@ function App() {
 
             <Route path = "/admin/test" element = {<Test />} />
 
-      
-
             <Route path = "/admin/demo" element = {<DemoHome />} />
             <Route path = "/admin/demo/create-small-demo" element = {<CreateSmallDemo />} />
             <Route path = "/admin/demo/create-demo" element = {<CreateDemo />} />
@@ -110,9 +115,26 @@ function App() {
           </Route>
         </Route>
 
+
+
+        {/* Creator Only Routes */}
+
         <Route element = {<RequireCreator />}>
           <Route path = "/all-modules" element = {<ListModules />} />
         </Route>
+
+
+
+        {/* Reviewer Only Routes */}
+
+        <Route element = {<RequireReviewer />}>
+          <Route path = "/review-questions" element = {<SelectReviewQuestions />} />
+          <Route path = "/review-all-questions/:creator_id" element = {<ViewQuestions />} />
+        </Route>
+
+
+
+        {/* Auth Routes */}
 
         <Route element = {<RequireAuth />}>
           <Route path = "/explore-creators" element = {<Explore />} />
@@ -121,9 +143,9 @@ function App() {
           <Route path = "/account-settings" element = {<AccountSettings />} />
           <Route path = "/logout" element = {<Logout />} />
         </Route>
-      
-        <Route path = "/view-all-poker-questions" element = {<ViewQuestions />} />
-        <Route path = "/register-interest" element = {<RegisterInterest />} />
+
+
+        
       </Route>
       <Route path = "/*" element = {<NotFound />} />
     </Routes>

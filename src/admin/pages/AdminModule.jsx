@@ -51,7 +51,7 @@ const AdminModule = () => {
         const res = await modulesAPI.getModuleFullDetail(module_id)
 
         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-          if ( development ) {
+          if (development) {
             setErrors(res.data.detail)
           } else {
             setErrors('Module Not Found')
@@ -62,23 +62,23 @@ const AdminModule = () => {
         const content = res.data
         setModuleData(prevData => [...prevData, content.data]);
         setCurrentModuleData(content.data)
-        
-        if ( development ) {
+
+        if (development) {
           console.log(content.detail)
         }
 
       } catch (err) {
         setErrors(err.message);
-        if ( development ) {
+        if (development) {
           console.log(err.message)
         }
       } finally {
         setPageRendering(false);
       }
     };
-    
+
     let currentModuleIndex = moduleData.findIndex(module => module._id === module_id)
-    if ( currentModuleIndex === -1 ) {
+    if (currentModuleIndex === -1) {
       setPageRendering(true);
       fetchData();
     } else {
@@ -97,7 +97,7 @@ const AdminModule = () => {
     setRightName('Delete Module');
     setRightAction(() => () => navigate('delete'));
   }, [currentModuleData])
-  
+
   const handleAddPartClick = () => {
     navigate(`/admin/add-module-part/${creator_id}/${module_id}`)
   }
@@ -120,7 +120,7 @@ const AdminModule = () => {
         const res = await modulesAPI.getSectionFullDetail(section_id)
 
         if (res.status < 200 || res.status >= 300) { // Check if response status is not OK (200-299)
-          if ( development ) {
+          if (development) {
             setSectionErrors(res.data.detail)
           } else {
             setSectionErrors('Section Not Found')
@@ -131,14 +131,14 @@ const AdminModule = () => {
         const content = res.data
         setSectionData(prevData => [...prevData, content]);
         setCurrentSectionData(content)
-        
-        if ( development ) {
+
+        if (development) {
           console.log(content.detail)
         }
 
       } catch (err) {
         setSectionErrors(err.message);
-        if ( development ) {
+        if (development) {
           console.log(err.message)
         }
       } finally {
@@ -148,63 +148,63 @@ const AdminModule = () => {
 
     // Check if we alraedy have fetched this sections data, if not trigger fetch function above
     let currentSectionIndex = sectionData.findIndex(section => section._id === section_id)
-    if ( currentSectionIndex === -1 ) {
+    if (currentSectionIndex === -1) {
       fetchSectionData();
     } else {
       setCurrentSectionData(sectionData[currentSectionIndex])
       setSectionLoading(false);
-    } 
+    }
     console.log(currentSectionData)
-    
+
   }
 
-  
+
 
   return (
-    <div className = "flex-container-col-no-scroll">
-        { pageRendering &&
-          <Spinner /> 
-        }
-        { !pageRendering && ( !currentModuleData.parts || Object.keys(currentModuleData.parts).length === 0)  && 
-            <div className = "flex-no-module-container">
-              <div className = "no-module-box">
-                <h1 style ={{ paddingBottom : "40px"}}> Option 1 - Add Module Manually</h1>
-                Add Module Manually. You must already have your content broken down into sections.
-                <div style ={{ paddingTop : "40px"}}>
-                  <button onClick={() => handleAddPartClick()} className="global-button global-form-submit-button"> ADD MANUALLY </button>
-                </div>
-              </div>
-              <div className = "no-module-box">
-                <div className = "no-module-title">
-                <h1 style ={{ paddingBottom : "40px"}}> Option 2 - Auto Generate Module</h1>
-                  Build out Module Automatically up uploading a PDF.
-                </div>
-                <div style ={{ paddingTop : "40px"}}>
-                  <button onClick={() => handleBuildOutClick()} className="global-button global-form-submit-button">BUILD OUT MODULE</button>
-                </div>
-              </div>
+    <div className="flex-container-col-no-scroll">
+      {pageRendering &&
+        <Spinner />
+      }
+      {!pageRendering && (!currentModuleData.parts || Object.keys(currentModuleData.parts).length === 0) &&
+        <div className="flex-no-module-container">
+          <div className="no-module-box">
+            <h1 style={{ paddingBottom: "40px" }}> Option 1 - Add Module Manually</h1>
+            Add Module Manually. You must already have your content broken down into sections.
+            <div style={{ paddingTop: "40px" }}>
+              <button onClick={() => handleAddPartClick()} className="global-button global-form-submit-button"> ADD MANUALLY </button>
             </div>
-        }
-        {!pageRendering && currentModuleData.parts && Object.keys(currentModuleData.parts).length > 0 && (
-          <div className = "flex-main-page">
-            { !displayModuleList &&  <div className = "flex-left-page-minimised">
-              <button onClick={toggleModuleListDisplay} className="global-button global-trans-button button-size-minimised"><ChevronRight /></button>
-            </div> }
-            { displayModuleList  && 
-            <div className = "flex-left-page">
-              <div className = "flex-left-page-top-bar">
+          </div>
+          <div className="no-module-box">
+            <div className="no-module-title">
+              <h1 style={{ paddingBottom: "40px" }}> Option 2 - Auto Generate Module</h1>
+              Build out Module Automatically up uploading a PDF.
+            </div>
+            <div style={{ paddingTop: "40px" }}>
+              <button onClick={() => handleBuildOutClick()} className="global-button global-form-submit-button">BUILD OUT MODULE</button>
+            </div>
+          </div>
+        </div>
+      }
+      {!pageRendering && currentModuleData.parts && Object.keys(currentModuleData.parts).length > 0 && (
+        <div className="flex-main-page">
+          {!displayModuleList && <div className="flex-left-page-minimised">
+            <button onClick={toggleModuleListDisplay} className="global-button global-trans-button button-size-minimised"><ChevronRight /></button>
+          </div>}
+          {displayModuleList &&
+            <div className="flex-left-page">
+              <div className="flex-left-page-top-bar">
                 <div className="flex-left-page-top-bar-menu-button"><button onClick={toggleModuleListDisplay} className="global-button global-trans-button button-size"><ChevronLeft /></button></div>
                 <div className="flex-left-page-top-bar-edit-button"><button onClick={toggleModuleEdit} className="global-button global-trans-button button-size"><Pencil /></button></div>
               </div>
-              < ModuleStructureDisplay handleSectionSelection = { handleSectionSelection } currentModuleData = { currentModuleData } edittingModule = { edittingModule } />
+              < ModuleStructureDisplay handleSectionSelection={handleSectionSelection} currentModuleData={currentModuleData} setCurrentModuleData={setCurrentModuleData} edittingModule={edittingModule} />
             </div>
-            }
-            <div className = "flex-right-page mrg">
-              < ModuleDisplay sectionData = { currentSectionData } sectionSelected = { sectionSelected } sectionLoading = { sectionLoading } />
-            </div>
+          }
+          <div className="flex-right-page">
+            < ModuleDisplay sectionData={currentSectionData} sectionSelected={sectionSelected} sectionLoading={sectionLoading} />
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
   )
 };
 

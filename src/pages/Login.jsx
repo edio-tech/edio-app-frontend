@@ -15,39 +15,45 @@ import useAuth from 'hooks/useAuth';
 // Styling
 import 'styles/pages/login.css'
 
-const Login = () => {
-
+const Login = () => 
+{
    const { development } = useLogContext();
    const [loading, setLoading] = useState(false);
    const navigate = useNavigate();
 
    const { auth, setAuth } = useAuth();
    const [errors, setErrors] = useState(null);
-   const redirect = '/admin/all-creators'
 
    const [hash, setHash] = useState(window.location.hash);
-   useEffect(() => {
-      if ( auth?.id ) {
+
+   useEffect(() => 
+   {
+      if ( auth?.id ) 
+      {
          navigate(redirect)
       } 
    }, [navigate])
 
-   useEffect(() => {
-      const handleHashChange = () => {
+   useEffect(() =>
+   {
+      const handleHashChange = () =>
+      {
         setHash(window.location.hash);
       };
 
       window.addEventListener('hashchange', handleHashChange);
 
       // Clean up the event listener when the component unmounts
-      return () => {
+      return () =>
+      {
          window.removeEventListener('hashchange', handleHashChange);
       };
 
    }, []);
 
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = async (e) =>
+   {
       e.preventDefault();
       setLoading(true);
 
@@ -56,34 +62,51 @@ const Login = () => {
 
       const res = await usersAPI.login(data);
       setLoading(false);
-      if ( res['status'] !== 200) {
+      if ( res['status'] !== 200)
+      {
          let errors = await res['data']
          /* Add a way to display login errors */
-         if ( development ) {
+         if ( development )
+         {
             console.log('Login Failed.', errors)
          }
          setErrors(errors);
          return
       }
       const userDetails  = await res['data'];
-      if ( development ) {
+      if ( development )
+      {
          console.log('Login Successful', userDetails)
       }
-      let userAuth = {
+      console.log('User Details:',userDetails)
+      let userAuth =
+      {
          'id': userDetails['user']['_id'],
          'name': userDetails['user']['name'],
          'email': userDetails['user']['email'],
          'role': userDetails['user']['role'],
          'creators' : userDetails['user']['your_creators'],
+         'reviewable_creators' : userDetails['user']['reviewable_creators'],
          'token': userDetails['token']
-     }
-     if ( userAuth.role === 'ADMIN' ) {
-      Cookies.set('jwtToken', userDetails['token'], { expires: 1 });
-      setAuth(userAuth);
-      navigate(redirect)
-     } else {
-      throw Error('This is currently only set up for Administrators. If you wish to book a demo please do so on the home page.')
-     }
+      }
+      let redirect;
+      if ( userAuth.role == 'ADMIN' )
+      {
+         redirect = '/admin/all-creators'
+      } else if ( userAuth.role == 'REVIEWER' )
+      {
+         redirect = '/review-questions'
+      } 
+
+      if ( userAuth.role === 'ADMIN' || userAuth.role === 'REVIEWER' )
+      {
+         Cookies.set('jwtToken', userDetails['token'], { expires: 1 });
+         setAuth(userAuth);
+         navigate(redirect)
+
+      } else {
+         throw Error('This is currently only set up for Administrators. If you wish to book a demo please do so on the home page.')
+      }
    }; 
 
    return (
