@@ -10,8 +10,23 @@ const ModuleStructureDisplay = ({ handleSectionSelection, currentModuleData, set
   const { development } = useLogContext();
 
   // Collapse Stuff
-  const [collapsedParts, setCollapsedParts] = useState({});
-  const [collapsedChapters, setCollapsedChapters] = useState({});
+  const [collapsedParts, setCollapsedParts] = useState(() => {
+    const initialState = {};
+    Object.keys(currentModuleData.parts).forEach(partId => {
+      initialState[partId] = true; // Start collapsed
+    });
+    return initialState;
+  });
+
+  const [collapsedChapters, setCollapsedChapters] = useState(() => {
+    const initialState = {};
+    Object.values(currentModuleData.parts).forEach(part => {
+      Object.keys(part.chapters).forEach(chapterId => {
+        initialState[chapterId] = true; // Start collapsed
+      });
+    });
+    return initialState;
+  });
 
   const toggleCollapse = (stateUpdater, id) => {
     stateUpdater((prev) => ({ ...prev, [id]: !prev[id] }));
