@@ -30,9 +30,13 @@ const Login = () =>
    {
       if ( auth?.id ) 
       {
-         navigate(redirect)
+         handleRedirect(auth)
       } 
-   }, [navigate])
+   }, [])
+
+
+
+
 
    useEffect(() =>
    {
@@ -89,25 +93,32 @@ const Login = () =>
          'reviewable_creators' : userDetails['user']['reviewable_creators'],
          'token': userDetails['token']
       }
-      let redirect;
-      if ( userAuth.role == 'ADMIN' )
-      {
-         redirect = '/admin/all-creators'
-      } else if ( userAuth.role == 'REVIEWER' )
-      {
-         redirect = '/review-questions'
-      } 
+      
 
       if ( userAuth.role === 'ADMIN' || userAuth.role === 'REVIEWER' )
       {
          Cookies.set('jwtToken', userDetails['token'], { expires: 1 });
          setAuth(userAuth);
-         navigate(redirect)
+         handleRedirect(userAuth)
 
       } else {
          throw Error('This is currently only set up for Administrators. If you wish to book a demo please do so on the home page.')
       }
    }; 
+
+
+   const handleRedirect = (userAuthInfo) =>
+   {
+      let redirect;
+      if ( userAuthInfo.role == 'ADMIN' )
+      {
+         redirect = '/admin/all-creators'
+      } else if ( userAuthInfo.role == 'REVIEWER' )
+      {
+         redirect = '/review-questions'
+      } 
+      navigate(redirect)
+   }
 
    return (
       <div className="flex-container">
