@@ -129,7 +129,7 @@ function App() {
 
         <Route element = {<RequireReviewer />}>
           <Route path = "/review-questions" element = {<SelectReviewQuestions />} />
-          <Route path = "/review-all-questions/:creator_id" element = {<ViewQuestions />} />
+          <Route path = "/review-all-poker-questions" element = {<ViewQuestions />} />
         </Route>
 
 

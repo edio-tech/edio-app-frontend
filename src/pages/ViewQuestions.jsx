@@ -20,7 +20,7 @@ const ViewQuestions = (creator_id) =>
     const fetchAllPokerQuestions = async () =>
     {
         setQuestionsLoading(true);
-        const res = await questionsAPILink.getAllQuestionsFromCreator(creator_id, {filter_out_reviewed: true});
+        const res = await questionsAPILink.getAllQuestionsFromCreator('666853a17f50b564b88d81ab', {filter_out_reviewed: true});
 
         if(development)
         {
