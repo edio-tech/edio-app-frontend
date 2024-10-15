@@ -133,6 +133,7 @@ function App() {
         </Route>
 
       <Route path = "/review-all-poker-questions" element = {<ViewQuestions />} />
+      <Route path = "/view-all-poker-questions" element = {<ViewQuestions />} />
 
 
 
